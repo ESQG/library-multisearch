@@ -5,6 +5,15 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
+def connect_to_db(app):
+    """Connect the database to our Flask app."""
+
+    # Configure to use our database
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///library_app'
+    app.config['SQLALCHEMY_ECHO'] = True
+    db.app = app
+    db.init_app(app)
+
 
 if __name__ == '__main__':
 
@@ -15,4 +24,5 @@ if __name__ == '__main__':
     db.create_all()
     example_data()
 
-    print "Connected to DB."
+    # For running interactively
+    print "Connected to DB %s" % app.config['SQLALCHEMY_DATABASE_URI']
