@@ -1,0 +1,16 @@
+Public user 1:
+
+I want to go to the website and enter some titles and authors, or a CSV file of titles and authors.
+Then look at the map of branches of the San Francisco Public Library; when I click on a branch, it will show me which of the books I asked for are available there.  It will also show me which aren't in the library system at all.  If I want digital books or audiobooks those are a "branch" too!
+
+Public user 2:
+
+I don't want to login with Goodreads, but I do have a public Goodreads profile.  So, I go to the website and enter my goodreads handle.  Then the app can show me which of those books are available at each branch as I click on it, just like with user 2.
+
+User 3 with login (not part of MVP!):
+
+I want to login with Goodreads, and tell the app which is my favorite branch of the library.  (Or more than one?) The app will show me which books are available at any branch I click on.  But I can also tell the app which books that aren't available now, to prioritize finding for me for later.
+
+User 4: me, eventually (definitely not part of MVP!)
+
+I want the app to track my to-read list, and maybe even manage it for me.  It can tell me which books are available, and in return, I will tell it which books I have checked out.  Then, it will reorder the list next time according to which books I have not yet checked out.  If I keep passing up the opportunity to read a book, it will eventually threaten me: "I will remove this from your To-Read list as you clearly don't really want to read it!"
