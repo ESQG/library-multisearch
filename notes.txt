@@ -20,3 +20,8 @@ So instead:
  >>> soup = BeautifulSoup(raw_html.content, "html.parser")
 
 Now for each one, I can look at repr, or the text, etc.
+
+Things without whitespace: soup.stripped_strings
+
+To get the classes of an element, do whatever['class'], get a list of classes.
+or whatever.attrs will show {'class' : blah}
