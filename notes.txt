@@ -1,0 +1,22 @@
+Using Beautiful Soup on the location info page:
+
+First, use requests to get a link: e.g. r = requests.get("http://purple.com")
+Then the actual html would be r.content
+Then use Beautiful Soup on that.
+
+
+python -i example_urls.py 
+
+>>> link = availability[1]
+>>> raw_html = requests.get(link)
+>>> raw_html.content
+(big chunk of HTML)
+
+>>> from bs4 import BeautifulSoup
+>>> soup = BeautifulSoup(raw_html.content)
+WARNS me about html parser!
+
+So instead:
+ >>> soup = BeautifulSoup(raw_html.content, "html.parser")
+
+Now for each one, I can look at repr, or the text, etc.
