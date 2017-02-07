@@ -28,3 +28,12 @@ def soupify(link):
     else:
         print "Cannot find %s" % link   # May want to make an error?
         return None
+
+def find_heading_of_table(table_element):
+    for element in table_element.previous_elements:
+        if element.name == 'h1':
+            print element.text
+            return element
+
+def find_locations_of_table(table_element):
+    pass
