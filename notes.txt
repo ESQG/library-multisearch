@@ -25,3 +25,6 @@ Things without whitespace: soup.stripped_strings
 
 To get the classes of an element, do whatever['class'], get a list of classes.
 or whatever.attrs will show {'class' : blah}
+
+
+USE SOME REGULAR EXPRESSIONS!
