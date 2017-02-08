@@ -1,0 +1,5 @@
+ugh too much already!
+
+Test various requesting functions when put in bad Library IDs, etc.
+
+Test catalog searching--maybe write that first?
