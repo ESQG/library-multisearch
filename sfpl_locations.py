@@ -92,7 +92,7 @@ def find_availability_table(soup):
             print h1_element.text
             return find_table_from_heading(h1_element)
 
-def all_records(library_id):
+def all_availability(library_id):
     """Organizes all the availability information for a given record.
 
     If the library ID does not exist, the status code returned by Bibliocommons is 302, and the function returns False."""
