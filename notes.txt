@@ -44,3 +44,21 @@ key: Developer key (required).
 
 
 Idea: SORT OUTPUT BY CALL NUMBER! Yes!
+
+SFPL calls
+
+Search by author only: https://sfpl.bibliocommons.com/search?q="Butler%2C+Octavia+E."&search_category=author&t=author
+Search by title only: https://sfpl.bibliocommons.com/search?utf8=%E2%9C%93&q=Fledgling&t=title&search_category=title
+
+Custom query https://sfpl.bibliocommons.com/search?custom_query=author%3AButler+title%3AFledgling+format%3ABook&suppress=true&custom_edit=true
+
+
+
+Writing your own search queries: http://help.bibliocommons.com/010searching/015writing/
+
+
+OK so for example https://sfpl.bibliocommons.com/search?custom_query=title%3A(Fledgling)+contributor%3A(Octavia+Butler)+formatcode%3A(BOOK_CD+OR+BK+OR+AB+OR+EBOOK+)&suppress=true&custom_edit=true
+
+Or jsut https://sfpl.bibliocommons.com/search?custom_query=title%3A(Fledgling)+contributor%3A(Octavia+Butler)+formatcode%3A(BOOK_CD+OR+BK+OR+AB+OR+EBOOK+)
+
+Or even just https://sfpl.bibliocommons.com/search?custom_query=title%3A(Fledgling)+contributor%3A(Octavia+Butler)
