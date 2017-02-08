@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+BASE_URL = "https://sfpl.bibliocommons.com/item/show_circulation/"
+
 def soupify(link):
     response = requests.get(link)
     if response.status_code == 200:
@@ -52,12 +54,11 @@ def find_locations_in_table(table_element):
     return locations
 
 def find_call_no_and_status(location_td):
+    """Takes a location element of a table, and looks up the call number and status in the same row.
 
-    if 'branch' in location_td.text.lower():
-        endpoint = location_td.text.lower().index('branch')    # fix for Main library
-        location_name = location_td.text[:endpoint].strip()
-    else:
-        location_name = location_td.text
+    Returns a tuple e.g. (u'Anaa', u'F ATWOOD M', u'CHECK SHELF')"""
+
+    location_name = parse_branch_name(location_td.text)
 
     for sib in location_td.next_siblings:
         if sib.name == 'td' and sib.get('data-label') == 'Call No':
@@ -68,8 +69,20 @@ def find_call_no_and_status(location_td):
 
 
 def parse_branch_name(text):
-    """E.g. "Portola Valley Branch (11)" becomes "Portola Valley" """
-    pass
+    """Takes 'Branch' out of the name of a library.
+
+    >>> parse_branch_name(u'Main Library')
+    u'Main Library'
+
+    >>> parse_branch_name(u'Marina Branch')
+    u'Marina'
+    """
+
+    if 'branch' in text.lower():
+        endpoint = text.lower().index('branch')
+        return text[:endpoint].strip()
+    else:
+        return text.strip()
 
 
 def find_availability_table(soup):
@@ -78,3 +91,41 @@ def find_availability_table(soup):
         if 'Available' in h1_element.text and 'not' not in h1_element.text.lower():            # fix with regular expressions!
             print h1_element.text
             return find_table_from_heading(h1_element)
+
+def all_records(library_id):
+    """Organizes all the availability information for a given record.
+
+    If the library ID does not exist, the status code returned by Bibliocommons is 302, and the function returns False."""
+
+    link = BASE_URL + library_id
+
+    response = requests.get(link, allow_redirects=False)
+
+    if response.status_code == 302:
+        print "Status code 302: no record for id %s" % library_id
+        return False
+    if response.status_code != 200:
+        print "Error!", response.status_code
+        return False
+
+    soup = BeautifulSoup(response.content)
+    results = {}
+
+    tables = soup.find_all('table')
+
+    for table in tables:
+        header = find_heading_of_table(table)
+        if 'Available' in header.text and 'not' not in header.text.lower():
+            results['available'] = find_locations_in_table(table)
+        elif 'Not available' in header.text:
+            results['checked_out'] = find_locations_in_table(table)
+        else:
+            key = header.string.encode('utf-8')
+            results[key] = find_locations_in_table(table)
+
+
+if __name__ == '__main__':
+    library_id = "Input SFPL number of record: ".strip()
+    print all_records(library_id)
+
+
