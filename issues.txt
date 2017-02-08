@@ -1,0 +1,3 @@
+Issue: using library ID in multiple functions, pulling up links multiple times
+
+Issue: showing circulation of digital records is redundant and moreover returns nothing
