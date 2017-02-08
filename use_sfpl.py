@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import sfpl_locations
 
 BASE_URL = "https://sfpl.bibliocommons.com"
 
@@ -27,3 +28,11 @@ def search_all_records(title, author):
         # For example above, title.a['href'] returns u'/item/show/3123202093_fledgling'
 
     return links
+
+def check_type(record_soup):
+    pass
+
+
+def find_availability(title, author):
+    pass
+
