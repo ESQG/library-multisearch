@@ -41,5 +41,5 @@ def parse_list(request_data):
     return return_books
 
 def my_toread_list():
-    sample_request_data = {'v':'2', 'id': ESQG, 'key':api_key, 'shelf':'to-read', 'per_page':'10'}
+    sample_request_data = {'v':'2', 'id': ESQG, 'key':api_key, 'shelf':'to-read', 'per_page':'200'}
     return parse_list(sample_request_data)
