@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 BASE_URL = "https://sfpl.bibliocommons.com"
 
-example = BASE_URL + "/search?custom_query=" + "title%3A(Fledgling)+author%3A(Octavia+Butler)"
+example = BASE_URL + "/search?custom_query=" + "title%3AFledgling+author%3AOctavia+Butler"
 
 
 # Bibliocommons recommends 'contributor' in its construction form, should I use that?
