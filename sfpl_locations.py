@@ -108,7 +108,7 @@ def all_availability(library_id):
         print "Error!", response.status_code
         return False
 
-    soup = BeautifulSoup(response.content)
+    soup = BeautifulSoup(response.content, "html.parser")
     results = {}
 
     tables = soup.find_all('table')
@@ -122,6 +122,8 @@ def all_availability(library_id):
         else:
             key = header.string.encode('utf-8')
             results[key] = find_locations_in_table(table)
+
+    return results
 
 
 if __name__ == '__main__':
