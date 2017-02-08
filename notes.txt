@@ -62,3 +62,6 @@ OK so for example https://sfpl.bibliocommons.com/search?custom_query=title%3A(Fl
 Or jsut https://sfpl.bibliocommons.com/search?custom_query=title%3A(Fledgling)+contributor%3A(Octavia+Butler)+formatcode%3A(BOOK_CD+OR+BK+OR+AB+OR+EBOOK+)
 
 Or even just https://sfpl.bibliocommons.com/search?custom_query=title%3A(Fledgling)+contributor%3A(Octavia+Butler)
+
+Henry says: URL Parse
+Also save extracted data to files so not always querying it
