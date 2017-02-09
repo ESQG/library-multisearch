@@ -14,52 +14,81 @@ class Book(db.Model):
 
     author = db.Column(db.String(70), nullable=False)
 
-    in_library = db.Column(db.Boolean, nullable=True)
+    has_records = db.Column(db.Boolean, nullable=True)
+    # True if SFPL has any copies of this book in any format, False if not.
+    # This is deliberately denormalized, but should not need to be updated often.
 
-# class OtherAuthor(db.Model):       # Make unique in PSQL!
-
-#     __tablename__ = "other_authors"
-
-#     row_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-
-#     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
-
-#     name = db.Column(db.String(70), nullable=False)
-
-#     book = db.relationship(Book, backref="other_authors")
 
 class Record(db.Model):
+    """A specific record for a book, held by a library using Bibliocommons.  Each record has
+    one format; therefore a given book often has 4-5 records at SFPL or other libraries.
+    A record usually refers to multiple copies of the book, which do not necessarily share the
+    same call numbers, and which appear at different library branches; rather than track copies individually,
+    the association table RecordBranch can be used to find how many copies of a book are at a given
+    branch.
+    it can be viewed by putting the bibliocommons_id into a URL, see examples below.
+
+    Bibliocommons IDs seem to be shared across libraries, but the formats are not necessarily the same.
+    For example, the bibliocommons_id of one record for "Fledgling" by Octavia Butler is 3123202093.
+    https://seattle.bibliocommons.com/item/show/3123202093_fledgling is a physical book,
+    as is https://brooklyn.bibliocommons.com/item/show/3123202093_fledgling, but
+    https://sfpl.bibliocommons.com/item/show/3123202093_fledgling is an ebook.
+
+    Therefore it may be useful to check bibliocommons_id numbers between different records referring
+    to the same book, but in order to fix one format per record I won't use it as a primary key."""
+
 
     __tablename__ = "records"
 
-    library_id = db.Column(db.Integer, primary_key=True, autoincrement=False)
+    record_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    bibliocommons_id = db.Column(db.Integer, nullable=False)
 
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
 
-    format = db.relationship('Format', secondary='RecordFormat')
+    format_code = db.Column(db.String(10), db.ForeignKey('formats.format_code'))
 
+    # Relationships
+    format = db.relationship('Format')
     book = db.relationship('Book', backref="library_records")
 
-class Copies(db.Model):
+class RecordBranch(db.Model):
 
-    __tablename__ = "copies"
+    __tablename__ = "record_branch"
 
-    copy_id = db.Column(db.Integer, primary_key=True)
+    recbranch_id = db.Column(db.Integer, primary_key=True)
 
-    library_id = db.Column(db.Integer, db.ForeignKey('records.library_id'))
+    record_id = db.Column(db.Integer, db.ForeignKey('records.record_id'))
 
     branch_code = db.Column(db.String(10), db.ForeignKey('branches.branch_code'))
 
-    checked_out = db.Column(db.Integer, nullable=False)
+    total_copies = db.Column(db.Integer, nullable=False)
 
-    available = db.Column(db.Integer, nullable=False)
+    # total_available = db.Column(db.Integer, nullable=True)  # Moved to call number
 
-    book = db.relationship('Book', secondary='Record')
-
-    branch = db.relationship('Branch', backref="copies")
+    # Relationships
+    record = db.relationship('Record')
+    branch = db.relationship('Branch', backref='record_branch')
 
     def __repr__(self):
         return "Copies(%s available, %s unavailable, %s)" % (self.available, self.checked_out, self.branch_code)
+
+
+class CallNumber(db.Model):
+    """A table used to list all the call numbers of a given RecordBranch entry.
+
+    This is almost as specific as copies of a book, but multiple copies may share a call number."""
+
+    __tablename__ = "call_numbers"
+
+    callno_id = db.Column(db.Integer, primary_key=True)
+
+    record_id = db.Column(db.Integer, db.ForeignKey('record_branch.recbranch_id'))
+
+    total_available = db.Column(db.Integer, nullable=True)
+
+    # Relationship: used only for RecordBranch
+    record_branch = db.relationship('RecordBranch', backref="call_numbers")
 
 
 class Branch(db.Model):
@@ -76,10 +105,21 @@ class Branch(db.Model):
 
     address = db.Column(db.String(50), nullable=True)
 
-    library_system = db.Column(db.String(50), nullable=False)
+    library_code = db.Column(db.String(10), db.ForeignKey('libraries.library_code'))
+
+    # Relationships: what libraries?
+    library = db.relationship('LibrarySystem', backref="branches")
 
     def __repr__(self):
         return "Branch(%s, %s)" %(self.branch_code, self.name)
+
+class LibrarySystem(db.Model):
+
+    __tablename__ = "libraries"
+
+    library_code = db.Column(db.String(10), primary_key=True)
+
+    name = db.Column(db.String(50), nullable=False)
 
 
 class User(db.Model):
@@ -88,30 +128,58 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    login = db.Column(db.String(30), nullable=False)
-
+    email = db.Column(db.String(254), nullable=False)
     password = db.Column(db.String(60), nullable=False)
 
     first_name = db.Column(db.String(25), nullable=True)
-
     last_name = db.Column(db.String(25), nullable=True)
 
-    goodreads_id = db.Column(db.Integer, nullable=True)
+    #Relationships
+    book_list = db.relationship('Book', secondary='UserBook', backref="users")
+    branches = db.relationship('Branch', secondary='UserBranch', backref="users")
 
-    email = db.Column(db.String(65), nullable=False)
 
-    books = db.relationship('Book', secondary='UserBook')
+class GoodreadsUser(db.Model):
+    """Some users will have Goodreads IDs; others may choose to enter their books directly.
+    Therefore this class serves as an extension of the User table.
+    It is also here in the hopes of implementing OAuth through Goodreads eventually."""
 
+    __tablename__ = "goodreads_user"
+
+    gruser_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    goodreads_id = db.Column(db.String(50), nullable=False, unique=True)
+
+    #Relationship to User
+    user = db.relationship('User', backref="goodreads")
+
+
+# class PhoneUser later if using Twilio
 
 class UserBook(db.Model):
+    """An association table used to get a book list for each user."""
 
     __tablename__ = "user_books"
 
-    row_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    userbook_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
+
+    # Relationships defined in User and Book classes
+
+
+class UserBranch(db.Model):
+    """Used to track which branches of the library a given user prefers."""
+
+    __tablename__ = "user_branches"
+
+    userbranch_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    branch_code = db.Column(db.String(10), db.ForeignKey('branches.branch_code'))
+
 
 
 class Format(db.Model):
@@ -124,16 +192,6 @@ class Format(db.Model):
 
     digital = db.Column(db.Boolean)
 
-class RecordFormat(db.Model):
-
-    row_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-
-    library_id = db.Column(db.Integer, db.ForeignKey('records.library_id'))
-
-    format_code = db.Column(db.String(10), db.ForeignKey('formats.format_code'))
-
-    record = db.relationship('Record')
-    format = db.relationship('Format')
 
 def connect_to_db(app):
     """Connect the database to our Flask app."""

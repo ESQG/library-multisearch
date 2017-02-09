@@ -1,3 +1,6 @@
 Issue: using library ID in multiple functions, pulling up links multiple times
 
 Issue: showing circulation of digital records is redundant and moreover returns nothing
+    (Postponing until after MVP! For now, check if a record is digital or not.)
+
+Need a lot more docstrings.
