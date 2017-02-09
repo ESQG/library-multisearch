@@ -11,7 +11,21 @@ BASE_URL = "https://www.goodreads.com/review/"
 LIST_URL = BASE_URL+"list"
 
 
-def parse_list(request_data):
+def parse_soup(soup):
+    books = soup.find_all('book')
+    return_books = []
+
+    for book in books:
+        title = book.title.text     # Issue: may have series numbers, could be problem?
+        author = book.author.find('name').text      # Using .name returns 'author' i.e. tag label
+        isbn = book.isbn.text
+        return_books.append({'title': title, 'author':author, 'isbn':isbn})
+
+    print "Books found:", len(return_books)
+    return return_books
+
+
+def soup_from_list(request_data):
     """Parse a list of books from the Goodreads API.  Returns a list of dictionaries,
     each one with keys 'title', 'author', and 'isbn'.
 
@@ -27,19 +41,11 @@ def parse_list(request_data):
         print "Error!", response.status_code
         return response.status_code
 
-    soup = BeautifulSoup(response.content)
-    books = soup.find_all('book')
-    return_books = []
-
-    for book in books:
-        title = book.title.text     # Issue: may have series numbers, could be problem?
-        author = book.author.find('name').text      # Using .name returns 'author' i.e. tag label
-        isbn = book.isbn.text
-        return_books.append({'title': title, 'author':author, 'isbn':isbn})
-
-    print "Books found:", len(return_books)
-    return return_books
+    return BeautifulSoup(response.content, "html.parser")
+    
 
 def my_toread_list():
     sample_request_data = {'v':'2', 'id': ESQG, 'key':api_key, 'shelf':'to-read', 'per_page':'200'}
-    return parse_list(sample_request_data)
+    return parse_soup(soup_from_list(sample_request_data))
+
+sample_soup = BeautifulSoup(open('stuff2.xml'), "html.parser")
