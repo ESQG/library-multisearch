@@ -18,6 +18,13 @@ class Book(db.Model):
     # True if SFPL has any copies of this book in any format, False if not.
     # This is deliberately denormalized, but should not need to be updated often.
 
+    def __repr__(self):
+        if len(self.title) > 100 and ":" in self.title:
+            short_title = self.title.split(":")[0].strip()
+        else:
+            short_title = self.title
+        return "Book(%s: %s by %s)" % (self.book_id, short_title, self.author)
+
 
 class Record(db.Model):
     """A specific record for a book, held by a library using Bibliocommons.  Each record has
@@ -52,6 +59,9 @@ class Record(db.Model):
     format = db.relationship('Format')
     book = db.relationship('Book', backref="library_records")
 
+    def __repr__(self):
+        return "Record(bibliocommons_id=%s, %s)" %(self.bibliocommons_id, self.format_code)
+
 class RecordBranch(db.Model):
 
     __tablename__ = "record_branch"
@@ -71,8 +81,7 @@ class RecordBranch(db.Model):
     branch = db.relationship('Branch', backref='record_branch')
 
     def __repr__(self):
-        return "Copies(%s available, %s unavailable, %s)" % (self.available, self.checked_out, self.branch_code)
-
+        return "Association(record %s with branch %s)" %(self.record_id, self.branch_code)
 
 class CallNumber(db.Model):
     """A table used to list all the call numbers of a given RecordBranch entry.
@@ -83,12 +92,20 @@ class CallNumber(db.Model):
 
     callno_id = db.Column(db.Integer, primary_key=True)
 
+    call_number = db.Column(db.String(30), nullable=False)
+
     record_id = db.Column(db.Integer, db.ForeignKey('record_branch.recbranch_id'))
 
     total_available = db.Column(db.Integer, nullable=True)
 
     # Relationship: used only for RecordBranch
     record_branch = db.relationship('RecordBranch', backref="call_numbers")
+
+    def __repr__(self):
+        if self.total_available is not None:
+            return "CallNumber(%s for record %s, %s available)" %(self.callno_id, )
+        else:
+            return "CallNumber(%s for record %s, unknown available)"
 
 
 class Branch(db.Model):
@@ -135,7 +152,7 @@ class User(db.Model):
     last_name = db.Column(db.String(25), nullable=True)
 
     #Relationships
-    # book_list = db.relationship('Book', secondary='UserBook', backref="users")
+    book_list = db.relationship('Book', secondary='user_books', backref="users")
     # branches = db.relationship('Branch', secondary='UserBranch', backref="users")
 
 
@@ -199,6 +216,7 @@ def connect_to_db(app):
     # Configure to use our database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///library_app'
     app.config['SQLALCHEMY_ECHO'] = True
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)
 
