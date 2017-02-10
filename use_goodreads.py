@@ -48,4 +48,3 @@ def my_toread_list():
     sample_request_data = {'v':'2', 'id': ESQG, 'key':api_key, 'shelf':'to-read', 'per_page':'200'}
     return parse_soup(soup_from_list(sample_request_data))
 
-sample_soup = BeautifulSoup(open('stuff2.xml'), "html.parser")
