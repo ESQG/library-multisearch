@@ -10,7 +10,7 @@ class Book(db.Model):
 
     book_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(200), nullable=False)
 
     author = db.Column(db.String(70), nullable=False)
 
@@ -135,8 +135,8 @@ class User(db.Model):
     last_name = db.Column(db.String(25), nullable=True)
 
     #Relationships
-    book_list = db.relationship('Book', secondary='UserBook', backref="users")
-    branches = db.relationship('Branch', secondary='UserBranch', backref="users")
+    # book_list = db.relationship('Book', secondary='UserBook', backref="users")
+    # branches = db.relationship('Branch', secondary='UserBranch', backref="users")
 
 
 class GoodreadsUser(db.Model):
