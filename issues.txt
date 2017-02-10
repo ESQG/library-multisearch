@@ -7,3 +7,9 @@ Need a lot more docstrings.
 
 PostgreSQL should take care of stemming; if author is named in more than one way, how to check that?
     (For now: log file.)
+
+Code review from Elaine!
+    --Folders
+    --Spacing
+    --tests ASAP
+    --More logging, less printing
