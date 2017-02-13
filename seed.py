@@ -13,6 +13,27 @@ def sfpl_branches():
     pass
 
 
+def add_formats():
+    """Add standardized formats to the database."""
+
+    book_format = Format(format_code='book', name='Book', digital=False)
+    db.session.add(book_format)
+
+    ebook_format = Format(format_code='ebook', name='Downloadable ebook', digital=True)
+    db.session.add(ebook_format)
+
+    audio_cd = Format(format_code='audiocd', name='Audiobook CD', digital=False)
+    db.session.add(audio_cd)
+
+    audio_digital = Format(format_code='eaudio', name='Downloadable Audiobook', digital=True)
+    db.session.add(audio_digital)
+
+    hoopla_format = Format(format_code='hoopla', name='Hoopla Digital Audiobook', digital=True)
+    db.session.add(hoopla_format)
+
+    db.session.commit()
+
+
 
 def add_my_toread_list():
     esqg = User(first_name="Elizabeth", last_name="Goodman", email="esqg@nowhere.com", password="programmer")
