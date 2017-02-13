@@ -65,3 +65,5 @@ Or even just https://sfpl.bibliocommons.com/search?custom_query=title%3A(Fledgli
 
 Henry says: URL Parse
 Also save extracted data to files so not always querying it
+
+secondaries = [x for x in soup.find_all('div') if 'class' in x.attrs and 'secondary_info' in x['class']]
