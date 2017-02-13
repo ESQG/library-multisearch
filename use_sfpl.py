@@ -10,7 +10,13 @@ example = BASE_URL + "/search?custom_query=" + "title%3AFledgling+author%3AOctav
 
 # Bibliocommons recommends 'contributor' in its construction form, should I use that?
 def search_all_records(title, author):
-    """Need to use urllib to encode"""
+    """Returns a list of dictionaries, basically scraping together my own API from the library catalog.  Attributes I pull out
+    are the title, author, and format as listed on the search results page, along with the local link to the actual record.
+
+    Empty list if no records found; otherwise, each record should be formatted like so:
+    {'author': u'Tolkien, J. R. R.', 'format': u'(Audiobook CD)', 'path': u'/item/show/1905558093_the_hobbit', 'title': u'The Hobbit'}.
+
+    """
 
     search_results = []
     response = requests.get(BASE_URL+"/search", {'custom_query': 'title:{} author:{}'.format(title, author)})
