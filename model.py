@@ -103,9 +103,9 @@ class CallNumber(db.Model):
 
     def __repr__(self):
         if self.total_available is not None:
-            return "CallNumber(%s for record %s, %s available)" %(self.callno_id, )
+            return "CallNumber(%s for record %s, %s available)" %(self.call_number, self.record_id, self.total_available)
         else:
-            return "CallNumber(%s for record %s, unknown available)"
+            return "CallNumber(%s for record %s, unknown available)" % (self.call_number, self.record_id)
 
 
 class Branch(db.Model):
