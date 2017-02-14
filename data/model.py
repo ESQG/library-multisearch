@@ -211,7 +211,7 @@ class Format(db.Model):
 
 
 def connect_to_db(app):
-    """Connect the database to our Flask app."""
+    """Connect a Flask app to our database."""
 
     # Configure to use our database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///library_app'
@@ -227,6 +227,8 @@ def example_data():
 
 if __name__ == '__main__':
 
+    import sys
+    sys.path.append('../')  # Allow imports from parent directory 
     from server import app
     connect_to_db(app)
 

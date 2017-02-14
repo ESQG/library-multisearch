@@ -1,9 +1,11 @@
-from server import app
-from model import *
-import use_sfpl
-import sfpl_locations
 import re
 from datetime import datetime
+import sys
+
+from model import *
+sys.path.append('../')
+from server import app
+from queries import use_sfpl, sfpl_locations
 
 
 def log_overlaps(title, author):

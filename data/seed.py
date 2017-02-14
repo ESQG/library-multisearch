@@ -1,9 +1,16 @@
+# Outside packages and standard libraries
 from bs4 import BeautifulSoup
-import use_goodreads
-from model import *
-from server import app
 from datetime import datetime
+import sys
+
+# Local imports
+from model import *
 import data_manager
+
+# Parent directory imports
+sys.path.append('../')
+from queries import use_goodreads
+from server import app
 
 connect_to_db(app)
 

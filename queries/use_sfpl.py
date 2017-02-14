@@ -1,7 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
-import sfpl_locations
 import re
+
+# Local imports
+import sfpl_locations
 
 BASE_URL = "https://sfpl.bibliocommons.com"
 
