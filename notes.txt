@@ -69,3 +69,5 @@ Also save extracted data to files so not always querying it
 Could use if format doesn't show up in initial results:
 secondaries = [x for x in soup.find_all('div') if 'class' in x.attrs and 'secondary_info' in x['class']]
 formats = [x for x in spans if 'class' in x.attrs and 'format' in x['class']]
+
+Rewrite data_manager function: just track call numbers, i.e. already updated ones, then leave updated ones alone unless updating to say it's available

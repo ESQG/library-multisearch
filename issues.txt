@@ -16,3 +16,5 @@ Code review from Elaine!
     --More logging, less printing (note: on sfpl_locations page)
 
 Library system says number of copies of a given call number at a given location, but weirdly does groups records for available copies and not for unavailable ones.  Need to explore what exactly is going on there, then change my code to add the accounts.
+
+Update has_records oopps
