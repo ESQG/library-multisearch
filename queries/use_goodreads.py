@@ -51,10 +51,10 @@ def soup_from_shelf(request_data):
 
 def parse_shelf_and_id(goodreads_link):
 
-    if "goodreads.com" not in netloc:
+    parsed = urlparse.urlparse(goodreads_link)
+    if "goodreads.com" not in parsed.netloc:
         return {'shelf': None, 'goodreads_id': None}
 
-    parsed = urlparse.urlparse(goodreads_link)
     if parsed.query and "shelf=" in parsed.query:
         shelf_index = parsed.query.index("shelf=") + 6
         shelf = parsed.query[shelf_index:].split("&")[0]    # E.g. "shelf=to-read&a=b" --> "to-read"

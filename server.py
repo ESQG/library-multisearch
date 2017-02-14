@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, flash, redirect
+from flask import Flask, render_template, session, flash, redirect, request
 from flask_debugtoolbar import DebugToolbarExtension
 from data.model import connect_to_db
 from queries import use_goodreads
