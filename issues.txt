@@ -2,6 +2,7 @@ Issue: using library ID in multiple functions, pulling up links multiple times
 
 Issue: showing circulation of digital records is redundant and moreover returns nothing
     (Postponing until after MVP! For now, check if a record is digital or not.)
+    (Revisiting: skip digital checks for now, assume available.)
 
 Need a lot more docstrings.
 
@@ -12,4 +13,6 @@ Code review from Elaine!
     --Folders
     --Spacing
     --tests ASAP
-    --More logging, less printing
+    --More logging, less printing (note: on sfpl_locations page)
+
+Library system says number of copies of a given call number at a given location, but weirdly does groups records for available copies and not for unavailable ones.  Need to explore what exactly is going on there, then change my code to add the accounts.
