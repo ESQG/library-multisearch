@@ -50,6 +50,8 @@ def soup_from_shelf(request_data):
     
 
 def parse_shelf_and_id(goodreads_link):
+    if not goodreads_link:
+        return {'shelf': None, 'goodreads_id': None}
 
     parsed = urlparse.urlparse(goodreads_link)
     if "goodreads.com" not in parsed.netloc:
