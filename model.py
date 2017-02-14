@@ -49,7 +49,7 @@ class Record(db.Model):
 
     record_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    bibliocommons_id = db.Column(db.Integer, nullable=False)
+    bibliocommons_id = db.Column(db.BigInteger, nullable=False)
 
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
 
@@ -219,6 +219,7 @@ def connect_to_db(app):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)
+    print "I think I'm connected to the DB!"
 
 
 def example_data():
