@@ -2,6 +2,7 @@ env*
 *.sh
 stuff*
 *.pyc
+*.log
 
 # Files beginning with 'stuff' are just examples I'm keeping for reference while coding.
 # I used more than one virtual environment: one for the Hackbright-provided virtual machine, and one for my own machine.
