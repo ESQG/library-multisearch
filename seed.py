@@ -7,12 +7,6 @@ import data_manager
 
 connect_to_db(app)
 
-def sfpl_branches():
-    sfpl = LibrarySystem(library_code="sfpl", name="San Francisco Public Library")
-    db.session.add(sfpl)
-    pass
-
-
 def add_formats():
     """Add standardized formats to the database."""
 
@@ -52,7 +46,7 @@ def add_my_toread_list():
         db.session.commit()
 
 
-        assoc = UserBook(book_id = book.book_id, user_id = esqg.user_id)
+        assoc = UserBook(book_id=book.book_id, user_id=esqg.user_id)
         db.session.add(assoc)
         db.session.commit()
 
