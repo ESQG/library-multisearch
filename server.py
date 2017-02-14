@@ -3,9 +3,6 @@ from flask_debugtoolbar import DebugToolbarExtension
 from data.model import connect_to_db
 from queries import use_goodreads
 
-api_key = os.environ['GOODREADS_API_KEY']
-api_secret = os.environ['GOODREADS_API_SECRET']
-
 app = Flask(__name__)
 
 app.secret_key="ENID BLYTON"
@@ -15,7 +12,7 @@ app.secret_key="ENID BLYTON"
 def home_page():
     return render_template("home.html")
 
-@app.route("/booklist", methods="POST")
+@app.route("/booklist", methods=["POST"])
 def display_books_from_form():
 
     if 'goodreads-id' in request.form:
@@ -41,7 +38,7 @@ def display_books_from_form():
     session['books'] = books
     return render_template("books.html", books=books)
 
-@app.route("/booklist", methods="GET")
+@app.route("/booklist", methods=["GET"])
 def display_books_from_session():
 
     if 'books' in session:
