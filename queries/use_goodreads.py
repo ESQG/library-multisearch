@@ -1,5 +1,8 @@
 import os
 import requests
+import urlparse
+import re
+import urllib
 from bs4 import BeautifulSoup
 
 
@@ -25,7 +28,9 @@ def parse_soup(soup):
     return return_books
 
 
-def soup_from_list(request_data):
+
+
+def soup_from_shelf(request_data):
     """Parse a list of books from the Goodreads API.  Returns a list of dictionaries,
     each one with keys 'title', 'author', and 'isbn'.
 
@@ -44,7 +49,34 @@ def soup_from_list(request_data):
     return BeautifulSoup(response.content, "html.parser")
     
 
+def parse_shelf_and_id(goodreads_link):
+
+    if "goodreads.com" not in netloc:
+        return {'shelf': None, 'goodreads_id': None}
+
+    parsed = urlparse.urlparse(goodreads_link)
+    if parsed.query and "shelf=" in parsed.query:
+        shelf_index = parsed.query.index("shelf=") + 6
+        shelf = parsed.query[shelf_index:].split("&")[0]    # E.g. "shelf=to-read&a=b" --> "to-read"
+    else:
+        shelf = None
+
+    goodreads_finder = re.search(r'\d{6,8}', goodreads_link)    # Returns None if no matches
+    if goodreads_finder:
+        goodreads_id = goodreads_finder.group()
+    else:
+        goodreads_id = None
+
+    return {'shelf': shelf, 'goodreads_id': goodreads_id}
+
+
+def get_shelf(goodreads_id, shelf):
+    request_data = {'v':'2', 'id':goodreads_id, 'key':api_key, 'shelf':shelf, 'per_page':'200'}
+    return parse_soup(soup_from_shelf(request_data))
+
+
 def my_toread_list():
-    sample_request_data = {'v':'2', 'id': ESQG, 'key':api_key, 'shelf':'to-read', 'per_page':'200'}
-    return parse_soup(soup_from_list(sample_request_data))
+    shelf = 'to-read'
+    goodreads_id = ESQG
+    return get_shelf(goodreads_id, shelf)
 
