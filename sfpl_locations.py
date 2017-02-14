@@ -65,7 +65,7 @@ def find_call_no_and_status(location_td):
             call_number = sib.text.strip()
         if sib.name == 'td' and sib.get('data-label') == 'Status':
             status = sib.text.strip()
-            return (location_name, call_number, status)
+            return {'branch': location_name, 'call_number': call_number, 'status': status}
 
 
 def parse_branch_name(text):
@@ -92,17 +92,46 @@ def find_availability_table(soup):
             print h1_element.text
             return find_table_from_heading(h1_element)
 
-def all_availability(library_id):
+def all_availability(record):
     """Organizes all the availability information for a given record.
 
-    If the library ID does not exist, the status code returned by Bibliocommons is 302, and the function returns False."""
+    If the library ID does not exist, this is a bug; the status code returned by Bibliocommons is 302, and the function returns False.
 
-    link = BASE_URL + library_id
+    One example: 
+
+    {'available': [{'branch': u'Anza',
+   'call_number': u'jF RHOD',
+   'status': u'CHECK SHELF'},
+  {'branch': u'Bayview', 'call_number': u'jF RHOD', 'status': u'CHECK SHELF'},
+  {'branch': u'Main Library',
+   'call_number': u'jF RHOD',
+   'status': u'CHECK SHELF'},
+  {'branch': u'Park', 'call_number': u'jF RHOD', 'status': u'CHECK SHELF'},
+  {'branch': u'Richmond',
+   'call_number': u'jF RHOD',
+   'status': u'CHECK SHELF'}],
+ 'checked_out': [{'branch': u'Ocean View',
+   'call_number': u'jF RHOD',
+   'status': u'Due 02-11-17'},
+  {'branch': u'West Portal',
+   'call_number': u'jF RHOD',
+   'status': u'ON HOLDSHELF'},
+  {'branch': u'Western Addition',
+   'call_number': u'jF RHOD',
+   'status': u'Due 02-22-17'}]}
+   """
+
+
+
+    if record.format.digital:
+        return [{'available': 'online'}]
+
+    link = BASE_URL + str(record.bibliocommons_id)
 
     response = requests.get(link, allow_redirects=False)
 
     if response.status_code == 302:
-        print "Status code 302: no record for id %s" % library_id
+        print "Status code 302: no record for id %s" % record.bibliocommons_id
         return False
     if response.status_code != 200:
         print "Error!", response.status_code
@@ -126,8 +155,28 @@ def all_availability(library_id):
     return results
 
 
-if __name__ == '__main__':
-    library_id = "Input SFPL number of record: ".strip()
-    print all_records(library_id)
+def plain_results(record):
+    """Like all_availability but less nested."""
 
+    if record.format.digital:
+        return [{'available': 'online'}]
 
+    link = BASE_URL + str(record.bibliocommons_id)
+
+    response = requests.get(link, allow_redirects=False)
+
+    if response.status_code == 302:
+        print "Status code 302: no record for id %s" % record.bibliocommons_id
+        return False
+    if response.status_code != 200:
+        print "Error!", response.status_code
+        return False
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    results = []
+
+    tables = soup.find_all('table')
+
+    for table in tables:
+        results.extend(find_locations_in_table(table))
+    return results
