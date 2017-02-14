@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>Books</h1>
+
+{% if books %}
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN (from Goodreads)</th>
+    </tr>
+{% for book in books %}
+    <tr>
+        <td>{{book['title']}}</td>
+        <td>{{book['author']}}</td>
+        <td>{{book['isbn']}}</td>
+    </tr>
+{% endfor %}
+
+</table>
+{% else %}
+
+<p> I'm sorry, you have no books yet!</p>
+{% endif %}
+
+{% endblock %}
