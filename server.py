@@ -39,21 +39,24 @@ def display_books_from_form():
     books = use_goodreads.get_shelf(session['goodreads_id'], session['shelf'])
 
     session['books'] = books
+    write_log("Books added to session", str(books)[:100])
     return render_template("books.html", books=books)
 
 @app.route("/booklist", methods=["GET"])
 def display_books_from_session():
 
     if 'books' in session:
-        pass # display books!
+        books = session['books']
+        return render_template("books.html", books=books)
     else:
+        write_log("No books found in session", str(session)[:200])
         flash("Sorry, we have no books for you yet. Please provide a bookshelf.")
         return redirect("/")
 
 
 def write_log(*args):
     with open("notes/server.log", 'a') as log_file:
-        log_file.write(datetime.now().isoformat())
+        log_file.write(datetime.now().isoformat() + "\t")
         log_file.write("\n".join(args))
         log_file.write("\n")
 
