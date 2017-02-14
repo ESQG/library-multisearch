@@ -3,10 +3,14 @@
     <head>
         <title>All My Library Books</title>
         {% block head %}
-        May not need a head block, but for now
+        Temporary head block, please replace
         {% endblock %}
     </head>
     <body>
+    {% for msg in get_flashed_messages() %}
+    <p>{{ msg }}</p>
+  {% endfor %}
+
     {% block body %}
 
     {% endblock %}
