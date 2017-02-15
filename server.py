@@ -29,7 +29,8 @@ def display_books_from_form():
 
     if shelf and goodreads_id:
         session.update({'shelf': shelf, 'goodreads_id': goodreads_id})
-        write_log("Successful session", str(session))
+
+        write_log("Successful session", str(session)[:200])
 
     else:
         flash("Could not find a Goodreads bookshelf at that address. Please try again.")
@@ -39,8 +40,10 @@ def display_books_from_form():
     books = use_goodreads.get_shelf(session['goodreads_id'], session['shelf'])
 
     session['books'] = books
-    write_log("Books added to session", str(books)[:100])
-    return render_template("books.html", books=books)
+    session.modified = True     # Make sure FLask updates the session cookie! Had issues with this
+
+    write_log("Books added to session", str(session)[:200])
+    return redirect('/booklist')
 
 @app.route("/booklist", methods=["GET"])
 def display_books_from_session():
@@ -55,6 +58,11 @@ def display_books_from_session():
 
 
 def write_log(*args):
+    """Each argument in args must be a string.  This will write to the file notes/server.log,
+    with a timestamp preceding args.  If you see strangely cut off data, like an incomplete
+    dictionary, it's because the code above only logs a few hundred characters of objects that 
+    might be long."""
+
     with open("notes/server.log", 'a') as log_file:
         log_file.write(datetime.now().isoformat() + "\t")
         log_file.write("\n".join(args))
