@@ -14,13 +14,15 @@
     <label> Goodreads ID number: <input type="number" name="goodreads-id"></label>
 
     <input type="submit" value="Submit Goodreads ID">
-
+</form>
+<br />
 <form action="/booklist" method="POST">
     Otherwise, please login with Goodreads* or, navigate to your "to-read" shelf or any other bookshelf you would like to look for books on, and copy the link here:
 
     <input type="url" name="goodreads-link">
 
     <input type="submit" value="Submit bookshelf link">
+</form>
 
 <p>* Goodreads login is not implemented yet. Coming soon!</p>
 {% endblock %}
