@@ -95,18 +95,6 @@ def library_books_page():
     return render_template("library_books.html")
 
 
-@app.route("/availability.json", methods=["GET"])
-"""A route for AJAX requests from the library_books page.  Handles one book.
-
-It should query the database first, then make API calls."""
-
-def book_availability():
-    availability_data = {}
-    # Make queries tomorrow!
-
-    return jsonify(availability_data)
-
-
 def write_log(*args):
     """Each argument in args must be a string.  This will write to the file notes/server.log,
     with a timestamp preceding args.  If you see strangely cut off data, like an incomplete
