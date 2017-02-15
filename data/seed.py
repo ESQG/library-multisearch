@@ -14,6 +14,36 @@ from server import app
 
 connect_to_db(app)
 
+SFPL_BRANCHES = {
+        'anza': 'Anza',
+        'bayvw': 'Bayview',
+        'bernal': 'Bernal Heights',
+        'chtown': 'Chinatown',
+        'eureka': 'Eureka Valley',
+        'excel': 'Excelsior',
+        'glenpk': 'Glen Park',
+        'ingles': 'Ingleside',
+        'main': 'Main Library',
+        'marina': 'Marina',
+        'merced': 'Merced',
+        'miss': 'Mission',
+        'missb': 'Mission Bay',
+        'noeval': 'Noe Valley',
+        'nbeach': 'North Beach',
+        'ocvw': 'Ocean View',
+        'ortega': 'Ortega',
+        'park': 'Park',
+        'potr': 'Potrero',
+        'presid': 'Presidio',
+        'rich': 'Richmond',
+        'sunset': 'Sunset',
+        'visit': 'Visitacion Valley',
+        'wport': 'West Portal',
+        'wadd': 'Western Addition',
+    }
+
+
+
 def add_formats():
     """Add standardized formats to the database."""
 
@@ -64,36 +94,8 @@ def add_sfpl_branches():
     db.session.add(sfpl)
     db.session.commit()
 
-    codes_and_names = {
-        'anza': 'Anza',
-        'bayvw': 'Bayview',
-        'bernal': 'Bernal Heights',
-        'chtown': 'Chinatown',
-        'eureka': 'Eureka Valley',
-        'excel': 'Excelsior',
-        'glenpk': 'Glen Park',
-        'ingles': 'Ingleside',
-        'main': 'Main Library',
-        'marina': 'Marina',
-        'merced': 'Merced',
-        'miss': 'Mission',
-        'missb': 'Mission Bay',
-        'noeval': 'Noe Valley',
-        'nbeach': 'North Beach',
-        'ocvw': 'Ocean View',
-        'ortega': 'Ortega',
-        'park': 'Park',
-        'potr': 'Potrero',
-        'presid': 'Presidio',
-        'rich': 'Richmond',
-        'sunset': 'Sunset',
-        'visit': 'Visitacion Valley',
-        'wport': 'West Portal',
-        'wadd': 'Western Addition',
-    }
-
-    for code in codes_and_names:
-        library = Branch(library_code='sfpl', branch_code=code, name=codes_and_names[code])
+    for code in SFPL_BRANCHES:
+        library = Branch(library_code='sfpl', branch_code=code, name=SFPL_BRANCHES[code])
         db.session.add(library)
 
     db.session.commit()
