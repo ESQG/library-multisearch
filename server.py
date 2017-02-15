@@ -1,14 +1,14 @@
 from flask import Flask, render_template, session, flash, redirect, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
+# from data import model, seed
 from data.model import connect_to_db
+import data.seed
 from queries import use_goodreads
 from datetime import datetime
 
 app = Flask(__name__)
 
 app.secret_key="ENID BLYTON"
-
-
 
 @app.route("/")
 def home_page():
@@ -59,14 +59,14 @@ def display_books_from_session():
         return redirect("/")
 
 
-@app.route("books.json")
+@app.route("/books.json")
 def booklist_for_js():
     if 'books' in session:
         return jsonify(session['books'])
     else:
         return "[]"
 
-@app.route("book/<index>.json")
+@app.route("/book/<index>.json")
 def book_info(index):
     """Serve a JSON object of records associated with the book, along with stored availability."""
 
@@ -92,7 +92,7 @@ def book_info(index):
 @app.route("/librarybooks")
 def library_books_page():
 
-    return render_template("library_books.html")
+    return render_template("library_books.html", codes_and_names=data.seed.SFPL_BRANCHES)
 
 
 def write_log(*args):
