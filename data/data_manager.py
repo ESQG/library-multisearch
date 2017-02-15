@@ -7,6 +7,17 @@ sys.path.append('../')
 from server import app
 from queries import use_sfpl, sfpl_locations
 
+AVAILABILITY_QUERY = """
+   SELECT c.call_number, c.total_available, bk.title, bk.author, b.branch_code, r.format_code
+        FROM call_numbers AS c
+        JOIN record_branch AS rb ON (rb.recbranch_id = c.record_id)
+        JOIN records AS r ON (r.record_id = rb.record_id)
+        JOIN branches AS b ON (b.branch_code = rb.branch_code)
+        JOIN books AS bk ON (bk.book_id = r.book_id)
+    WHERE bk.book_id = :book_id
+    ;
+    """
+
 
 def log_overlaps(title, author):
 
@@ -45,8 +56,23 @@ def add_book(title, author):
     return book
 
 
-def get_stored_records(book):
-    return Record.query.filter_by(book_id=book.book_id).all()
+def get_stored_availability(book_id):
+
+    book_results = []
+
+    db_pointer = db.execute(AVAILABILITY_QUERY, {'book_id':book_id})
+    for row in db_pointer:
+        call_number, total_available, title, author, branch_code, format_code = row  # Later: timestamp!
+        available = bool(total_available)
+        book_data = {'call_number': call_number,
+                     'title': title,
+                     'author': author,
+                     'available': available,
+                     'branch_code': branch_code,
+                     'format': format_code
+                     }
+        book_results.append(book_data)
+    return book_results
 
 
 def records_from_book(book):
