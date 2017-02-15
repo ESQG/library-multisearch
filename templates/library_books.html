@@ -1,18 +1,16 @@
 {% extends 'base.html' %}
 
-{% block head %}
-<script src="https://code.jquery.com/jquery.js" />
-{% endblock %}
-
 
 {% block body %}
 
 Build AJAX requests here!
 
 <form id="select-branch">   <!--should not need an action, right? -->
+    <select name="branch">
     {% for code in codes_and_names %}
-    <label><input type="select" name="branch" value="{{code}}">{{codes_and_names[code]}}</label>
+    <label><option value="{{code}}">{{codes_and_names[code]}}</option></label>
     {% endfor %}
+    </select>
     <input type="submit" value="See Books">
 </form>
 
@@ -37,6 +35,10 @@ Build AJAX requests here!
     {% endfor %} -->
 </div>
 <div id="not-in-library"></div>
+
+
+<script src="https://code.jquery.com/jquery.js" />
+
 <script>
 $(document).on('ready', getBookList);
 
