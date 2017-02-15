@@ -71,3 +71,14 @@ secondaries = [x for x in soup.find_all('div') if 'class' in x.attrs and 'second
 formats = [x for x in spans if 'class' in x.attrs and 'format' in x['class']]
 
 Rewrite data_manager function: just track call numbers, i.e. already updated ones, then leave updated ones alone unless updating to say it's available
+
+Might as well make lots of AJAX calls so results are showing up right away
+
+Server-side session: keeps session on server side
+Flask extension with session.  Still using session object, uses database, but API is via session
+
+Could do single-page application so data persists in browser
+Or use cacheing tool?
+Henry thinks head start problem is good idea, tricky
+
+Work on AJAX calls on next page, then come back to this preloading issue.  Interesting problem to discuss and show off.

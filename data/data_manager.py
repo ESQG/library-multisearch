@@ -22,7 +22,7 @@ def log_overlaps(title, author):
         with open('overlaps.log', 'a') as outfile:
             outfile.write(datetime.now().isoformat())
             outfile.write('\n')
-            outfile.write("Found overlaps: ")
+            outfile.write("Found possible overlaps: ")
             outfile.write("%s by %s" % (title, author))
             outfile.write('\n')
             for book in overlaps:
@@ -32,7 +32,7 @@ def log_overlaps(title, author):
 
 
 def add_book(title, author):
-    already_there = Book.query.filter_by(title=title, author=author).one()
+    already_there = Book.query.filter_by(title=title, author=author).first()
 
     if already_there:
         return already_there
@@ -43,6 +43,10 @@ def add_book(title, author):
     db.session.add(book)
     db.session.commit()
     return book
+
+
+def get_stored_records(book):
+    return Record.query.filter_by(book_id=book.book_id).all()
 
 
 def records_from_book(book):
