@@ -1,7 +1,68 @@
 {% extends 'base.html' %}
 
+{% block head %}
+<script src="https://code.jquery.com/jquery.js" />
+{% endblock %}
+
+
 {% block body %}
 
 Build AJAX requests here!
 
+<form id="select-branch">   <!--should not need an action, right? -->
+    {% for code in codes_and_names %}
+    <label><input type="select" name="branch" value="{{code}}">{{codes_and_names[code]}}</label>
+    {% endfor %}
+    <input type="submit" value="See Books">
+</form>
+
+<div id="available-books">
+    <table>
+        <tr>
+        <th>Title</th> <th>Author</th> <th>Format</th> <th>Call Number</th>
+    </tr>
+<!--     {% for book in start_available %}
+    <tr>
+        <td>{{book['title']}}</td>
+        <td> {{book['author']}}</td>
+        <td> {{book['format']}}</td>
+        <td> {{book['call_number']}}</td>
+    </tr>
+    {% endfor %} -->
+    </table>
+</div>
+<div id="library-books">
+<!--     {% for book in start_unavailable %}
+
+    {% endfor %} -->
+</div>
+<div id="not-in-library"></div>
+<script>
+$(document).on('ready', getBookList);
+
+function getBookList() {
+    $.get("/books.json", makeBookCalls);
+}
+
+function makeBookCalls(results) {
+    var books = json.parse(results);
+    var l = books.length;
+    for(i=0; i<l; i++) {
+        $.get("/book/" + String(i)+".json", makeRow);  //Won't have looping callback issues will it?
+    }
+}
+
+function makeRow(results) {
+    console.log(results); // for now.  Will update a table row to show it
+    //apply a book_id number
+}
+
+$("#select-branch").on('submit', displayBranch);
+
+function displayBranch(evt) {
+    evt.preventDefault();
+
+    $("available-books").html()
+}
+</script>
 {% endblock %}
