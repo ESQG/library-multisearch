@@ -56,7 +56,7 @@ def find_locations_in_table(table_element):
 def find_call_no_and_status(location_td):
     """Takes a location element of a table, and looks up the call number and status in the same row.
 
-    Returns a tuple e.g. (u'Anaa', u'F ATWOOD M', u'CHECK SHELF')"""
+    Returns a dictionary e.g. {'branch': u'Anza', 'call_number': u'F ATWOOD M', 'status': u'CHECK SHELF'}"""
 
     location_name = parse_branch_name(location_td.text)
 
