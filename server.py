@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, flash, redirect, request
+from flask import Flask, render_template, session, flash, redirect, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from data.model import connect_to_db
 from queries import use_goodreads
@@ -7,6 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 app.secret_key="ENID BLYTON"
+
 
 
 @app.route("/")
@@ -38,6 +39,7 @@ def display_books_from_form():
         return redirect("/")
 
     books = use_goodreads.get_shelf(session['goodreads_id'], session['shelf'])
+    books.sort(key=lambda x: x['author'])
 
     session['books'] = books
     session.modified = True     # Make sure FLask updates the session cookie! Had issues with this
@@ -56,6 +58,36 @@ def display_books_from_session():
         flash("Sorry, we have no books for you yet. Please provide a bookshelf.")
         return redirect("/")
 
+
+@app.route("books.json")
+def booklist_for_js():
+    if 'books' in session:
+        return jsonify(session['books'])
+    else:
+        return "[]"
+
+@app.route("book/<index>.json")
+def book_info(index):
+    """Serve a JSON object of records associated with the book, along with stored availability."""
+
+    try:
+        book_data = session['books'][index]
+    except LookupError:
+        return '{"results": "None found"}'
+
+    book = data_manager.add_book(book_data['title'], book_data['author'])
+
+    records = data_manager.get_stored_availability(book)
+    
+    if not records:     # If availability is not in the database, otherwise it's []
+        unchecked_records = data_manager.records_from_book(book)
+        records = []
+        for record in unchecked_records:
+            data_manager.update_availability(record)
+
+        records = data_manager.get_stored_availability(book)
+
+    return jsonify(records)
 
 @app.route("/librarybooks")
 def library_books_page():
