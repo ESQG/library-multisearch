@@ -21,7 +21,7 @@ AVAILABILITY_QUERY = """
 
 def log_overlaps(title, author):
 
-    search_author = author.split().strip(',')
+    search_author = author.split()[0].strip(',')
     title_pieces = title.split()
     if title_pieces[0] == 'The' or title_pieces[0] == 'A' or title_pieces[0] == 'An':
         search_title = title_pieces[1]
@@ -56,11 +56,11 @@ def add_book(title, author):
     return book
 
 
-def get_stored_availability(book_id):
+def get_stored_availability(book):
 
     book_results = []
 
-    db_pointer = db.execute(AVAILABILITY_QUERY, {'book_id':book_id})
+    db_pointer = db.session.execute(AVAILABILITY_QUERY, {'book_id':book.book_id})
     for row in db_pointer:
         call_number, total_available, title, author, branch_code, format_code = row  # Later: timestamp!
         available = bool(total_available)
@@ -126,10 +126,12 @@ def update_availability(record):
             db.session.commit()
 
         else:
+            write_log("Current result", str(result))
             branch = Branch.query.filter_by(name=result['branch']).one()
+
             association = RecordBranch.query.filter_by(branch_code=branch.branch_code, record_id=record.record_id).first()
             if not association:
-                association = RecordBranch(branch_code=branch.branch_code, record_id=record.record_id)
+                association = RecordBranch(branch_code=branch.branch_code, record_id=record.record_id, total_copies=1)
                 db.session.add(association)
                 db.session.commit()
 
