@@ -40,6 +40,7 @@ Build AJAX requests here!
 console.log("hello");
 var running = true;
 var books = [];
+var branches = [];      // both filled out in initial callback.
 
 $(document).on('ready', getBookList);
 
@@ -48,11 +49,12 @@ function getBookList() {
 }
 
 function makeBookCalls(results) {
-    books = results;
+    books = results['books'];
+    branches = results['branches'];
     console.log(results);
-    console.log("number of books: " + String(results.length));
-    for(i=0; i<results.length; i++) {
-        var book = results[i];
+
+    for(i=0; i<books.length; i++) {
+        var book = books[i];
         $.get("/book/" + String(i)+".json", function (data){
             console.log("In makeBookCalls function: ");
             console.log(data);

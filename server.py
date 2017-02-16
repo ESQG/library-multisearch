@@ -58,10 +58,12 @@ def display_books_from_session():
 
 @app.route("/books.json")
 def booklist_for_js():
+    branches = {key: [] for key, value in SFPL_BRANCHES.items()}
+
     if 'books' in session:
-        return jsonify(session['books'])
+        return jsonify({'books': session['books'], 'branches': branches})
     else:
-        return "[]"
+        return jsonify({'books': [], 'branches': branches})
 
 @app.route("/book/<index>.json")
 def book_info(index):
