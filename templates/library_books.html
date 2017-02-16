@@ -53,10 +53,10 @@ function makeBookCalls(results) {
     branches = results['branches'];
     console.log(results);
 
-    for(i=0; i<books.length; i++) {
-        var book = books[i];
+    for(var i=0; i<books.length; i++) {
+        // var book = books[i];
         $.get("/book/" + String(i)+".json", function (data){
-            console.log("In makeBookCalls function: ");
+            // console.log("In makeBookCalls function for book" + Stri  ng(i));
             console.log(data);
             console.log(book);
                 makeRow(book, data);
