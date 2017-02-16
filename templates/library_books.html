@@ -17,7 +17,7 @@ Build AJAX requests here!
 </form>
 
 <div id="available-books">
-    <table>
+    <table id="available-call-numbers">
         <tr>
         <th>Title</th> <th>Author</th> <th>Format</th> <th>Call Number</th>
     </tr>
@@ -25,9 +25,14 @@ Build AJAX requests here!
     </table>
 </div>
 <div id="library-books">
-
+    <table id="unavailable">
+        <th>Title</th> <th>Author</th> <th>Format</th>
+    </table>
 </div>
-<div id="not-in-library"></div>
+
+<div>
+<ul id="not-in-library">
+</ul> </div>
 
 
 
@@ -42,17 +47,45 @@ function getBookList() {
 
 function makeBookCalls(results) {
     console.log(results);
-    var l = results.length;
-    console.log("number of books: " + String(l));
-    for(i=0; i<l; i++) {
-        $.get("/book/" + String(i)+".json", makeRow);  //Won't have looping callback issues will it?
+    console.log("number of books: " + String(results.length));
+    for(i=0; i<results.length; i++) {
+        var book = results[i];
+        $.get("/book/" + String(i)+".json", function (data){
+            console.log("In makeBookCalls function: ");
+            console.log(data);
+            console.log(book);
+                makeRow(book, data);
+            });
     }
 }
 
-function makeRow(results) {
+function makeRow(book, results) {
+    console.log("In makeRow function: ")
     console.log(results); // for now.  Will update a table row to show it
-    //apply a book_id number
+    console.log(book);
+    if(results.length === 0) {
+        $("#not-in-library").append("<li>" + book['title'] + " by " + book['author'] + "</li>");
+    }
+    else {
+        for(i=0; i<results.length; i++){
+            var tr = "<tr id=" + results['book_id'] + ">";
+            var title = "<td>" + results[i]['title'] + "</td>";
+            var author = "<td>" + results[i]['author'] + "</td>";
+            var available = results[i]['available'];
+            var format = "<td>" + results[i]['format'] + "</td>";
+            var callNumber = "<td>" + results[i]['call_number'] + "</td>";
+            var end = "</tr>";
+
+            if (available) {
+                $("#available-call-numbers").append(tr+title+author+format+callNumber+end);
+            } else {
+                $("#unavailable").append(tr+title+author+format+end);
+            }
+        }
+    }
 }
+
+//how daodi can I put in a book????
 
 // $("#select-branch").on('submit', displayBranch);
 
