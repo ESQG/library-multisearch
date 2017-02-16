@@ -16,7 +16,7 @@ Build AJAX requests here!
     <input type="submit" value="See Books">
 </form>
 
-<div id="available-books">
+<div id="available-books"><h2>Books at the library:</h2>
     <table id="available-call-numbers">
         <tr>
         <th>Title</th> <th>Author</th> <th>Format</th> <th>Call Number</th>
@@ -24,13 +24,13 @@ Build AJAX requests here!
 
     </table>
 </div>
-<div id="library-books">
+<div id="library-books"><h2>Books checked out right now:</h2>
     <table id="unavailable">
         <th>Title</th> <th>Author</th> <th>Format</th>
     </table>
 </div>
 
-<div>
+<div><h2>Books the library doesn't have at all</h2>
 <ul id="not-in-library">
 </ul> </div>
 
@@ -39,6 +39,8 @@ Build AJAX requests here!
 <script>
 console.log("hello");
 var running = true;
+var books = [];
+
 $(document).on('ready', getBookList);
 
 function getBookList() {
@@ -46,6 +48,7 @@ function getBookList() {
 }
 
 function makeBookCalls(results) {
+    books = results;
     console.log(results);
     console.log("number of books: " + String(results.length));
     for(i=0; i<results.length; i++) {
