@@ -1,3 +1,5 @@
+
+
 {% extends 'base.html' %}
 
 
@@ -19,36 +21,29 @@ Build AJAX requests here!
         <tr>
         <th>Title</th> <th>Author</th> <th>Format</th> <th>Call Number</th>
     </tr>
-<!--     {% for book in start_available %}
-    <tr>
-        <td>{{book['title']}}</td>
-        <td> {{book['author']}}</td>
-        <td> {{book['format']}}</td>
-        <td> {{book['call_number']}}</td>
-    </tr>
-    {% endfor %} -->
+
     </table>
 </div>
 <div id="library-books">
-<!--     {% for book in start_unavailable %}
 
-    {% endfor %} -->
 </div>
 <div id="not-in-library"></div>
 
 
-<script src="https://code.jquery.com/jquery.js" />
 
 <script>
+console.log("hello");
+var running = true;
 $(document).on('ready', getBookList);
 
 function getBookList() {
-    $.get("/books.json", makeBookCalls);
+    $.getJSON("/books.json", makeBookCalls);
 }
 
 function makeBookCalls(results) {
-    var books = json.parse(results);
-    var l = books.length;
+    console.log(results);
+    var l = results.length;
+    console.log("number of books: " + String(l));
     for(i=0; i<l; i++) {
         $.get("/book/" + String(i)+".json", makeRow);  //Won't have looping callback issues will it?
     }
@@ -59,12 +54,15 @@ function makeRow(results) {
     //apply a book_id number
 }
 
-$("#select-branch").on('submit', displayBranch);
+// $("#select-branch").on('submit', displayBranch);
 
-function displayBranch(evt) {
-    evt.preventDefault();
+// console.log("Javascript is working");
+// function displayBranch(evt) {
+//     evt.preventDefault();
+//     console.log(evt);
+//     $("available-books").html()
+// }
 
-    $("available-books").html()
-}
 </script>
+
 {% endblock %}

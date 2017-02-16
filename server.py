@@ -1,12 +1,9 @@
 from flask import Flask, render_template, session, flash, redirect, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
-# from data import model, seed
-from data.model import connect_to_db
-import data.seed
-from queries import use_goodreads
 from datetime import datetime
 
 app = Flask(__name__)
+# app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 app.secret_key="ENID BLYTON"
 
@@ -71,8 +68,9 @@ def book_info(index):
     """Serve a JSON object of records associated with the book, along with stored availability."""
 
     try:
+        index = int(index)
         book_data = session['books'][index]
-    except LookupError:
+    except LookupError, ValueError:
         return '{"results": "None found"}'
 
     book = data_manager.add_book(book_data['title'], book_data['author'])
@@ -92,7 +90,7 @@ def book_info(index):
 @app.route("/librarybooks")
 def library_books_page():
 
-    return render_template("library_books.html", codes_and_names=data.seed.SFPL_BRANCHES)
+    return render_template("library_books.html", codes_and_names=SFPL_BRANCHES)
 
 
 def write_log(*args):
@@ -107,6 +105,11 @@ def write_log(*args):
         log_file.write("\n")
 
 if __name__ == '__main__':
+    from data.model import connect_to_db
+    from data.seed import SFPL_BRANCHES
+    from data import data_manager
+    from queries import use_goodreads
+
     app.debug = True
 
     connect_to_db(app)
