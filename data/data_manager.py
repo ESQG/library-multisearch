@@ -27,7 +27,7 @@ def log_overlaps(title, author):
         search_title = title_pieces[1]
     else:
         search_title = title_pieces[0]
-    overlaps = Book.query.filter(Book.title.like('%' + search_title + '%'), Book.author.like('%' + search_author + '%'))
+    overlaps = Book.query.filter(Book.title.like('%' + search_title + '%'), Book.author.like('%' + search_author + '%')).all()
 
     if overlaps:
         with open('overlaps.log', 'a') as outfile:
@@ -35,6 +35,8 @@ def log_overlaps(title, author):
             outfile.write('\n')
             outfile.write("Found possible overlaps: ")
             outfile.write("%s by %s" % (title, author))
+            outfile.write(" and ")
+            outfile.write("%s by %s") % (overlaps.title, overlaps.author)
             outfile.write('\n')
             for book in overlaps:
                 outfile.write('\t')
@@ -59,6 +61,7 @@ def add_book(title, author):
 def get_stored_availability(book):
 
     book_results = []
+    checked_out_formats = []
 
     db_pointer = db.session.execute(AVAILABILITY_QUERY, {'book_id':book.book_id})
     for row in db_pointer:
@@ -72,7 +75,12 @@ def get_stored_availability(book):
                      'format': format_code,
                      'book_id': book.book_id
                      }
-        book_results.append(book_data)
+        if (not available) and (format_code not in checked_out_formats):
+            checked_out_formats.append(format_code)
+            book_results.append(book_data)
+        elif available:
+            book_results.append(book_data)
+
     return book_results
 
 
