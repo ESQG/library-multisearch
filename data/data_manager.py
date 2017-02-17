@@ -36,8 +36,6 @@ def log_overlaps(title, author):
             outfile.write("Found possible overlaps: ")
             outfile.write("%s by %s" % (title, author))
             outfile.write(" and ")
-            outfile.write("%s by %s") % (overlaps.title, overlaps.author)
-            outfile.write('\n')
             for book in overlaps:
                 outfile.write('\t')
                 outfile.write(str(book))
@@ -56,6 +54,14 @@ def add_book(title, author):
     db.session.add(book)
     db.session.commit()
     return book
+
+
+def get_book(book_id):
+    return Book.query.get(book_id)
+
+
+def get_books(book_id_list):
+    return Book.query.filter(Book.book_id.in_(book_id_list)).all()
 
 
 def get_stored_availability(book):
