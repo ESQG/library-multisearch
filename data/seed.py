@@ -22,6 +22,7 @@ SFPL_BRANCHES = {
         'eureka': 'Eureka Valley',
         'excel': 'Excelsior',
         'glenpk': 'Glen Park',
+        'ggval': 'Golden Gate Valley',
         'ingles': 'Ingleside',
         'main': 'Main Library',
         'marina': 'Marina',
@@ -40,6 +41,8 @@ SFPL_BRANCHES = {
         'visit': 'Visitacion Valley',
         'wport': 'West Portal',
         'wadd': 'Western Addition',
+        'pside': 'Parkside',
+        'portl': 'Portola',
     }
 
 
