@@ -38,7 +38,12 @@ def display_books_from_form():
     books = use_goodreads.get_shelf(session['goodreads_id'], session['shelf'])
     books.sort(key=lambda x: x['author'])
 
-    session['books'] = books
+    book_ids = []   # For database
+    for book_data in books:
+        book = data_manager.add_book(book_data['title'], book_data['author'])
+        book_ids.append(book.book_id)
+
+    session['books'] = book_ids
     session.modified = True     # Make sure FLask updates the session cookie! Had issues with this
 
     write_log("Books added to session", str(session)[:200])
@@ -48,8 +53,11 @@ def display_books_from_form():
 def display_books_from_session():
 
     if 'books' in session:
-        books = session['books']
+        book_ids = session['books']
+
+        books = data_manager.get_books(book_ids)
         return render_template("books.html", books=books)
+
     else:
         write_log("No books found in session", str(session)[:200])
         flash("Sorry, we have no books for you yet. Please provide a bookshelf.")
