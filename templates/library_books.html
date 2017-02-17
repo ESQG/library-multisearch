@@ -7,23 +7,25 @@
 
 Build AJAX requests here!
 
-<form id="select-branch">   <!--should not need an action, right? -->
-    <select name="branch">
-    {% for code in codes_and_names %}
-    <label><option value="{{code}}">{{codes_and_names[code]}}</option></label>
+<select id="select-branch" name="branch">
+    {% for (code, name) in codes_and_names %}
+    <label><option value="{{code}}">{{name}}</option></label>
     {% endfor %}
-    </select>
-    <input type="submit" value="See Books">
-</form>
+</select>
 
-<div id="available-books"><h2>Books at the library:</h2>
-    <table id="available-call-numbers">
+{% for (code, name) in codes_and_names %}
+<div class="library-branch" id="{{code}}" hidden>
+    <h3>Books available at {{name}} branch</h3>
+    <table id="available-{{code}}">
         <tr>
         <th>Title</th> <th>Author</th> <th>Format</th> <th>Call Number</th>
     </tr>
 
     </table>
+
 </div>
+{% endfor %}
+
 <div id="library-books"><h2>Books checked out right now:</h2>
     <table id="unavailable">
         <th>Title</th> <th>Author</th> <th>Format</th>
@@ -49,57 +51,54 @@ function getBookList() {
 }
 
 function makeBookCalls(results) {
-    books = results['books'];
+    books = results['book_ids'];
     branches = results['branches'];
     console.log(results);
 
     for(var i=0; i<books.length; i++) {
-        // var book = books[i];
-        $.get("/book/" + String(i)+".json", function (data){
-            // console.log("In makeBookCalls function for book" + Stri  ng(i));
-            console.log(data);
-            console.log(book);
-                makeRow(book, data);
-            });
+        var book = books[i];
+        $.get("/book/" + String(book)+".json", makeRow);
     }
 }
 
-function makeRow(book, results) {
-    console.log("In makeRow function: ")
-    console.log(results); // for now.  Will update a table row to show it
-    console.log(book);
-    if(results.length === 0) {
+function makeRow(data) {
+    console.log(data); // for now.  Will update a table row to show it
+
+    book = {'book_id': data['book_id'], 'title': data['title'], 'author': data['author']}
+    records = data['records']
+    if(!records||records.length===0) {
         $("#not-in-library").append("<li>" + book['title'] + " by " + book['author'] + "</li>");
     }
     else {
-        for(i=0; i<results.length; i++){
-            var tr = "<tr id=" + results['book_id'] + ">";
-            var title = "<td>" + results[i]['title'] + "</td>";
-            var author = "<td>" + results[i]['author'] + "</td>";
-            var available = results[i]['available'];
-            var format = "<td>" + results[i]['format'] + "</td>";
-            var callNumber = "<td>" + results[i]['call_number'] + "</td>";
+        for(i=0; i<records.length; i++){
+            var tr = "<tr id=" + records['book_id'] + ">";
+            var title = "<td>" + records[i]['title'] + "</td>";
+            var author = "<td>" + records[i]['author'] + "</td>";
+            var available = records[i]['available'];
+            var format = "<td>" + records[i]['format'] + "</td>";
+            var callNumber = "<td>" + records[i]['call_number'] + "</td>";
             var end = "</tr>";
 
             if (available) {
-                $("#available-call-numbers").append(tr+title+author+format+callNumber+end);
+                $("#available-" + records[i]['branch_code']).append(tr+title+author+format+callNumber+end);
             } else {
                 $("#unavailable").append(tr+title+author+format+end);
             }
         }
     }
 }
+$("#select-branch").change(showBranch);
 
-//how daodi can I put in a book????
-
-// $("#select-branch").on('submit', displayBranch);
-
-// console.log("Javascript is working");
-// function displayBranch(evt) {
-//     evt.preventDefault();
-//     console.log(evt);
-//     $("available-books").html()
-// }
+function showBranch(evt) {
+    // evt.preventDefault;
+    var branchCode = $("#select-branch").val();
+    console.log(branchCode);
+    for (var i=0; i<branches.length; i++) {
+        $("#"+ branches[i]).hide();
+    }
+    $("#"+branchCode).show();
+    
+}
 
 </script>
 

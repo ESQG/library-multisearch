@@ -65,25 +65,21 @@ def display_books_from_session():
 
 
 @app.route("/books.json")
-def booklist_for_js():
-    branches = {key: [] for key, value in SFPL_BRANCHES.items()}
+def show_branches_and_bookids():
+    branches = sorted(SFPL_BRANCHES.keys())
 
     if 'books' in session:
-        return jsonify({'books': session['books'], 'branches': branches})
+        return jsonify({'book_ids': session['books'], 'branches': branches})
     else:
-        return jsonify({'books': [], 'branches': branches})
+        return jsonify({'book_ids': [], 'branches': branches})
 
-@app.route("/book/<index>.json")
-def book_info(index):
+@app.route("/book/<book_id>.json")
+def book_info(book_id):
     """Serve a JSON object of records associated with the book, along with stored availability."""
 
-    try:
-        index = int(index)
-        book_data = session['books'][index]
-    except LookupError, ValueError:
-        return '{"results": "None found"}'
-
-    book = data_manager.add_book(book_data['title'], book_data['author'])
+    book = data_manager.get_book(book_id)
+    if not book:
+        return jsonify({'book_id': None, 'records': None})
 
     records = data_manager.get_stored_availability(book)
     
@@ -95,12 +91,16 @@ def book_info(index):
 
         records = data_manager.get_stored_availability(book)
 
-    return jsonify(records)
+    return jsonify({'book_id': book_id, 
+                    'title': book.title, 
+                    'author': book.author, 
+                    'records': records})
 
 @app.route("/librarybooks")
 def library_books_page():
 
-    return render_template("library_books.html", codes_and_names=SFPL_BRANCHES)
+    codes_and_names = sorted(SFPL_BRANCHES.items(), key=lambda tup: tup[1])
+    return render_template("library_books.html", codes_and_names=codes_and_names)
 
 
 def write_log(*args):
