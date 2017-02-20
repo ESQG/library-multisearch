@@ -1,5 +1,5 @@
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 import sys
 
 from model import *
@@ -8,9 +8,10 @@ from server import app
 from queries import use_sfpl, sfpl_locations
 
 AVAILABILITY_QUERY = """
-   SELECT c.call_number, c.total_available, bk.title, bk.author, b.branch_code, r.format_code
+   SELECT c.call_number, c.total_available, bk.title, bk.author, 
+   b.branch_code, r.format_code, c.time_updated
         FROM call_numbers AS c
-        JOIN record_branch AS rb ON (rb.recbranch_id = c.record_id)
+        JOIN record_branch AS rb ON (rb.recbranch_id = c.recbranch_id)
         JOIN records AS r ON (r.record_id = rb.record_id)
         JOIN branches AS b ON (b.branch_code = rb.branch_code)
         JOIN books AS bk ON (bk.book_id = r.book_id)
@@ -43,6 +44,7 @@ def log_overlaps(title, author):
 
 
 def add_book(title, author):
+    title = re.sub(r'\(.*\)', '', title).strip()    # Improves library search results
     already_there = Book.query.filter_by(title=title, author=author).first()
 
     if already_there:
@@ -71,7 +73,7 @@ def get_stored_availability(book):
 
     db_pointer = db.session.execute(AVAILABILITY_QUERY, {'book_id':book.book_id})
     for row in db_pointer:
-        call_number, total_available, title, author, branch_code, format_code = row  # Later: timestamp!
+        call_number, total_available, title, author, branch_code, format_code, time_updated = row  # Later: timestamp!
         available = bool(total_available)
         book_data = {'call_number': call_number,
                      'title': title,
@@ -79,13 +81,19 @@ def get_stored_availability(book):
                      'available': available,
                      'branch_code': branch_code,
                      'format': format_code,
-                     'book_id': book.book_id
+                     'book_id': book.book_id,
+                     'time_updated': time_updated
                      }
         if (not available) and (format_code not in checked_out_formats):
             checked_out_formats.append(format_code)
             book_results.append(book_data)
         elif available:
             book_results.append(book_data)
+
+    availabile_formats = {data['format'] for data in book_results if data['available']}
+    for data in book_results:
+        if (not data['available']) and (data['format'] in availabile_formats):
+            book_results.remove(data)
 
     return book_results
 
@@ -122,6 +130,18 @@ def records_from_book(book):
 
     return desired_records
 
+def get_recent_stored_availability(book):
+    time_stamp = datetime.now()
+    records = get_stored_availability(record)
+    recent_records = []
+
+    for record in records:
+        if record['time_updated'] is not None:
+            time_elapsed = (time_stamp - record['time_updated']).seconds
+            if time_elapsed < 2000:
+                recent_records.append(record)
+
+
 def update_availability(record):
 
     if record.format.digital:
@@ -130,7 +150,7 @@ def update_availability(record):
     current_availability = sfpl_locations.plain_results(record)
     current_availability.sort(key=lambda x: (x['status'] == 'CHECK SHELF'))
         # Put all CHECK SHELF statuses last
-
+    time_stamp = datetime.now()
     tracking_branches = {}
 
     for result in current_availability:
@@ -141,7 +161,7 @@ def update_availability(record):
             db.session.commit()
 
         else:
-            write_log("Current result", str(result))
+            # write_log("Current result", str(result))
             branch = Branch.query.filter_by(name=result['branch']).one()
 
             association = RecordBranch.query.filter_by(branch_code=branch.branch_code, record_id=record.record_id).first()
@@ -153,14 +173,16 @@ def update_availability(record):
             tracking_branches[branch.name] = [branch, association]
             association.total_copies = 1
 
-        shelf = CallNumber.query.filter_by(record_id=association.recbranch_id, call_number=result['call_number']).first()
+        shelf = CallNumber.query.filter_by(recbranch_id=association.recbranch_id, call_number=result['call_number']).first()
         if shelf:
+            shelf.time_updated = time_stamp
             if shelf.total_available > 0 and result['status'] != 'CHECK SHELF':
                 shelf.total_available = 0
             elif result['status'] == 'CHECK SHELF':
                 shelf.total_available = 1   # Adjust later to library grouping
         else:
-            shelf = CallNumber(record_id=association.recbranch_id, call_number=result['call_number'])
+            shelf = CallNumber(recbranch_id=association.recbranch_id, call_number=result['call_number'])
+            shelf.time_updated = time_stamp
             db.session.add(shelf)
             if result['status'] == 'CHECK SHELF':
                 shelf.total_available = 1

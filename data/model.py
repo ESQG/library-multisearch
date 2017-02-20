@@ -94,9 +94,11 @@ class CallNumber(db.Model):
 
     call_number = db.Column(db.String(30), nullable=False)
 
-    record_id = db.Column(db.Integer, db.ForeignKey('record_branch.recbranch_id'))
+    recbranch_id = db.Column(db.Integer, db.ForeignKey('record_branch.recbranch_id'))
 
     total_available = db.Column(db.Integer, nullable=True)
+
+    time_updated = db.Column(db.DateTime, nullable=True)
 
     # Relationship: used only for RecordBranch
     record_branch = db.relationship('RecordBranch', backref="call_numbers")
