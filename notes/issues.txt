@@ -1,64 +1,17 @@
-Issue: using library ID in multiple functions, pulling up links multiple times
-
 Issue: showing circulation of digital records is redundant and moreover returns nothing
     (Postponing until after MVP! For now, check if a record is digital or not.)
     (Revisiting: skip digital checks for now, assume available.)
 
-Need a lot more docstrings.
 
 PostgreSQL should take care of stemming; if author is named in more than one way, how to check that?
-    (For now: log file.)
-
-Code review from Elaine!
-    --Folders
-    --Spacing
-    --tests ASAP
-    --More logging, less printing (note: on sfpl_locations page)
+    (Log file for overlaps not producing results.)
 
 Library system says number of copies of a given call number at a given location, but weirdly does groups records for available copies and not for unavailable ones.  Need to explore what exactly is going on there, then change my code to add the accounts.
 
-Update has_records oopps
+Format parsing error for titles with parentheses
+Queer (In)Justice may be misparsed by regular expression strip; or it might be okay to keep that way
 
-
-Very redundant call numbers for unavailable books!  AJAX currently not sorted by branch, which is okay for now.  I think.  But, this:
-
-library_app=# SELECT * FROM joined_availability WHERE title LIKE '%Lovely%';
- call_number | total_available |      title       |    author    | branch_code | format_code 
--------------+-----------------+------------------+--------------+-------------+-------------
- F SEBOLD A  |               0 | The Lovely Bones | Alice Sebold | bayvw       | book
-             |               0 | The Lovely Bones | Alice Sebold | bayvw       | book
-             |               0 | The Lovely Bones | Alice Sebold | chtown      | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | eureka      | book
-             |               0 | The Lovely Bones | Alice Sebold | ingles      | book
- F SEBO      |               0 | The Lovely Bones | Alice Sebold | main        | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | main        | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | marina      | book
-             |               0 | The Lovely Bones | Alice Sebold | merced      | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | merced      | book
- F SEBOLD A  |               0 | The Lovely Bones | Alice Sebold | miss        | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | miss        | book
-             |               0 | The Lovely Bones | Alice Sebold | miss        | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | noeval      | book
-             |               0 | The Lovely Bones | Alice Sebold | nbeach      | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | nbeach      | book
-             |               0 | The Lovely Bones | Alice Sebold | ocvw        | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | ocvw        | book
-             |               0 | The Lovely Bones | Alice Sebold | ortega      | book
- F SeboLd A  |               0 | The Lovely Bones | Alice Sebold | ortega      | book
- F SeboLd A  |               0 | The Lovely Bones | Alice Sebold | potr        | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | potr        | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | presid      | book
-             |               0 | The Lovely Bones | Alice Sebold | rich        | book
- F SEBOLD A  |               0 | The Lovely Bones | Alice Sebold | sunset      | book
- TEEN F SEBO |               0 | The Lovely Bones | Alice Sebold | wport       | book
- TEEN F SEBO |               1 | The Lovely Bones | Alice Sebold | anza        | book
- TEEN F SEBO |               1 | The Lovely Bones | Alice Sebold | bayvw       | book
- F SeboLd A  |               1 | The Lovely Bones | Alice Sebold | bernal      | book
- TEEN F SEBO |               1 | The Lovely Bones | Alice Sebold | bernal      | book
- TEEN F SEBO |               1 | The Lovely Bones | Alice Sebold | chtown      | book
- TEEN F SEBO |               1 | The Lovely Bones | Alice Sebold | excel       | book
- TEEN F SEBO |               1 | The Lovely Bones | Alice Sebold | glenpk      | book
- TEEN F SEBO |               1 | The Lovely Bones | Alice Sebold | ingles      | book
-(34 rows)
-
-All those results get returned to my AJAX! Oh no!!!
+Good practice needed:
+--Docstrings
+--Tests
+--Spacing
