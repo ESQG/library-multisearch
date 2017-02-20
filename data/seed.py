@@ -59,6 +59,9 @@ def add_formats():
     audio_cd = Format(format_code='audiocd', name='Audiobook CD', digital=False)
     db.session.add(audio_cd)
 
+    large_print = Format(format_code='large', name='Large Print', digital=False)
+    db.session.add(large_print)
+
     audio_digital = Format(format_code='eaudio', name='Downloadable Audiobook', digital=True)
     db.session.add(audio_digital)
 
