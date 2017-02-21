@@ -63,7 +63,7 @@ def parse_shelf_and_id(goodreads_link):
     else:
         shelf = None
 
-    goodreads_finder = re.search(r'\d{6,8}', goodreads_link)    # Returns None if no matches
+    goodreads_finder = re.search(r'\d{1,8}', goodreads_link)    # Returns None if no matches
     if goodreads_finder:
         goodreads_id = goodreads_finder.group()
     else:
