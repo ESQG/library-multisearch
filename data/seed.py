@@ -43,7 +43,10 @@ SFPL_BRANCHES = {
 
 
 def add_formats():
-    """Add standardized formats to the database."""
+    """Add standardized book formats to the database.
+
+    Because of the dependency of the records table on this one,
+    this function must be run when the database is created."""
 
     book_format = Format(format_code='book', name='Book', digital=False)
     db.session.add(book_format)
@@ -68,6 +71,9 @@ def add_formats():
 
 
 def add_my_toread_list():
+    """A function for my own debugging purposes.  It relies on my previously downloaded Goodreads response data."""
+
+
     esqg = User(first_name="Elizabeth", last_name="Goodman", email="esqg@nowhere.com", password="programmer")
     db.session.add(esqg)
     db.session.commit()
@@ -83,13 +89,15 @@ def add_my_toread_list():
         db.session.add(book)
         db.session.commit()
 
-
         assoc = UserBook(book_id=book.book_id, user_id=esqg.user_id)
         db.session.add(assoc)
         db.session.commit()
 
 
 def add_sfpl_branches():
+    """Adds the SFPL library system and the branches of it to the database.
+    Because the data collected for SFPL catalog records depends on these branches,
+    this function must be run for the server to operate properly."""
 
     sfpl = LibrarySystem(library_code='sfpl', name='San Francisco Public Library')
     db.session.add(sfpl)
