@@ -11,7 +11,6 @@ ESQG="2416346"
 class QueryTests(unittest.TestCase):
     def test_get_shelf(self):
         data = use_goodreads.parse_shelf_and_id(SHORT_SHELF)
-        print data
         shelf = data['shelf']
         goodreads_id = data['goodreads_id']
         results = use_goodreads.get_shelf(goodreads_id, shelf)
