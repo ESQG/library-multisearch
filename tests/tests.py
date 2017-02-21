@@ -4,6 +4,7 @@ import unittest
 import sys
 from flask import Flask, request, session
 from bs4 import BeautifulSoup
+import json
 
 sys.path.append('../')  # to import from parent directory
 import server
@@ -56,25 +57,44 @@ class RouteTests(unittest.TestCase):
         self.assertIn("Books</title>", response.data)
         self.assertIn("Goodreads ID", response.data)
 
+
     def test_booklist_post(self):
         response = self.client.post("/booklist", data={'goodreads-id':ESQG}, follow_redirects=True)
         self.assertIn("View my books in the library", response.data)
+
 
     def test_booklist_post_link(self):
         response = self.client.post("/booklist", data={'goodreads-link': SHORT_SHELF}, follow_redirects=True)
         self.assertIn("View my books in the library", response.data)
 
+
     def test_booklist_get(self):
-        example_data()
         with self.client.session_transaction() as sess:
             sess['books'] = [1, 2]
 
         response = self.client.get("/booklist")
         self.assertIn("View my books in the library", response.data)
 
+
+    def test_booklist_json(self):
+        with self.client.session_transaction() as sess:
+            sess['books'] = [1, 2]        
+
+        response = self.client.get("/books.json")
+        self.assertEqual(response.status_code, 200)
+        results = json.loads(response.data)
+
+        self.assertIn('branches', results)
+        self.assertIn('book_ids', results)
+
+        self.assertIn(1, results['book_ids'])
+        self.assertIn('main', results['branches'])
+
+
     def test_empty_booklist(self):
         response = self.client.get("/booklist", follow_redirects=True)
         self.assertIn("no books", response.data)
+
 
 def example_data():
     book_1 = Book(title="Alanna: The First Adventure", author="Tamora Pierce")
