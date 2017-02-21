@@ -25,13 +25,28 @@ def _mock_get_shelf(goodreads_id, shelf):
 
 server.use_goodreads.get_shelf = _mock_get_shelf
 
-class QueryTests(unittest.TestCase):
+class FunctionTests(unittest.TestCase):
     """Test helper functions."""
 
     def test_shelf_parser(self):
         results = use_goodreads.parse_shelf_and_id(SHORT_SHELF)
         self.assertEqual(results['goodreads_id'], ESQG)
         self.assertEqual(results['shelf'], "maybe-someday")
+
+
+    def test_parser_bad_shelves(self):
+        empty_results = {'shelf': None, 'goodreads_id': None}
+
+        link = "http://purple.com"
+        results = use_goodreads.parse_shelf_and_id(link)
+        self.assertEqual(results, empty_results)
+
+        link = "12345"
+        results = use_goodreads.parse_shelf_and_id(link)
+        self.assertEqual(results, empty_results)
+
+        results = use_goodreads.parse_shelf_and_id(None)
+        self.assertEqual(results, empty_results)
 
 
 class RouteTests(unittest.TestCase):
@@ -45,7 +60,8 @@ class RouteTests(unittest.TestCase):
         db.create_all()
 
         seed.add_sfpl_branches()
-        # example data
+        example_data()          # Need to expand!
+        
 
     def tearDown(self):
         db.session.close()
