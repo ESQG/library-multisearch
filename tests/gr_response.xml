@@ -1,0 +1,1435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GoodreadsResponse>
+  <Request>
+    <authentication>true</authentication>
+      <key><![CDATA[oCklALuuXkSkkYTxWuSZlQ]]></key>
+    <method><![CDATA[review_list]]></method>
+  </Request>
+  <reviews start="1" end="20" total="663">
+    <review>
+  <id>1854150725</id>
+    <book>
+  <id type="integer">306010</id>
+  <isbn>0743466519</isbn>
+  <isbn13>9780743466516</isbn13>
+  <text_reviews_count type="integer">339</text_reviews_count>
+  <title>Postcards from the Edge</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/306010.Postcards_from_the_Edge</link>
+  <num_pages>226</num_pages>
+  <format>Paperback</format>
+  <edition_information/>
+  <publisher>Pocket</publisher>
+  <publication_day>31</publication_day>
+  <publication_year>2002</publication_year>
+  <publication_month>12</publication_month>
+  <average_rating>3.63</average_rating>
+  <ratings_count>5657</ratings_count>
+  <description>Fisher beautifully brings readers the inside of Hollywood through a web of humor, drugs, relationships, Hollywood Party Terror, and much more. The plot centers on a 30-year-old actress named Susan Vale, and follows her challenges as she overcomes her drug addiction, gets back into the swing of things, and falls in love, sort of.</description>
+<authors>
+<author>
+<id>90150</id>
+<name>Carrie Fisher</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1479826589p5/90150.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1479826589p2/90150.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/90150.Carrie_Fisher]]></link>
+<average_rating>3.64</average_rating>
+<ratings_count>49883</ratings_count>
+<text_reviews_count>6686</text_reviews_count>
+</author>
+</authors>
+  <published>2002</published>
+</book>
+
+
+  <rating>0</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+
+    <shelf name="to-read" exclusive="true" review_shelf_id="1514212434" sortable="true" />
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Wed Dec 28 11:20:43 -0800 2016</date_added>
+  <date_updated>Wed Dec 28 11:20:44 -0800 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1854150725]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1854150725]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1854150651</id>
+    <book>
+  <id type="integer">26025989</id>
+  <isbn>0399173595</isbn>
+  <isbn13>9780399173592</isbn13>
+  <text_reviews_count type="integer">1473</text_reviews_count>
+  <title>The Princess Diarist</title>
+  <image_url>https://images.gr-assets.com/books/1482921522m/26025989.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1482921522s/26025989.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/26025989-the-princess-diarist</link>
+  <num_pages>257</num_pages>
+  <format>Hardcover</format>
+  <edition_information/>
+  <publisher>Blue Rider Press</publisher>
+  <publication_day>18</publication_day>
+  <publication_year>2016</publication_year>
+  <publication_month>10</publication_month>
+  <average_rating>3.74</average_rating>
+  <ratings_count>9300</ratings_count>
+  <description>&lt;i&gt;The Princess Diarist&lt;/i&gt; is Carrie Fisher’s intimate, hilarious and revealing recollection of what happened behind the scenes on one of the most famous film sets of all time, the first &lt;i&gt;Star Wars&lt;/i&gt; movie. &lt;br /&gt;&lt;br /&gt;When Carrie Fisher recently discovered the journals she kept during the filming of the first &lt;i&gt;Star Wars&lt;/i&gt; movie, she was astonished to see what they had preserved—plaintive love poems, unbridled musings with youthful naiveté, and a vulnerability that she barely recognized. Today, her fame as an author, actress, and pop-culture icon is indisputable, but in 1977, Carrie Fisher was just a (sort-of) regular teenager. &lt;br /&gt;&lt;br /&gt;With these excerpts from her handwritten notebooks, &lt;i&gt;The Princess Diarist&lt;/i&gt; is Fisher’s intimate and revealing recollection of what happened on one of the most famous film sets of all time—and what developed behind the scenes. And today, as she reprises her most iconic role for the latest Star Wars trilogy, Fisher also ponders the joys and insanity of celebrity, and the absurdity of a life spawned by Hollywood royalty, only to be surpassed by her own outer-space royalty. Laugh-out-loud hilarious and endlessly quotable, &lt;i&gt;The Princess Diarist&lt;/i&gt; brims with the candor and introspection of a diary while offering shrewd insight into the type of stardom that few will ever experience.</description>
+<authors>
+<author>
+<id>90150</id>
+<name>Carrie Fisher</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1479826589p5/90150.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1479826589p2/90150.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/90150.Carrie_Fisher]]></link>
+<average_rating>3.64</average_rating>
+<ratings_count>49883</ratings_count>
+<text_reviews_count>6686</text_reviews_count>
+</author>
+</authors>
+  <published>2016</published>
+</book>
+
+
+  <rating>0</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+
+    <shelf name="to-read" exclusive="true" review_shelf_id="1514212373" sortable="true" />
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Wed Dec 28 11:20:40 -0800 2016</date_added>
+  <date_updated>Wed Dec 28 11:20:40 -0800 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1854150651]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1854150651]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1854150594</id>
+    <book>
+  <id type="integer">4961048</id>
+  <isbn>1439102252</isbn>
+  <isbn13>9781439102251</isbn13>
+  <text_reviews_count type="integer">2990</text_reviews_count>
+  <title>Wishful Drinking</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/4961048-wishful-drinking</link>
+  <num_pages>163</num_pages>
+  <format>Hardcover</format>
+  <edition_information>First Edition</edition_information>
+  <publisher>Simon &amp; Schuster</publisher>
+  <publication_day>2</publication_day>
+  <publication_year>2008</publication_year>
+  <publication_month>12</publication_month>
+  <average_rating>3.65</average_rating>
+  <ratings_count>26815</ratings_count>
+  <description>In &lt;i&gt;Wishful Drinking&lt;/i&gt;, Carrie Fisher tells the true and intoxicating story of her life with inimitable wit. Born to celebrity parents, she was picked to play a princess in a little movie called Star Wars when only 19 years old. "But it isn't all sweetness and light sabres." Alas, aside from a demanding career and her role as a single mother (not to mention the hyperspace hairdo), Carrie also spends her free time battling addiction, weathering the wild ride of manic depression and lounging around various mental institutions. It's an incredible tale - from having Elizabeth Taylor as a stepmother, to marrying (and divorcing) Paul Simon, from having the father of her daughter leave her for a man, to ultimately waking up one morning and finding a friend dead beside her in bed.</description>
+<authors>
+<author>
+<id>90150</id>
+<name>Carrie Fisher</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1479826589p5/90150.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1479826589p2/90150.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/90150.Carrie_Fisher]]></link>
+<average_rating>3.64</average_rating>
+<ratings_count>49883</ratings_count>
+<text_reviews_count>6686</text_reviews_count>
+</author>
+</authors>
+  <published>2008</published>
+</book>
+
+
+  <rating>0</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+
+    <shelf name="to-read" exclusive="true" review_shelf_id="1514212327" sortable="true" />
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Wed Dec 28 11:20:37 -0800 2016</date_added>
+  <date_updated>Wed Dec 28 11:20:38 -0800 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1854150594]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1854150594]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1767028221</id>
+    <book>
+  <id type="integer">58</id>
+  <isbn>0670059676</isbn>
+  <isbn13>9780670059676</isbn13>
+  <text_reviews_count type="integer">106</text_reviews_count>
+  <title>Changeling (Changeling, #1)</title>
+  <image_url>https://images.gr-assets.com/books/1309282978m/58.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1309282978s/58.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/58.Changeling</link>
+  <num_pages>256</num_pages>
+  <format>Hardcover</format>
+  <edition_information/>
+  <publisher>Viking Juvenile</publisher>
+  <publication_day>17</publication_day>
+  <publication_year>2006</publication_year>
+  <publication_month>8</publication_month>
+  <average_rating>3.59</average_rating>
+  <ratings_count>939</ratings_count>
+  <description>Neef is a changeling, a human baby stolen by fairies and replaced with one of their own. She lives in "New York Between," a Manhattan alongside our own, home to creatures of folklore. Protected by her fairy godmother until she breaks a Fairy Law, now she must face the challenge of the Green Lady of Central Park or be sacrificed! Neef is determined, but time is running out.</description>
+<authors>
+<author>
+<id>24</id>
+<name>Delia Sherman</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1391010737p5/24.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1391010737p2/24.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/24.Delia_Sherman]]></link>
+<average_rating>3.89</average_rating>
+<ratings_count>40019</ratings_count>
+<text_reviews_count>3735</text_reviews_count>
+</author>
+</authors>
+  <published>2006</published>
+</book>
+
+
+  <rating>3</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at>Sat Sep 24 00:00:00 -0700 2016</started_at>
+  <read_at>Sat Sep 24 16:56:36 -0700 2016</read_at>
+  <date_added>Sat Sep 24 16:46:49 -0700 2016</date_added>
+  <date_updated>Sat Sep 24 16:56:36 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+      <![CDATA[I liked this but I'm not comfortable with the idea of Autistic children (or by the author's note, those with Asperger's) as changelings because that's saying they're not human. It redeemed that a bit I think by not treating the changeling character as lesser, and while we never saw her perspective she was developed as a character and crucial to her counterpart's success. But although, or perhaps because I'm likely Autistic myself, with different symptoms, I just...I dunno. I am *far* too hesitant to give that a pass. In fact, no. Saying they have Faerie powers is one thing, but the "changeling" idea legitimizes a lot of problems--parents who hate, or at least don't love, their Autistic children for existing and being a "burden", Autism Speaks' idea that being Autistic means you've disappeared, yeah...a LOT of problems that make life so much harder for Autistic folks. So that's pretty bad. I enjoyed the read hence the 3 stars, but I can't recommend it.]]>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1767028221]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1767028221]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1761637803</id>
+    <book>
+  <id type="integer">22443261</id>
+  <isbn nil="true"/>
+  <isbn13 nil="true"/>
+  <text_reviews_count type="integer">1379</text_reviews_count>
+  <title>The Rithmatist (The Rithmatist, #1)</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/22443261-the-rithmatist</link>
+  <num_pages></num_pages>
+  <format></format>
+  <edition_information/>
+  <publisher></publisher>
+  <publication_day></publication_day>
+  <publication_year></publication_year>
+  <publication_month></publication_month>
+  <average_rating>4.24</average_rating>
+  <ratings_count>33185</ratings_count>
+  <description>&lt;i&gt;The Rithmatist, &lt;/i&gt;Brandon Sanderson's &lt;i&gt;New York Times&lt;/i&gt; bestselling epic teen adventure is now available in paperback.&lt;br /&gt;&lt;br /&gt;More than anything, Joel wants to be a Rithmatist. Rithmatists have the power to infuse life into two-dimensional figures known as Chalklings. Rithmatists are humanity’s only defense against the Wild Chalklings. Having nearly overrun the territory of Nebrask, the Wild Chalklings now threaten all of the American Isles.&lt;br /&gt;&lt;br /&gt;As the son of a lowly chalkmaker at Armedius Academy, Joel can only watch as Rithmatist students learn the magical art that he would do anything to practice. Then students start disappearing—kidnapped from their rooms at night, leaving trails of blood. Assigned to help the professor who is investigating the crimes, Joel and his friend Melody find themselves on the trail of an unexpected discovery—one that will change Rithmatics—and their world—forever.&lt;br /&gt;&lt;br /&gt;A &lt;i&gt;New York Times Book Review &lt;/i&gt;Notable Children's Book of 2013</description>
+<authors>
+<author>
+<id>38550</id>
+<name>Brandon Sanderson</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1394044556p5/38550.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1394044556p2/38550.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/38550.Brandon_Sanderson]]></link>
+<average_rating>4.36</average_rating>
+<ratings_count>1771090</ratings_count>
+<text_reviews_count>117470</text_reviews_count>
+</author>
+</authors>
+  <published></published>
+</book>
+
+
+  <rating>4</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sun Sep 18 14:08:32 -0700 2016</date_added>
+  <date_updated>Sun Sep 18 14:08:33 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1761637803]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1761637803]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1761622675</id>
+    <book>
+  <id type="integer">364662</id>
+  <isbn>0060557370</isbn>
+  <isbn13>9780060557379</isbn13>
+  <text_reviews_count type="integer">290</text_reviews_count>
+  <title>The Anybodies (Anybodies, #1)</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/364662.The_Anybodies</link>
+  <num_pages>288</num_pages>
+  <format>Paperback</format>
+  <edition_information/>
+  <publisher>HarperCollins</publisher>
+  <publication_day>23</publication_day>
+  <publication_year>2005</publication_year>
+  <publication_month>8</publication_month>
+  <average_rating>3.97</average_rating>
+  <ratings_count>3009</ratings_count>
+  <description>"Potter–style magic meets Snicket–y irreverence." – People Magazine&lt;br /&gt;&lt;br /&gt;Fern discovers that she was swapped at birth and leaves her tragically dull parents for an unforgettable adventure with her true father, the Bone. Just who are the Anybodies? You'll have to read to find out! Narrated by the hilariously intrusive N. E. Bode, The Anybodies is a magical adventure for readers of all ages.</description>
+<authors>
+<author>
+<id>145307</id>
+<name>N.E. Bode</name>
+<role></role>
+<image_url nophoto='true'>
+<![CDATA[https://s.gr-assets.com/assets/nophoto/user/f_200x266-3061b784cc8e7f021c6430c9aba94587.png]]>
+</image_url>
+<small_image_url nophoto='true'>
+<![CDATA[https://s.gr-assets.com/assets/nophoto/user/f_50x66-6a03a5c12233c941481992b82eea8d23.png]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/145307.N_E_Bode]]></link>
+<average_rating>3.99</average_rating>
+<ratings_count>4701</ratings_count>
+<text_reviews_count>454</text_reviews_count>
+</author>
+</authors>
+  <published>2005</published>
+</book>
+
+
+  <rating>0</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+
+    <shelf name="to-read" exclusive="true" review_shelf_id="1426183327" sortable="true" />
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sun Sep 18 13:50:13 -0700 2016</date_added>
+  <date_updated>Sun Sep 18 13:50:14 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1761622675]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1761622675]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1759847862</id>
+    <book>
+  <id type="integer">25986723</id>
+  <isbn>1597808636</isbn>
+  <isbn13>9781597808637</isbn13>
+  <text_reviews_count type="integer">21</text_reviews_count>
+  <title>The Root (Wrath &amp; Athenaeum #1)</title>
+  <image_url>https://images.gr-assets.com/books/1465337573m/25986723.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1465337573s/25986723.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/25986723-the-root</link>
+  <num_pages>420</num_pages>
+  <format>Paperback</format>
+  <edition_information/>
+  <publisher>Night Shade Books</publisher>
+  <publication_day>7</publication_day>
+  <publication_year>2016</publication_year>
+  <publication_month>6</publication_month>
+  <average_rating>4.22</average_rating>
+  <ratings_count>49</ratings_count>
+  <description>&lt;b&gt;A dark, gritty urban fantasy debut set in modern-day San Francisco, filled with gods, sinister government agencies, and worlds of dark magic hidden just below the surface.&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;&lt;i&gt;When a secret government agency trying to enslave you isn’t the biggest problem you’re facing, you’re in trouble.&lt;/i&gt;&lt;br /&gt;&lt;br /&gt;Erik, a former teen star living in San Francisco, thought his life was complicated; having his ex-boyfriend in jail because of the scandal that destroyed his career seemed overwhelming. Then Erik learned he was Blooded: descended from the Gods.&lt;br /&gt;&lt;br /&gt;Struggling with a power he doesn’t understand and can barely control, Erik discovers that a secret government agency is selling off Blooded like lab rats to a rival branch of preternatural beings in ’Zebub—San Francisco’s mirror city in an alternate dimension.&lt;br /&gt;&lt;br /&gt;Lil, a timid apprentice in ’Zebub, is searching for answers to her parents’ sudden and mysterious deaths. Surrounded by those who wish her harm and view her as a lesser being, Lil delves into a forgotten history that those in power will go to dangerous lengths to keep buried.&lt;br /&gt;&lt;br /&gt;What neither Erik nor Lil realize is that a darkness is coming, something none have faced in living memory. It eats. It hunts. And it knows them. In &lt;i&gt;The Root&lt;/i&gt;, the dark and surging urban fantasy debut from Na’amen Tilahun, two worlds must come together if even a remnant of one is to survive.&lt;br /&gt;</description>
+<authors>
+<author>
+<id>14185655</id>
+<name>Na&apos;amen Gobert Tilahun</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1455451461p5/14185655.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1455451461p2/14185655.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/14185655.Na_amen_Gobert_Tilahun]]></link>
+<average_rating>3.85</average_rating>
+<ratings_count>85</ratings_count>
+<text_reviews_count>41</text_reviews_count>
+</author>
+</authors>
+  <published>2016</published>
+</book>
+
+
+  <rating>4</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at>Fri Sep 16 00:00:00 -0700 2016</started_at>
+  <read_at>Mon Sep 19 00:00:00 -0700 2016</read_at>
+  <date_added>Fri Sep 16 12:50:18 -0700 2016</date_added>
+  <date_updated>Mon Sep 19 17:22:14 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+      <![CDATA[Definitely recommend; I think you'll be drawn in quickly. The characters are really interesting, although we sometimes see from the perspective of the characters we (or I) don't like at all. There's sci-fi spin on old Biblical creations; there's superpowers and fighting; there's people realistically incapable of working together as they maneuver for power over each other. There's a bit of romance too, or at least a bit of sexual tension. All that's intertwined with the challenges faced by people of color (on Earth; it's less clear about the other world, so far). It's not a depressing book by any means, but it does not pull its punches! I can't wait to find out what happens next.]]>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1759847862]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1759847862]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1756515025</id>
+    <book>
+  <id type="integer">25155958</id>
+  <isbn nil="true"/>
+  <isbn13>9781625794802</isbn13>
+  <text_reviews_count type="integer">715</text_reviews_count>
+  <title>Gentleman Jole and the Red Queen</title>
+  <image_url>https://images.gr-assets.com/books/1439213337m/25155958.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1439213337s/25155958.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/25155958-gentleman-jole-and-the-red-queen</link>
+  <num_pages>352</num_pages>
+  <format>ebook</format>
+  <edition_information/>
+  <publisher>Baen Books</publisher>
+  <publication_day>2</publication_day>
+  <publication_year>2016</publication_year>
+  <publication_month>2</publication_month>
+  <average_rating>3.82</average_rating>
+  <ratings_count>4366</ratings_count>
+  <description>Three years after her famous husband's death, Cordelia Vorkosigan, widowed Vicereine of Sergyar, stands ready to spin her life in a new direction. Oliver Jole, Admiral, Sergyar Fleet, finds himself caught up in her web of plans in ways he'd never imagined, bringing him to an unexpected crossroads in his life.&lt;br /&gt;&lt;br /&gt;Meanwhile, Miles Vorkosigan, one of Emperor Gregor's key investigators, this time dispatches himself on a mission of inquiry, into a mystery he never anticipated; his own mother.&lt;br /&gt;&lt;br /&gt;Plans, wills, and expectations collide in this sparkling science-fiction social comedy, as the impact of galactic technology on the range of the possible changes all the old rules, and Miles learns that not only is the future not what he expects, neither is the past.</description>
+<authors>
+<author>
+<id>16094</id>
+<name>Lois McMaster Bujold</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1377313786p5/16094.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1377313786p2/16094.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/16094.Lois_McMaster_Bujold]]></link>
+<average_rating>4.16</average_rating>
+<ratings_count>336998</ratings_count>
+<text_reviews_count>16897</text_reviews_count>
+</author>
+</authors>
+  <published>2016</published>
+</book>
+
+
+  <rating>2</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at>Thu Sep 08 00:00:00 -0700 2016</read_at>
+  <date_added>Mon Sep 12 21:38:30 -0700 2016</date_added>
+  <date_updated>Mon Sep 12 21:40:51 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+      <![CDATA[I really wanted more character development and talk about the relationships between the characters. I got what I wished for and regretted it.<br /><br />The best thing I can say about this book is that I'm happy for Cordelia and I hope these plans go well for her. And I'm happy that there was a stable polyamorous relationship represented despite, you know, Barrayar. But the book itself wasn't that interesting, which is a shame.]]>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1756515025]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1756515025]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1756514771</id>
+    <book>
+  <id type="integer">61904</id>
+  <isbn>0380818612</isbn>
+  <isbn13>9780380818617</isbn13>
+  <text_reviews_count type="integer">695</text_reviews_count>
+  <title>Paladin of Souls (World of the Five Gods, #2)</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/61904.Paladin_of_Souls</link>
+  <num_pages>470</num_pages>
+  <format>Paperback</format>
+  <edition_information/>
+  <publisher>HarperTorch</publisher>
+  <publication_day>26</publication_day>
+  <publication_year>2005</publication_year>
+  <publication_month>4</publication_month>
+  <average_rating>4.13</average_rating>
+  <ratings_count>16398</ratings_count>
+  <description>Follow Lois McMaster Bujold, one of the most honored authors in the field of fantasy and science fiction, to a land threatened by treacherous war and beset by demons -- as a royal dowager, released from the curse of madness and manipulated by an untrustworthy god, is plunged into a desperate struggle to preserve the endangered souls of a realm.</description>
+<authors>
+<author>
+<id>16094</id>
+<name>Lois McMaster Bujold</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1377313786p5/16094.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1377313786p2/16094.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/16094.Lois_McMaster_Bujold]]></link>
+<average_rating>4.16</average_rating>
+<ratings_count>336998</ratings_count>
+<text_reviews_count>16897</text_reviews_count>
+</author>
+</authors>
+  <published>2005</published>
+</book>
+
+
+  <rating>0</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+
+    <shelf name="come-back-to-it" exclusive="false" review_shelf_id="1427317881" sortable="false" />
+    <shelf name="desisted" exclusive="true" review_shelf_id="1427317865" sortable="false" />
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at>Mon Sep 12 00:00:00 -0700 2016</started_at>
+  <read_at></read_at>
+  <date_added>Mon Sep 12 21:37:59 -0700 2016</date_added>
+  <date_updated>Mon Sep 19 19:23:40 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1756514771]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1756514771]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605932740</id>
+    <book>
+  <id type="integer">22545460</id>
+  <isbn>1250052025</isbn>
+  <isbn13>9781250052025</isbn13>
+  <text_reviews_count type="integer">147</text_reviews_count>
+  <title>The Edge of Dreams (Molly Murphy Mysteries, #14)</title>
+  <image_url>https://images.gr-assets.com/books/1405924473m/22545460.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1405924473s/22545460.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/22545460-the-edge-of-dreams</link>
+  <num_pages>320</num_pages>
+  <format>Hardcover</format>
+  <edition_information/>
+  <publisher>Minotaur Books</publisher>
+  <publication_day>3</publication_day>
+  <publication_year>2015</publication_year>
+  <publication_month>3</publication_month>
+  <average_rating>3.91</average_rating>
+  <ratings_count>1245</ratings_count>
+  <description>Molly Murphy Sullivan’s husband Daniel, a captain in the New York City police force, is stumped. He’s chasing a murderer whose victims have nothing in common—nothing except for the taunting notes that are delivered to Daniel after each murder. And when Daniel receives a note immediately after Molly and her young son Liam are in a terrible subway crash, Daniel and Molly both begin to fear that maybe Molly herself was the target.&lt;br /&gt;&lt;br /&gt;Molly’s detective instincts are humming, but finding the time to dig deeper into this case is a challenge. She’s healing from injuries sustained in the train crash and she’s refurbishing her house, which has only just been rebuilt after burning down. She’s also sidetracked by her friends Sid and Gus’s most recent hobby, dream analysis. And when Molly herself starts suffering from strange dreams, she wonders if they just might hold the key to solving Daniel’s murder case.&lt;br /&gt;&lt;br /&gt;Rhys Bowen’s characteristic blend of atmospheric turn-of-the-century history, clever plotting, and sparkling characters will delight readers in The Edge of Dreams, the latest in her bestselling Molly Murphy series</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2015</published>
+</book>
+
+
+  <rating>4</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:40:37 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:40:38 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605932740]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605932740]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605932610</id>
+    <book>
+  <id type="integer">25507113</id>
+  <isbn>1250052041</isbn>
+  <isbn13>9781250052049</isbn13>
+  <text_reviews_count type="integer">145</text_reviews_count>
+  <title>Time of Fog and Fire (Molly Murphy Mysteries, #16)</title>
+  <image_url>https://images.gr-assets.com/books/1431986000m/25507113.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1431986000s/25507113.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/25507113-time-of-fog-and-fire</link>
+  <num_pages>320</num_pages>
+  <format>Hardcover</format>
+  <edition_information/>
+  <publisher>Minotaur Books</publisher>
+  <publication_day>1</publication_day>
+  <publication_year>2016</publication_year>
+  <publication_month>3</publication_month>
+  <average_rating>3.91</average_rating>
+  <ratings_count>1055</ratings_count>
+  <description>Molly Murphy Sullivan's husband Daniel, a police captain in turn-of-the-century New York City, is in a precarious position. The new police commissioner wants him off the force altogether. So Daniel accepts an assignment from John Wilkie, head of the secret service. Molly believes her husband is in Washington, working for the president, until she spots him in San Francisco during a movie news segment. Then she receives a strange letter from him, leading her to conclude that he wants her to join him in San Francisco.&lt;br /&gt;&lt;br /&gt;She takes her young son Liam on the cross-country train trip, but when they arrive in San Francisco, Molly is told that she's too late, her husband's funeral was yesterday. She's devastated, even more so when she receives a cryptic note saying Daniel's death was not an accident. In her grief she stays on to investigate, until she meets a strange man at a party, whom she soon starts to suspect may not be quite who he appears. Then Molly finds another body in the basement, but before she can report it, the Great Earthquake strikes San Francisco, and the servant runs off in a panic with Molly's son. Suddenly Molly has no idea where to turn or whom to trust, and she knows there are many lives on the line, including her own.</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2016</published>
+</book>
+
+
+  <rating>4</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:40:20 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:40:21 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605932610]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605932610]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605932556</id>
+    <book>
+  <id type="integer">17934418</id>
+  <isbn>1250011663</isbn>
+  <isbn13>9781250011664</isbn13>
+  <text_reviews_count type="integer">175</text_reviews_count>
+  <title>City of Darkness and Light (Molly Murphy Mysteries, #13)</title>
+  <image_url>https://images.gr-assets.com/books/1370797167m/17934418.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1370797167s/17934418.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/17934418-city-of-darkness-and-light</link>
+  <num_pages>320</num_pages>
+  <format>Hardcover</format>
+  <edition_information/>
+  <publisher>Minotaur Books</publisher>
+  <publication_day>4</publication_day>
+  <publication_year>2014</publication_year>
+  <publication_month>3</publication_month>
+  <average_rating>3.77</average_rating>
+  <ratings_count>1646</ratings_count>
+  <description>Molly and Daniel Sullivan are settling happily into the new routines of parenthood, but their domestic bliss is shattered the night a gang retaliates against Daniel for making a big arrest. Daniel wants his family safely out of New York City as soon as possible. In shock and grieving, but knowing she needs to protect their infant son Liam, Molly agrees to take him on the long journey to Paris to stay with her friends Sid and Gus, who are studying art in the City of Light.&lt;br /&gt;&lt;br /&gt;But upon arriving in Paris, nothing goes as planned. Sid and Gus seem to have vanished into thin air, and Molly's search to figure out what happened to them will lead her through all levels of Parisian society, from extravagant salons to the dingy cafes where starving artists linger over coffee and loud philosophical debates. And when in the course of her search she stumbles across a dead body, Molly, on her own in a foreign country, starts to wonder if she and Liam might be in even more danger in Paris than they had been at home.&lt;br /&gt;&lt;br /&gt;As Impressionism gives way to Fauvism and Cubism, and the Dreyfus affair rocks France, Molly races through Paris to outsmart a killer in &lt;i&gt;City of Darkness and Light&lt;/i&gt;, Rhys Bowen's most spectacular Molly Murphy novel yet.</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2014</published>
+</book>
+
+
+  <rating>4</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:40:12 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:40:13 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605932556]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605932556]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605932517</id>
+    <book>
+  <id type="integer">7898607</id>
+  <isbn>0312628102</isbn>
+  <isbn13>9780312628109</isbn13>
+  <text_reviews_count type="integer">137</text_reviews_count>
+  <title>Bless the Bride (Molly Murphy, #10)</title>
+  <image_url>https://images.gr-assets.com/books/1301294464m/7898607.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1301294464s/7898607.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/7898607-bless-the-bride</link>
+  <num_pages>261</num_pages>
+  <format>Hardcover</format>
+  <edition_information/>
+  <publisher>Minotaur Books</publisher>
+  <publication_day>1</publication_day>
+  <publication_year>2011</publication_year>
+  <publication_month>3</publication_month>
+  <average_rating>3.90</average_rating>
+  <ratings_count>2185</ratings_count>
+  <description>With Molly Murphy’s wedding to NYPD Captain Daniel Sullivan quickly approaching, the Irish sleuth heads to the Westchester County countryside, where his mother can lend her a hand and advise her on a bride’s proper place. And shockingly, Molly seems to be agreeing. She has already promised that she’ll close up her PI business and settle down after marrying, but she isn’t a married woman yet. So, when she gets word of a possible case, she sneaks back into the city to squeeze in a little more sleuthing before the wedding bells can ring.&lt;br /&gt;&lt;br /&gt;A wealthy Chinese immigrant wants her to find his missing bride, and Molly—sure she isn’t getting the whole story—suspects that his bride ran off. But where could she go? The only Chinese women in early-twentieth-century New York are kept under lock and key, and Molly can’t help but wonder if she’s saving the woman from the streets or helping to lock her away for good.</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2011</published>
+</book>
+
+
+  <rating>3</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:40:07 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:40:08 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605932517]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605932517]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605932443</id>
+    <book>
+  <id type="integer">383513</id>
+  <isbn>0312989040</isbn>
+  <isbn13>9780312989040</isbn13>
+  <text_reviews_count type="integer">180</text_reviews_count>
+  <title>For the Love of Mike (Molly Murphy Mysteries, #3)</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/383513.For_the_Love_of_Mike</link>
+  <num_pages>352</num_pages>
+  <format>Paperback</format>
+  <edition_information/>
+  <publisher>St. Martin's</publisher>
+  <publication_day>30</publication_day>
+  <publication_year>2004</publication_year>
+  <publication_month>11</publication_month>
+  <average_rating>3.91</average_rating>
+  <ratings_count>3805</ratings_count>
+  <description>Molly Murphy finds turn-of-the-century New York City unwelcoming to women. Now Dublin aristocrats want their daughter back from the New World and her unsavory boyfriend. And in the garment industry, Molly goes undercover for industrial espionage. Can she solve both cases without Daniel Sullivan, the police captain who loves her but is already engaged?</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2004</published>
+</book>
+
+
+  <rating>4</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:39:55 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:39:56 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605932443]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605932443]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605932268</id>
+    <book>
+  <id type="integer">4283208</id>
+  <isbn>031238534X</isbn>
+  <isbn13>9780312385347</isbn13>
+  <text_reviews_count type="integer">163</text_reviews_count>
+  <title>In a Gilded Cage (Molly Murphy, #8)</title>
+  <image_url>https://images.gr-assets.com/books/1312061685m/4283208.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1312061685s/4283208.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/4283208-in-a-gilded-cage</link>
+  <num_pages>288</num_pages>
+  <format>Hardcover</format>
+  <edition_information/>
+  <publisher>Minotaur Books</publisher>
+  <publication_day>17</publication_day>
+  <publication_year>2009</publication_year>
+  <publication_month>3</publication_month>
+  <average_rating>3.92</average_rating>
+  <ratings_count>2421</ratings_count>
+  <description>Irish immigrant Molly Murphy and her New York City P.I. business are in the midst of a sweeping influenza epidemic and a fight for women’s suffrage that lands her in jail. Her betrothed, Police Captain Daniel Sullivan, finds her, but he hardly has time to bail her out, what with Chinese gangs battling for control of a thriving opium trade. The only consolation Molly can take from her vexing afternoon in the clink is that it made her some new friends among the Vassar suffragists---and brought her a pair of new cases.&lt;br /&gt;&lt;br /&gt;For the first, Emily Boswell is convinced her miserly uncle stole her inheritance and wants Molly to uncover the truth behind her parents’ lives and deaths. Second, Emily’s college roommate Fanny Poindexter wants Molly to find proof of her husband’s philandering so that she can leave him without one red cent. But when Fanny dies and her husband claims she’s a victim of the epidemic, it’s more than Molly’s conscience can take.&lt;br /&gt;&lt;br /&gt;Rhys Bowen’s Agatha and Anthony Award--winning historical series continues to breathe life into the past with its wit and charm and its complete sense of early-twentieth-century New York, which makes &lt;i&gt;In a Gilded Cage&lt;/i&gt; her most accomplished mystery yet.</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2009</published>
+</book>
+
+
+  <rating>3</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:39:31 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:39:38 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605932268]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605932268]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605932030</id>
+    <book>
+  <id type="integer">364542</id>
+  <isbn>0312328192</isbn>
+  <isbn13>9780312328191</isbn13>
+  <text_reviews_count type="integer">165</text_reviews_count>
+  <title>In Dublin's Fair City (Molly Murphy Mysteries, #6)</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/364542.In_Dublin_s_Fair_City</link>
+  <num_pages>272</num_pages>
+  <format>Hardcover</format>
+  <edition_information/>
+  <publisher>Minotaur Books</publisher>
+  <publication_day>6</publication_day>
+  <publication_year>2007</publication_year>
+  <publication_month>3</publication_month>
+  <average_rating>3.88</average_rating>
+  <ratings_count>2546</ratings_count>
+  <description>Molly Murphy is sent by aging well-off NYC theatrical impresario Tommy Burke to find baby sister left with parish priest when they fled famine. But even before the ship lands, Broadway's leading actress, Oona Sheehan, vanishes, and her maid is found dead in her cabin.</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2007</published>
+</book>
+
+
+  <rating>4</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:38:57 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:38:59 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605932030]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605932030]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605931988</id>
+    <book>
+  <id type="integer">1852905</id>
+  <isbn>0312349432</isbn>
+  <isbn13>9780312349431</isbn13>
+  <text_reviews_count type="integer">146</text_reviews_count>
+  <title>Tell Me, Pretty Maiden (Molly Murphy Mysteries, #7)</title>
+  <image_url>https://images.gr-assets.com/books/1311997441m/1852905.jpg</image_url>
+  <small_image_url>https://images.gr-assets.com/books/1311997441s/1852905.jpg</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/1852905.Tell_Me_Pretty_Maiden</link>
+  <num_pages>304</num_pages>
+  <format>Hardcover</format>
+  <edition_information/>
+  <publisher>Minotaur Books</publisher>
+  <publication_day>4</publication_day>
+  <publication_year>2008</publication_year>
+  <publication_month>3</publication_month>
+  <average_rating>3.84</average_rating>
+  <ratings_count>2373</ratings_count>
+  <description>It’s wintertime in New York, and for the first time since Irish immigrant Molly Murphy started her early-twentieth-century detective agency, she is completely snowed in with work. While she’s proving to be quite the entrepreneur and is very much in demand by some of Broadway’s brightest stars and Fifth Avenue’s richest families, she has to grudgingly admit that if she’s going to work more than one case at a time, then she’s going to need some help. Molly’s beau, the recently and wrongly suspended police captain Daniel Sullivan, would make an ideal associate, but before they can agree on the terms of his employment, they stumble upon a young woman lying unconscious in the middle of a snow-covered Central Park. When the woman wakes up she is disorientated and has and lost her ability to speak, the authorities are about to pack her off to an insane asylum when Molly can’t help but step in and take on yet another case.&lt;br /&gt;&lt;br /&gt;Lively and colorful, full of absorbing historical detail and delightful characters, &lt;i&gt;Tell Me, Pretty Maiden&lt;/i&gt; is another gem in Rhys Bowen’s multiple award--winning series.</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2008</published>
+</book>
+
+
+  <rating>3</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:38:52 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:38:54 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605931988]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605931988]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605931951</id>
+    <book>
+  <id type="integer">383511</id>
+  <isbn>0312997019</isbn>
+  <isbn13>9780312997014</isbn13>
+  <text_reviews_count type="integer">159</text_reviews_count>
+  <title>Oh Danny Boy (Molly Murphy Mysteries, #5)</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/383511.Oh_Danny_Boy</link>
+  <num_pages>352</num_pages>
+  <format>Paperback</format>
+  <edition_information/>
+  <publisher>St. Martin's Paperbacks</publisher>
+  <publication_day>6</publication_day>
+  <publication_year>2007</publication_year>
+  <publication_month>3</publication_month>
+  <average_rating>3.92</average_rating>
+  <ratings_count>2858</ratings_count>
+  <description>Irish immigrant-turned-private detective Molly Murphy comes to the aid of handsome NYPD captain Daniel Sullivan, who has been arrested for accepting bribes, as she sets out to prove that he has been framed, while also being drawn into the case of serial killer who has already murdered five prostitutes, in a mystery set in early 1900s New York.</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2007</published>
+</book>
+
+
+  <rating>4</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:38:47 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:38:48 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605931951]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605931951]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605931896</id>
+    <book>
+  <id type="integer">626065</id>
+  <isbn>0312997000</isbn>
+  <isbn13>9780312997007</isbn13>
+  <text_reviews_count type="integer">171</text_reviews_count>
+  <title>In Like Flynn (Molly Murphy Mysteries, #4)</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/626065.In_Like_Flynn</link>
+  <num_pages>352</num_pages>
+  <format>Paperback</format>
+  <edition_information/>
+  <publisher>St. Martin's Paperbacks</publisher>
+  <publication_day>29</publication_day>
+  <publication_year>2005</publication_year>
+  <publication_month>11</publication_month>
+  <average_rating>3.93</average_rating>
+  <ratings_count>3337</ratings_count>
+  <description>A woman private eye in a man's world, Molly Murphy is having a hard time succeeding as a New York shamus. That's why she agrees to go undercover for the NYPD to expose a pair of spiritualist sisters as con-artists even though the offer comes from police captain Daniel Sullivan. Sullivan had once won Molly's heart--until she discovered he already had a socialite fiancé and an upcoming wedding. Now Molly's masquerading as a cousin from Ireland at the Hudson River mansion of Senator Barney Flynn. Flynn's invalid wife hopes the psychic sisters can contact her dead son, kidnapped and lost in a sensational crime. After an eerie séance, Molly isn't so sure the sisters are fakes, but she's certain the police bungled the kidnapping case. Soon Molly's questions are leading her toward danger, and her own sixth sense is warning her--murder lies ahead!&lt;br /&gt;&lt;br /&gt;&lt;i&gt;In Like Flynn &lt;/i&gt;is the fourth captivating installment in a series which has garnered an impressive array of awards and nominations in just three books: Rhys Bowen's Molly Murphy mysteries have won the Agatha Award, the Anthony Award, the Bruce Alexander Historical Award, and the Herodotus Award, and have been shortlisted for the Agatha Award, the Macavity Award, and the Mary Higgins Clark Award.</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2005</published>
+</book>
+
+
+  <rating>4</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:38:39 -0700 2016</date_added>
+  <date_updated>Sat Apr 09 22:38:45 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605931896]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605931896]]></link>
+    <owned>0</owned>
+</review>
+
+    <review>
+  <id>1605931782</id>
+    <book>
+  <id type="integer">353757</id>
+  <isbn>0312989687</isbn>
+  <isbn13>9780312989682</isbn13>
+  <text_reviews_count type="integer">254</text_reviews_count>
+  <title>Death of Riley (Molly Murphy Mysteries, #2)</title>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <large_image_url/>
+  <link>https://www.goodreads.com/book/show/353757.Death_of_Riley</link>
+  <num_pages>336</num_pages>
+  <format>Paperback</format>
+  <edition_information/>
+  <publisher>Minotaur Books</publisher>
+  <publication_day>7</publication_day>
+  <publication_year>2003</publication_year>
+  <publication_month>12</publication_month>
+  <average_rating>3.86</average_rating>
+  <ratings_count>4057</ratings_count>
+  <description>Molly Murphy apprentices to Paddy Riley for her new profession. The tough old Cockney PI specializes in divorces. Molly hopes to seek counsel of and hook handsome NYPD police captain Daniel Sullivan. But Riley's murder sends her through back alleys of Manhattan and into bars and lounges of the literary - writers, actors, poets, musicians - and suspects.</description>
+<authors>
+<author>
+<id>202867</id>
+<name>Rhys Bowen</name>
+<role></role>
+<image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p5/202867.jpg]]>
+</image_url>
+<small_image_url nophoto='false'>
+<![CDATA[https://images.gr-assets.com/authors/1283051168p2/202867.jpg]]>
+</small_image_url>
+<link><![CDATA[https://www.goodreads.com/author/show/202867.Rhys_Bowen]]></link>
+<average_rating>3.86</average_rating>
+<ratings_count>135496</ratings_count>
+<text_reviews_count>12321</text_reviews_count>
+</author>
+</authors>
+  <published>2003</published>
+</book>
+
+
+  <rating>3</rating>
+  <votes>0</votes>
+  <spoiler_flag>false</spoiler_flag>
+  <spoilers_state>none</spoilers_state>
+  
+
+<shelves>
+  <shelf name="read" exclusive="true" />
+
+</shelves>
+  <recommended_for></recommended_for>
+  <recommended_by></recommended_by>
+  <started_at></started_at>
+  <read_at></read_at>
+  <date_added>Sat Apr 09 22:38:25 -0700 2016</date_added>
+  <date_updated>Sun Sep 18 14:11:08 -0700 2016</date_updated>
+  <read_count></read_count>
+  <body>
+  </body>
+
+  
+
+  <comments_count>0</comments_count>
+    <url><![CDATA[https://www.goodreads.com/review/show/1605931782]]></url>
+  <link><![CDATA[https://www.goodreads.com/review/show/1605931782]]></link>
+    <owned>0</owned>
+</review>
+
+</reviews>
+
+</GoodreadsResponse>
