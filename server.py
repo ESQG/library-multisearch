@@ -1,6 +1,9 @@
 from flask import Flask, render_template, session, flash, redirect, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from datetime import datetime
+from data.seed import SFPL_BRANCHES
+from data import data_manager
+from queries import use_goodreads
 
 app = Flask(__name__)
 # app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -116,9 +119,6 @@ def write_log(*args):
 
 if __name__ == '__main__':
     from data.model import connect_to_db
-    from data.seed import SFPL_BRANCHES
-    from data import data_manager
-    from queries import use_goodreads
 
     app.debug = True
 

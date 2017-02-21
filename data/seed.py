@@ -7,12 +7,7 @@ import sys
 from model import *
 import data_manager
 
-# Parent directory imports
-sys.path.append('../')
-from queries import use_goodreads
-from server import app
-
-connect_to_db(app)
+# Parent directory imports protected under ifmain.
 
 SFPL_BRANCHES = {
         'anza': 'Anza',
@@ -107,6 +102,12 @@ def add_sfpl_branches():
     db.session.commit()
 
 
+if __name__ == '__main__':
+    # Parent directory imports
+    sys.path.append('../')
+    from queries import use_goodreads
+    from server import app
 
+    connect_to_db(app)
 
 

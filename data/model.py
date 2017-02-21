@@ -212,12 +212,12 @@ class Format(db.Model):
     digital = db.Column(db.Boolean)
 
 
-def connect_to_db(app):
+def connect_to_db(app, db_uri='postgresql:///library_app', echo=True):
     """Connect a Flask app to our database."""
 
     # Configure to use our database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///library_app'
-    app.config['SQLALCHEMY_ECHO'] = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+    app.config['SQLALCHEMY_ECHO'] = echo
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)
