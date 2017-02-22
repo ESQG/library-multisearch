@@ -1,7 +1,14 @@
 import re
 from datetime import datetime, timedelta
+import sys
 
+# Local import
 from model import *
+
+# Import from sibling directories
+sys.path.append('../')
+from queries import use_sfpl, sfpl_locations
+
 
 AVAILABILITY_QUERY = """
    SELECT c.call_number, c.total_available, bk.title, bk.author, 
@@ -235,8 +242,4 @@ def write_log(message, *args):
 
 if __name__ == '__main__':
     connect_to_db(app)
-    sys.path.append('../')
-    import sys
     from server import app
-    from queries import use_sfpl, sfpl_locations
-
