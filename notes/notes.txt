@@ -15,3 +15,12 @@ Or use cacheing tool?
 Henry thinks head start problem is good idea, tricky
 
 Work on AJAX calls on next page, then come back to this preloading issue.  Interesting problem to discuss and show off.
+
+Goodreads OAuth: rather sparse documentation, I can't even find the Ruby example mentioned on the forum.  But here's a Python example on Github: https://gist.github.com/gpiancastelli/537923
+
+And in the comments, another one:
+https://gist.github.com/steve-kertes/5862716
+
+Need to read OAuth documentation to figure out what's going on here.  Do I need to set callback to localhost:5000 for now?
+
+May want to look into python goodreads wrapper at https://github.com/sefakilic/goodreads
