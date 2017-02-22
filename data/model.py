@@ -224,9 +224,6 @@ def connect_to_db(app, db_uri='postgresql:///library_app', echo=True):
     print "I think I'm connected to the DB!"
 
 
-def example_data():
-    pass
-
 if __name__ == '__main__':
 
     import sys
