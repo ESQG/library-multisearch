@@ -50,34 +50,73 @@ class QueryHelperTests(unittest.TestCase):
         self.assertEqual(results, empty_results)
 
 
-class RouteTests(unittest.TestCase):
-    """Test routes."""
+class DataTests(unittest.TestCase):
+    """Test functions from the data files."""
 
     def setUp(self):
-        self.client = app.test_client()
         app.config['Testing'] = True
-        app.config['SECRET_KEY'] = 'test'
         connect_to_db(app, db_uri='postgresql:///testdb', echo=False)
         db.create_all()
 
         seed.add_sfpl_branches()
-        example_data()          # Need to expand!
-        
+        example_data()
+
 
     def tearDown(self):
         db.session.close()
         db.drop_all()
 
 
+class RouteAndDataTests(unittest.TestCase):
+    """Test routes, integrated with database."""
+
+    def setUp(self):
+        """Creates test client, connects the server to test database, and populates sample data."""
+
+        self.client = app.test_client()
+        app.config['Testing'] = True
+        app.config['SECRET_KEY'] = 'test'
+        connect_to_db(app, db_uri='postgresql:///testdb', echo=False)
+        db.create_all()
+
+        example_data()          # Need to expand!
+        
+
+    def tearDown(self):
+        """Removes all data from the test database."""
+
+        db.session.close()
+        db.drop_all()
+
+
     def test_homepage(self):
+        """Tests the homepage loads."""
+
         response = self.client.get("/")
         self.assertIn("Books</title>", response.data)
         self.assertIn("Goodreads ID", response.data)
 
 
     def test_booklist_post(self):
+        """Tests results of submitting Goodreads POST data.
+
+        If the books are not successfully added to the session, the server
+        will redirect to the homepage, so this tests that success.  
+
+        This also tests that the books from the mock Goodreads API have been added 
+        to the database, and that their IDs are in the session."""
+
         response = self.client.post("/booklist", data={'goodreads-id':ESQG}, follow_redirects=True)
         self.assertIn("View my books in the library", response.data)
+
+        book = Book.query.filter_by(title="Postcards from the Edge").first()
+        self.assertIsNotNone(book)
+
+        with self.client.session_transaction() as sess:
+            self.assertIn('books', sess)
+            self.assertIn(book.book_id, sess['books'])
+            self.assertIn('goodreads_id', sess)
+            self.assertEqual(sess['goodreads_id'], ESQG)
 
 
     def test_booklist_post_link(self):
