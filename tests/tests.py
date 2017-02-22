@@ -14,7 +14,7 @@ from data import seed
 from queries import use_goodreads, use_sfpl, sfpl_locations
 
 SHORT_SHELF = "https://www.goodreads.com/review/list/2416346?shelf=maybe-someday"
-ESQG="2416346"
+ESQG = "2416346"
 
 def _mock_get_shelf(goodreads_id, shelf):
     print "Using mock Goodreads scraper!"
@@ -25,8 +25,9 @@ def _mock_get_shelf(goodreads_id, shelf):
 
 server.use_goodreads.get_shelf = _mock_get_shelf
 
-class FunctionTests(unittest.TestCase):
-    """Test helper functions."""
+
+class QueryHelperTests(unittest.TestCase):
+    """Test helper functions for the Queries files."""
 
     def test_shelf_parser(self):
         results = use_goodreads.parse_shelf_and_id(SHORT_SHELF)
@@ -112,11 +113,34 @@ class RouteTests(unittest.TestCase):
         self.assertIn("no books", response.data)
 
 
+
+
+
 def example_data():
+    """Data for the test database.  Runs in setUp functions for tests that use it."""
+
+    seed.add_sfpl_branches()
+    seed.add_formats()
+
     book_1 = Book(title="Alanna: The First Adventure", author="Tamora Pierce")
     book_2 = Book(title="The Hitchhiker's Guide to the Galaxy", author="Douglas Adams")
     db.session.add(book_1, book_2)
+
+    esqg = User(first_name="Elizabeth", last_name="Goodman", email="esqg@nowhere.com", password="programmer")
+    db.session.add(esqg)
     db.session.commit()
+
+    esqg_gr = GoodreadsUser(user_id=esqg.user_id, goodreads_id=ESQG)
+    db.session.add(esqg_gr)
+
+    my_mission = UserBranch(branch_code="miss", user_id=esqg.user_id)
+    db.session.add(my_mission)
+
+    my_main = UserBranch(branch_code="main", user_id=esqg.user_id)
+    db.session.add(my_main)
+
+    db.session.commit()
+
 
 if __name__ == '__main__':
     unittest.main()
