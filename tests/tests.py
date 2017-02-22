@@ -10,7 +10,7 @@ sys.path.append('../')  # to import from parent directory
 import server
 from server import app
 from data.model import *
-from data import seed
+from data import seed, data_manager
 from queries import use_goodreads, use_sfpl, sfpl_locations
 
 SHORT_SHELF = "https://www.goodreads.com/review/list/2416346?shelf=maybe-someday"
@@ -21,10 +21,20 @@ def _mock_get_shelf(goodreads_id, shelf):
     soup = BeautifulSoup(open("gr_response.xml"), "html.parser")
     return use_goodreads.parse_soup(soup)
 
-    # change later to deal with short shelf!
 
+def _mock_search_all_records(title, author):
+    print "Using mock search: The Hobbit by J.R.R. Tolkien"
+    title = "The Hobbit"
+    author = "J.R.R. Tolkien"
+
+    response_from_file = open("catalog_response.html").read()
+    soup = BeautifulSoup(response_from_file, "html.parser")
+    return use_sfpl.process_response_to_records(soup)
+
+
+# Replace actual API calling functions with mocks
 server.use_goodreads.get_shelf = _mock_get_shelf
-
+use_sfpl.search_all_records = _mock_search_all_records
 
 class QueryHelperTests(unittest.TestCase):
     """Test helper functions for the Queries files."""
@@ -58,13 +68,32 @@ class DataTests(unittest.TestCase):
         connect_to_db(app, db_uri='postgresql:///testdb', echo=False)
         db.create_all()
 
-        seed.add_sfpl_branches()
         example_data()
 
 
     def tearDown(self):
         db.session.close()
         db.drop_all()
+
+
+    def test_record_search(self):
+        title = "The Hobbit"
+        author = "J.R.R. Tolkien"
+        raw_records = use_sfpl.search_all_records(title, author)
+        one_record = {'author': u'Tolkien, J. R. R.', 'format': u'(Audiobook CD)', 'path': u'/item/show/1905558093_the_hobbit', 'title': u'The Hobbit'}
+        self.assertIn(one_record, raw_records)
+
+
+    def test_records_from_book(self):
+        book = Book.query.get(3)    # The Hobbit
+        self.assertIsNotNone(book)
+
+        records = data_manager.records_from_book(book)
+
+        self.assertGreaterEqual(len(records), 3)
+
+        for record in records:
+            self.assertEqual(book.book_id, record.book_id)
 
 
 class RouteAndDataTests(unittest.TestCase):
@@ -153,8 +182,6 @@ class RouteAndDataTests(unittest.TestCase):
 
 
 
-
-
 def example_data():
     """Data for the test database.  Runs in setUp functions for tests that use it."""
 
@@ -163,7 +190,10 @@ def example_data():
 
     book_1 = Book(title="Alanna: The First Adventure", author="Tamora Pierce")
     book_2 = Book(title="The Hitchhiker's Guide to the Galaxy", author="Douglas Adams")
-    db.session.add(book_1, book_2)
+    book_3 = Book(title="The Hobbit", author="J.R.R. Tolkien")
+    db.session.add(book_1)
+    db.session.add(book_2)
+    db.session.add(book_3)
 
     esqg = User(first_name="Elizabeth", last_name="Goodman", email="esqg@nowhere.com", password="programmer")
     db.session.add(esqg)
@@ -183,3 +213,4 @@ def example_data():
 
 if __name__ == '__main__':
     unittest.main()
+    db.drop_all()   # In case a teardown gets rolled back

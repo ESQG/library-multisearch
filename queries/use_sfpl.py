@@ -20,14 +20,19 @@ def search_all_records(title, author):
 
     """
 
-    search_results = []
     response = requests.get(BASE_URL+"/search", {'custom_query': 'title:{} author:{}'.format(title, author)})
     print response.url
     if response.status_code != 200:
-        return search_results
+        return []
 
     soup = BeautifulSoup(response.content, "html.parser")
+    return process_response_to_records(soup)
 
+
+def process_response_to_records(soup):
+    """Takes the catalog results, returns a list of dictionaries as described in search_all_records."""
+
+    search_results = []
     top_info_divs = [div for div in soup.find_all('div') if 'class' in div.attrs and 'top_info' in div['class']]
 
     for data in top_info_divs:
@@ -50,7 +55,6 @@ def search_all_records(title, author):
         if title_with_format:
             format_finder = re.search('\(.*\)', title_with_format)
             format = format_finder.group() # e.g. 'Fledgling (Audiobook CD)' --> 'Audiobook CD'
-            # title = title.split('(')[0]     # e.g. 'Fledgling (Book)' --> Fledgling
         else:
             print "Not written with format, searching further"
             secondary_info = [sib for sib in data.next_siblings if sib.name=="div" and "class" in sib.attrs and "secondary_info" in sib['class']][0]
@@ -61,29 +65,6 @@ def search_all_records(title, author):
         search_results.append({'title': title, 'author': author, 'format': format, 'path':path})
 
     return search_results
-
-    # titles = [span for span in soup.find_all('span') if 'class' in span.attrs and 'title' in span['class']]
-    # # e.g. "<span class="title"><a href="/item/show/3123202093_fledgling" target="_parent" testid="bib_link" title="Fledgling - Novel (eBook)">Fledgling</a></span>"
-    # # titles[1]['class'] returns [u'title']
-
-    # for title in titles:
-    #     data_to_return = {'title' : title}
-
-    #     sibs = title.next_siblings
-    #     for sib in sibs:
-    #         if sib.name = 'span' and 'class' in sib.attrs and 'author' in sib['class']:
-    #             author_pieces = sib.text.split()
-    #             if 'By' == author_pieces[0]:
-    #                 data_to_return['author'] = ' '.join(author_pieces[1:])
-    #             else:
-    #                 data_to_return['author'] = ' '.join(author_pieces)
-    #                 log_issue(data_to_return)
-
-    #     links.append(BASE_URL + title.a['href'])
-    #     # For example above, title.a['href'] returns u'/item/show/3123202093_fledgling'
-
-    # return links
-
 
 
 
