@@ -1,19 +1,24 @@
 Featurs I want:
 
-Goodreads OAuth
-Regular login
+0. Clickable map
 
-Input books without Goodreads
 
-Clickable map
+1b. (big) Goodreads OAuth, hopefully?
+1a. Regular login
 
-Digital records!
+(Friday) Input books without Goodreads
 
-Check availability once a day; have "doublecheck this" button
+2. Digital records!
 
+
+
+3. Check availability once a day; have "doublecheck this" button
+Write the "chron-job", something I can run to doublecheck availability.
+
+
+Back burner:
 Other libraries that use BiblioCommons
-
-User picks branches?  -- use for Twilio push notifications? (check at 9am daily?)  Set notifications for specific books
-
 Different shelves for a single user?? (my little sister wants this)
     Different shelves for Goodreads user?
+
+User picks branches?  -- use for Twilio push notifications? (check at 9am daily?)  Set notifications for specific books
