@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 from datetime import datetime
 import sys
+import json
 
 # Local imports
 from model import *
@@ -106,6 +107,21 @@ def add_sfpl_branches():
     for code in SFPL_BRANCHES:
         library = Branch(library_code='sfpl', branch_code=code, name=SFPL_BRANCHES[code])
         db.session.add(library)
+
+    db.session.commit()
+
+
+def add_sfpl_branch_addresses():
+    """Reads library addresses from a simple JSON file I made, adds them to the database.
+    I got this from copy-pasting the text of a PDF, rather than from web scraping.
+    Future libraries will need to include more in-depth web scraping to find branch locations."""
+
+    with open("branch_addresses.json") as data_file:
+        addresses_by_code = json.load(data_file)
+
+    for branch_code in addresses_by_code:
+        branch = Branch.query.get(branch_code)
+        branch.address = addresses_by_code[branch_code]
 
     db.session.commit()
 
