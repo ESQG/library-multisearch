@@ -24,3 +24,17 @@ https://gist.github.com/steve-kertes/5862716
 Need to read OAuth documentation to figure out what's going on here.  Do I need to set callback to localhost:5000 for now?
 
 May want to look into python goodreads wrapper at https://github.com/sefakilic/goodreads
+
+hover on map markers; could also do popup windows
+https://developers.google.com/maps/documentation/javascript/markers
+
+Melissa points out: library has a Googlemap!  Using geocode. http://sfpl.org/index.php?pg=2000159901
+
+
+Uses http://maps.googleapis.com/maps/api/js?v=3.26&amp;client=google-maps-pro&amp;language=en&amp;region=US&amp;libraries=places,visualization,geometry
+
+and https://www.gstatic.com/mapspro/_/js/k=mapspro.gmeviewer.en.-T0rZmT2tdk.O/m=gmeviewer_base/rt=j/d=0/rs=ABjfnFUw1yMmzOe-DWpAtqe1o3AfujaVpg
+
+ALso have <iframe width="450" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;msa=0&amp;msid=118244540548070547897.000473c70f885fc3507f9&amp;ll=37.756873,-122.444344&amp;spn=0.122146,0.154495&amp;z=12&amp;output=embed"></iframe>
+
+Talked to Meg: just going to do it myself.  Adding marker listener isn't hard!

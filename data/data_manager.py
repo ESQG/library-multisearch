@@ -100,6 +100,18 @@ def get_stored_availability(book):
 
     return book_results
 
+def branch_dict_list(library_system="sfpl"):
+    """Print condensed dictionary of branches."""
+    branches = Branch.query.all()
+    branches_info = []
+
+    for branch in branches:
+        table_attrs = {key: value for key, value in vars(branch).items() if "_" != key[0] and value != library_system}
+        table_attrs['latitude'] = str(table_attrs['latitude'])
+        table_attrs['longitude'] = str(table_attrs['longitude'])
+        branches_info.append(table_attrs)
+
+    return branches_info
 
 def records_from_book(book):
     

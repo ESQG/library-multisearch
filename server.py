@@ -69,7 +69,7 @@ def display_books_from_session():
 
 @app.route("/books.json")
 def show_branches_and_bookids():
-    branches = sorted(SFPL_BRANCHES.keys())
+    branches = data_manager.branch_dict_list("sfpl")
 
     if 'books' in session:
         return jsonify({'book_ids': session['books'], 'branches': branches})

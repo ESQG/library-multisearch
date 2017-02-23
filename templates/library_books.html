@@ -94,7 +94,7 @@ function showBranch(evt) {
     var branchCode = $("#select-branch").val();
     console.log(branchCode);
     for (var i=0; i<branches.length; i++) {
-        $("#"+ branches[i]).hide();
+        $("#"+ branches[i]["branch_code"]).hide();
     }
     $("#"+branchCode).show();
     

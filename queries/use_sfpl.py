@@ -26,8 +26,12 @@ def search_all_records(title, author):
         return []
 
     soup = BeautifulSoup(response.content, "html.parser")
-    return process_response_to_records(soup)
+    results = process_response_to_records(soup)
+    for result in results:
+        if not result['author']:
+            result['author'] = author
 
+    return results
 
 def process_response_to_records(soup):
     """Takes the catalog results, returns a list of dictionaries as described in search_all_records."""
@@ -41,6 +45,7 @@ def process_response_to_records(soup):
         if not author_objects:
             print "No author objects!"
             print data
+            author = ""
 
         elif author_objects[0].a:
             author = author_objects[0].a.text.strip()
