@@ -1,6 +1,8 @@
 import re
 from datetime import datetime, timedelta
 import sys
+# Import error for exception!
+from sqlalchemy.orm.exc import NoResultFound
 
 # Local import
 from model import *
@@ -169,6 +171,8 @@ def update_availability(record):
     tracking_branches = {}
 
     for result in current_availability:
+        result['branch'] = re.sub(r'\(\d+\)', '', result['branch']).strip()
+
         if result['branch'] in tracking_branches:
             branch, association = tracking_branches[result['branch']]
 
@@ -177,7 +181,11 @@ def update_availability(record):
 
         else:
             # write_log("Current result", str(result))
-            branch = Branch.query.filter_by(name=result['branch']).one()
+            try:
+                branch = Branch.query.filter_by(name=result['branch']).one()
+            except NoResultFound:
+                write_log("Branch not found", result['branch'])
+                continue
 
             association = RecordBranch.query.filter_by(branch_code=branch.branch_code, record_id=record.record_id).first()
             if not association:
@@ -228,6 +236,8 @@ def codify_format(format_string):
         return 'ebook'
     elif format_string == 'Book':
         return 'book'
+    elif format_string == 'Large Print' or format_string == 'LP':
+        return 'large'
     elif 'Audiobook' in format_string:
         if 'CD' in format_string:
             return 'audiocd'
