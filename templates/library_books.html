@@ -1,7 +1,14 @@
 
 
 {% extends 'base.html' %}
-
+{% block head %}
+<style>
+#map {
+    height: 400px;
+    width: 400px;
+}
+</style>
+{% endblock %}
 
 {% block body %}
 
@@ -13,6 +20,7 @@ Build AJAX requests here!
     {% endfor %}
 </select>
 
+<div id="map"></div>
 {% for (code, name) in codes_and_names %}
 <div class="library-branch" id="{{code}}" hidden>
     <h3>Books available at {{name}} branch</h3>
@@ -42,17 +50,25 @@ Build AJAX requests here!
 console.log("hello");
 var running = true;
 var books = [];
-var branches = [];      // both filled out in initial callback.
+var branches = [];      // all these arrays filled out in initial callback.
+var mapBounds = {};
+var mapCenter = {'lat': 37.75774, 'lng': -122.43870};
+var pauseMap = true;
+var giveUp = false;
 
 $(document).on('ready', getBookList);
 
 function getBookList() {
     $.getJSON("/books.json", makeBookCalls);
+    // setTimeout(function () {giveUp = true;}, 60000);
 }
 
 function makeBookCalls(results) {
     books = results['book_ids'];
     branches = results['branches'];
+    mapBounds = results['map_bounds'];
+    mapCenter = results['map_center'];
+    pauseMap = false;
     console.log(results);
 
     for(var i=0; i<books.length; i++) {
@@ -100,6 +116,28 @@ function showBranch(evt) {
     
 }
 
+var map;
+function initMap() {
+    // function checkDataLoaded () {
+    //     if (!mapCenter['lat'] || !mapCenter['lng'])
+    // { setTimeout(checkDataLoaded, 1000); }
+    // else {
+    // map = new google.maps.Map(document.getElementById("map"), {
+    //     center: mapCenter,
+    //     zoom: 12,
+    //     }
+    //     );
+    //    }
+    // }
+
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: mapCenter,
+        zoom: 12,
+        }
+        );
+        // );}, 10000);
+}
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{map_key}}&callback=initMap" async defer></script>
 
 {% endblock %}
