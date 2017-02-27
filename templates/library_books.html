@@ -53,8 +53,7 @@ var books = [];
 var branches = [];      // all these arrays filled out in initial callback.
 var mapBounds = {};
 var mapCenter = {'lat': null, 'lng': null};
-var pauseMap = true;
-var giveUp = false;
+var markers = {};
 
 $(document).on('ready', getBookList);
 
@@ -73,6 +72,7 @@ function makeBookCalls(results) {
         var book = books[i];
         $.get("/book/" + String(book)+".json", makeRow);
     }
+    if (typeof map !== 'undefined') {makeMarkers()}
 }
 
 function makeRow(data) {
@@ -115,6 +115,7 @@ function showBranch(evt) {
 }
 
 var map;
+
 function initMap() {
     $.get("/map.json", alignMap);
 }
@@ -126,7 +127,45 @@ function alignMap(data) {
         center: mapCenter,
         zoom: 12,
         });
+
+     // what if not loaded yet?
+    if (branches.length > 0) {makeMarkers();}
 }
+
+function makeMarkers() {
+
+    for (var i=0; i<branches.length; i++) {
+        var position = {'lat': branches[i]['latitude'], 'lng': branches[i]['longitude']};
+        var key = branches[i]['branch_code'];
+
+        if (typeof markers[key] === "undefined") {
+        var marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: branches[i]['name']
+        });
+
+        markers[key] = marker;
+        marker.setLabel(branches[i]['name']);
+        marker.set("id", key);
+        marker.addListener("click", markerCall(marker));
+        } // end if
+    } // end for
+} // end function
+
+function markerCall(marker) {
+    return function () {
+    console.log(marker);
+    console.log(marker.id);
+    var dropdown = document.getElementById("select-branch");
+    dropdown.value = marker.id;
+for (var i=0; i<branches.length; i++) {
+        $("#"+ branches[i]["branch_code"]).hide();
+    }
+    $("#"+marker.id).show();
+    }
+}
+
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{map_key}}&callback=initMap" async defer></script>
