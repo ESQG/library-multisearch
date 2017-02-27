@@ -73,16 +73,9 @@ def display_books_from_session():
 @app.route("/books.json")
 def show_branches_and_bookids():
     branches = data_manager.branch_dict_list("sfpl")
-    avg_lat = 37.75774
-    avg_long = -122.43870
-    bounds = {'lat': [-122.54, -122.35], 'lng': [37.67, 37.84]}
-    center = {'lat': avg_lat, 'lng': avg_long}
 
 
-    data_to_serve = {'branches': branches,
-                     'map_center': center,
-                     'map_bounds': bounds,
-                     }
+    data_to_serve = {'branches': branches}
 
     if 'books' in session:
         data_to_serve['book_ids'] = session['books']
@@ -118,6 +111,22 @@ def library_books_page():
 
     codes_and_names = sorted(SFPL_BRANCHES.items(), key=lambda tup: tup[1])
     return render_template("library_books.html", codes_and_names=codes_and_names, map_key=GOOGLEMAPS_KEY)
+
+
+@app.route("/map.json")
+def send_map_data():
+    """A route to serve the map data separately, so that the map is not initialized until after
+    an AJAX call to this route.  Right now it's hardcoded for SFPL, but when using other librarybooks
+    systems, change this route to calibrate data according to the user."""
+
+    avg_lat = 37.75774
+    avg_long = -122.43870
+    bounds = {'lat': [-122.54, -122.35], 'lng': [37.67, 37.84]}
+    center = {'lat': avg_lat, 'lng': avg_long}
+
+    return jsonify({'map_center': center,
+                    'map_bounds': bounds,
+                    })
 
 
 def write_log(*args):

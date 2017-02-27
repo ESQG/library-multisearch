@@ -12,7 +12,7 @@
 
 {% block body %}
 
-Build AJAX requests here!
+<p>Select a library to view books at!</p>
 
 <select id="select-branch" name="branch">
     {% for (code, name) in codes_and_names %}
@@ -52,7 +52,7 @@ var running = true;
 var books = [];
 var branches = [];      // all these arrays filled out in initial callback.
 var mapBounds = {};
-var mapCenter = {'lat': 37.75774, 'lng': -122.43870};
+var mapCenter = {'lat': null, 'lng': null};
 var pauseMap = true;
 var giveUp = false;
 
@@ -66,8 +66,6 @@ function getBookList() {
 function makeBookCalls(results) {
     books = results['book_ids'];
     branches = results['branches'];
-    mapBounds = results['map_bounds'];
-    mapCenter = results['map_center'];
     pauseMap = false;
     console.log(results);
 
@@ -118,25 +116,18 @@ function showBranch(evt) {
 
 var map;
 function initMap() {
-    // function checkDataLoaded () {
-    //     if (!mapCenter['lat'] || !mapCenter['lng'])
-    // { setTimeout(checkDataLoaded, 1000); }
-    // else {
-    // map = new google.maps.Map(document.getElementById("map"), {
-    //     center: mapCenter,
-    //     zoom: 12,
-    //     }
-    //     );
-    //    }
-    // }
+    $.get("/map.json", alignMap);
+}
 
+function alignMap(data) {
+    mapBounds = data['map_bounds']; // for later use
+    mapCenter = data['map_center'];
     map = new google.maps.Map(document.getElementById("map"), {
         center: mapCenter,
         zoom: 12,
-        }
-        );
-        // );}, 10000);
+        });
 }
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{map_key}}&callback=initMap" async defer></script>
 
