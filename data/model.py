@@ -233,7 +233,6 @@ if __name__ == '__main__':
 
     # Create our tables and some sample data
     db.create_all()
-    example_data()
 
     # For running interactively
     print "Connected to DB %s" % app.config['SQLALCHEMY_DATABASE_URI']
