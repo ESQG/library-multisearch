@@ -181,6 +181,18 @@ class RouteAndDataTests(unittest.TestCase):
         self.assertIn("no books", response.data)
 
 
+    def test_map_data(self):
+        response = self.client.get("/map.json")
+        self.assertIn("map_center", response.data)
+        
+        try:
+            map_data = response.json()
+        except ValueError:
+            raise Exception("Route does not load JSON")
+
+        self.assertIn("lat", map_data["map_center"])
+        self.assertIsNotNone(map_data["map_center"]["lat"])
+
 
 def example_data():
     """Data for the test database.  Runs in setUp functions for tests that use it."""
