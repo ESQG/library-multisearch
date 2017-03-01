@@ -95,6 +95,35 @@ class DataTests(unittest.TestCase):
         for record in records:
             self.assertEqual(book.book_id, record.book_id)
 
+    def test_new_user(self):
+        user_info = {
+        'email': 'don@knuth.com',
+        'password': 'ChristmasTrees',
+        'first_name': 'Donald',
+        'last_name': 'Knuth'
+        }
+        response = data_manager.new_user(user_info)
+        self.assertIsNotNone(response)
+
+        response_again = data_manager.new_user(user_info)
+        self.assertIsNone(response_again)
+
+
+    def test_find_user(self):
+        user_info = {'email': 'esqg@nowhere.com', 'password': 'programmer'}
+        response = data_manager.get_user_by_email(user_info)
+        self.assertEqual(response, 1)
+
+        bad_info = {'email': 'esqg@nowhere.com', 'password': 'hacker'}
+        bad_response = data_manager.get_user_by_email(bad_info)
+        self.assertEqual(bad_response, "Wrong password")
+
+        nonexistent_info = {'email': 'don@knuth.com', 'password': 'ChristmasTrees'}
+        empty_response = data_manager.get_user_by_email(nonexistent_info)
+        self.assertIsNone(empty_response)
+
+
+
 
 class RouteAndDataTests(unittest.TestCase):
     """Test routes, integrated with database."""
@@ -173,7 +202,7 @@ class RouteAndDataTests(unittest.TestCase):
         self.assertIn('book_ids', results)
 
         self.assertIn(1, results['book_ids'])
-        self.assertIn('main', results['branches'])
+        self.assertIn('name', results['branches'][0])
 
 
     def test_empty_booklist(self):

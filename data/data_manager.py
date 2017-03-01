@@ -1,6 +1,8 @@
-import re
-from datetime import datetime, timedelta
-import sys
+import re  # title parsing, mostly
+from datetime import datetime, timedelta  # timestamps for logging and checking last updated
+import sys   # to append path for parent imports
+from decimal import Decimal   # to process PostgreSQL numeric types returned as decimals
+
 # Import error for exception!
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -109,8 +111,9 @@ def branch_dict_list(library_system="sfpl"):
 
     for branch in branches:
         table_attrs = {key: value for key, value in vars(branch).items() if "_" != key[0] and value != library_system}
-        table_attrs['latitude'] = float(table_attrs['latitude'])
-        table_attrs['longitude'] = float(table_attrs['longitude'])
+        if table_attrs['latitude'] and table_attrs['longitude']:
+            table_attrs['latitude'] = float(table_attrs['latitude'])
+            table_attrs['longitude'] = float(table_attrs['longitude'])
         branches_info.append(table_attrs)
 
     return branches_info
@@ -214,6 +217,42 @@ def update_availability(record):
         db.session.commit()
 
     return current_availability  # For convenience in interactive mode
+
+
+def new_user(user_info):
+    """Inputs a new user to the database, after checking that the email provided is not already in use.
+    Returns None if the email is already taken; otherwise, returns the assigned user_id."""
+
+    if len(user_info['email']) not in range(3, 255):
+        return None
+
+    email_used = User.query.filter_by(email=user_info['email']).first()
+    if email_used:
+        return None
+
+    password = user_info['password'][:60]
+    first_name = user_info['first_name'] or None
+    last_name = user_info['last_name'] or None
+    new_user = User(email=user_info['email'], password=user_info['password'], 
+                    first_name=first_name, last_name=last_name)
+    db.session.add(new_user)
+    db.session.commit()
+    return new_user.user_id
+
+
+def get_user_by_email(user_info):
+    """For use by the server: look up a uer by email."""
+
+    email = user_info['email']
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return
+
+    password = user_info['password'][:60]
+    if password != user.password:
+        return "Wrong password"
+    
+    return user.user_id
 
 
 def check_matching_title(book, title):
