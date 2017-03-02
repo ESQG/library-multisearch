@@ -25,25 +25,19 @@ Need to read OAuth documentation to figure out what's going on here.  Do I need 
 
 May want to look into python goodreads wrapper at https://github.com/sefakilic/goodreads
 
-hover on map markers; could also do popup windows
-https://developers.google.com/maps/documentation/javascript/markers
 
-Melissa points out: library has a Googlemap!  Using geocode. http://sfpl.org/index.php?pg=2000159901
+Code reviews and things to do: 
+check for things like Main Library (2) decide how to handle the (2) for database.
 
+Timing issue!
 
-Uses http://maps.googleapis.com/maps/api/js?v=3.26&amp;client=google-maps-pro&amp;language=en&amp;region=US&amp;libraries=places,visualization,geometry
+Separate AJAX route for map data only
+Put in initMap,
+put actual map stuff into success function.
+JS can get width & height
+set map depending on that.
 
-and https://www.gstatic.com/mapspro/_/js/k=mapspro.gmeviewer.en.-T0rZmT2tdk.O/m=gmeviewer_base/rt=j/d=0/rs=ABjfnFUw1yMmzOe-DWpAtqe1o3AfujaVpg
+initMap has to be on the page, but can wait for the rest to load?
+Have a document.ready inside of it
 
-ALso have <iframe width="450" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;msa=0&amp;msid=118244540548070547897.000473c70f885fc3507f9&amp;ll=37.756873,-122.444344&amp;spn=0.122146,0.154495&amp;z=12&amp;output=embed"></iframe>
-
-Talked to Meg: just going to do it myself.  Adding marker listener isn't hard!
-
-For reference, using SQL selects to get these:   
-    # min_long = "-122.49808"       
-    # max_long = "-122.39111"
-    # min_lat = "37.71246"
-    # max_lat = "37.80258"
-    # avg_lat = "37.75774"
-    # avg_long = "-122.43870"
-    # min_width = "0.10697"
+See if can do Googlemaps without callback???  Check demo package.
