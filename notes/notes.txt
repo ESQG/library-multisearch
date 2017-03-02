@@ -41,3 +41,5 @@ initMap has to be on the page, but can wait for the rest to load?
 Have a document.ready inside of it
 
 See if can do Googlemaps without callback???  Check demo package.
+
+Learn more (heavy reading) about promises: https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html
