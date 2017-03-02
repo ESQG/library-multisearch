@@ -11,6 +11,11 @@
     <p>{{ msg }}</p>
   {% endfor %}
 
+{% if session.email %}
+<p>Logged in as {{session.email}}</p>
+<p><a href="/logout">Logout</a></p>
+
+{% endif %}
     {% block body %}
 
     {% endblock %}
