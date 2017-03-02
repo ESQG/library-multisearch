@@ -89,14 +89,26 @@ def show_branches_and_bookids():
     branches = data_manager.branch_dict_list("sfpl")
     data_to_serve = {'branches': branches}
 
-    if 'books' in session:
+    if 'user_id' in session:
+        all_books = data_manager.get_user_book_ids(session['user_id'])
+        stored_books = data_manager.stored_availability_for_user(session['user_id'])
+        stored_book_ids = {record['book_id'] for record in stored_books}
+        write_log("Stored book IDs: ", str(stored_book_ids))
+
+        remaining_books = [book_id for book_id in all_books if book_id not in stored_book_ids]
+        data_to_serve['book_ids'] = remaining_books
+        data_to_serve['stored_books'] = stored_books
+
+    elif 'books' in session:
         data_to_serve['book_ids'] = session['books']
-    elif 'user_id' in session:
-        data_to_serve['book_ids'] = data_manager.get_user_book_ids(session['user_id'])
+        data_to_serve['stored_books'] = []
+
     else:
+        data_to_serve['stored_books'] = []
         data_to_serve['book_ids'] = []
 
     return jsonify(data_to_serve)
+
 
 @app.route("/book/<book_id>.json")
 def book_info(book_id):

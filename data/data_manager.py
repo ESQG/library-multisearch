@@ -26,6 +26,19 @@ AVAILABILITY_QUERY = """
     ;
     """
 
+USER_AVAILABLE_QUERY = """
+   SELECT c.call_number, c.total_available, bk.book_id, bk.title, bk.author, 
+   b.branch_code, r.format_code, c.time_updated
+        FROM call_numbers AS c
+        JOIN record_branch AS rb ON (rb.recbranch_id = c.recbranch_id)
+        JOIN records AS r ON (r.record_id = rb.record_id)
+        JOIN branches AS b ON (b.branch_code = rb.branch_code)
+        JOIN books AS bk ON (bk.book_id = r.book_id)
+    WHERE bk.book_id IN (SELECT book_id FROM user_books 
+        WHERE user_id = :user_id
+        )
+    ;
+"""
 
 def log_overlaps(title, author):
 
@@ -73,12 +86,50 @@ def get_books(book_id_list):
     return Book.query.filter(Book.book_id.in_(book_id_list)).all()
 
 
-def get_stored_availability(book):
+def stored_availability_for_user(user_id):
+
+    book_results = []
+    checked_out_formats = []
+    db_pointer = db.session.execute(USER_AVAILABLE_QUERY, {'user_id': user_id})
+    for row in db_pointer:
+            call_number = row[0]
+            available = bool(row[1])
+            book_id = row[2]
+            title = row[3]
+            author = row[4]
+            branch_code = row[5]
+            format_code = row[6]
+            time_updated = row[7]
+            
+            book_data = {'call_number': call_number,
+                         'title': title,
+                         'author': author,
+                         'available': available,
+                         'branch_code': branch_code,
+                         'format': format_code,
+                         'book_id': book_id,
+                         'time_updated': time_updated
+                         }
+            if (not available) and (format_code not in checked_out_formats):
+                checked_out_formats.append(format_code)
+                book_results.append(book_data)
+            elif available:
+                book_results.append(book_data)
+
+    available_formats = {data['format'] for data in book_results if data['available']}
+    for data in book_results:
+        if (not data['available']) and (data['format'] in available_formats):
+            book_results.remove(data)
+
+    return book_results
+
+
+def get_stored_availability(book_id):
 
     book_results = []
     checked_out_formats = []
 
-    db_pointer = db.session.execute(AVAILABILITY_QUERY, {'book_id':book.book_id})
+    db_pointer = db.session.execute(AVAILABILITY_QUERY, {'book_id': book_id})
     for row in db_pointer:
         call_number, total_available, title, author, branch_code, format_code, time_updated = row  # Later: timestamp!
         available = bool(total_available)
@@ -97,12 +148,13 @@ def get_stored_availability(book):
         elif available:
             book_results.append(book_data)
 
-    availabile_formats = {data['format'] for data in book_results if data['available']}
+    available_formats = {data['format'] for data in book_results if data['available']}
     for data in book_results:
-        if (not data['available']) and (data['format'] in availabile_formats):
+        if (not data['available']) and (data['format'] in available_formats):
             book_results.remove(data)
 
     return book_results
+
 
 def branch_dict_list(library_system="sfpl"):
     """Print condensed dictionary of branches."""
@@ -153,7 +205,7 @@ def records_from_book(book):
 
 def get_recent_stored_availability(book):
     time_stamp = datetime.now()
-    records = get_stored_availability(record)
+    records = get_stored_availability(book.book_id)
     recent_records = []
 
     for record in records:
