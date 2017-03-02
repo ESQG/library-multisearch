@@ -150,6 +150,7 @@ def records_from_book(book):
 
     return desired_records
 
+
 def get_recent_stored_availability(book):
     time_stamp = datetime.now()
     records = get_stored_availability(record)
@@ -228,16 +229,35 @@ def new_user(user_info):
 
     email_used = User.query.filter_by(email=user_info['email']).first()
     if email_used:
-        return None
+        return "Email used"
 
     password = user_info['password'][:60]
-    first_name = user_info['first_name'] or None
-    last_name = user_info['last_name'] or None
+    first_name = user_info['first-name'] or None
+    last_name = user_info['last-name'] or None
     new_user = User(email=user_info['email'], password=user_info['password'], 
                     first_name=first_name, last_name=last_name)
     db.session.add(new_user)
     db.session.commit()
     return new_user.user_id
+
+
+def update_user_booklist(book_ids, user_id):
+    """Given a user ID and list of book IDs, update the database to reflect that."""
+    
+    stored_book_ids = set(get_user_book_ids(user_id))
+
+    for book_id in stored_book_ids:
+        if book_id not in stored_book_ids:
+            new_assoc = UserBook(book_id=book_id, user_id=user_id)
+            db.session.add(new_assoc)
+    db.session.commit()
+
+
+def get_user_book_ids(user_id):
+    """Given a user ID, return a list of book IDs associated with that user."""
+
+    associations = UserBook.query.filter_by(user_id=user_id).all()
+    return [assoc.book_id for assoc in associations]
 
 
 def get_user_by_email(user_info):

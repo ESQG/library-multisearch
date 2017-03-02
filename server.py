@@ -15,6 +15,7 @@ app.secret_key="ENID BLYTON"
 
 @app.route("/")
 def home_page():
+
     return render_template("home.html")
 
 @app.route("/booklist", methods=["POST"])
@@ -52,35 +53,44 @@ def display_books_from_form():
     session['books'] = book_ids
     session.modified = True     # Make sure FLask updates the session cookie! Had issues with this
 
+    if session.get('user_id'):
+        data_manager.update_user_booklist(book_ids, session['user_id'])
+
     write_log("Books added to session", str(session)[:200])
     return redirect('/booklist')
 
+
 @app.route("/booklist", methods=["GET"])
 def display_books_from_session():
+    if session.get('user_id'):
+        book_ids = data_manager.get_user_book_ids(session['user_id'])
+        session['books'] = book_ids
 
-    if 'books' in session:
+    elif 'books' in session:
         book_ids = session['books']
-
-        books = data_manager.get_books(book_ids)
-        return render_template("books.html", books=books)
 
     else:
         write_log("No books found in session", str(session)[:200])
         flash("Sorry, we have no books for you yet. Please provide a bookshelf.")
         return redirect("/")
 
+    books = data_manager.get_books(book_ids)
+    return render_template("books.html", books=books)
+
 
 @app.route("/books.json")
 def show_branches_and_bookids():
+    
     branches = data_manager.branch_dict_list("sfpl")
-
-
     data_to_serve = {'branches': branches}
 
     if 'books' in session:
         data_to_serve['book_ids'] = session['books']
+    elif 'user_id' in session:
+        data_to_serve['book_ids'] = data_manager.get_user_book_ids(session['user_id'])
     else:
         data_to_serve['book_ids'] = []
+
     return jsonify(data_to_serve)
 
 @app.route("/book/<book_id>.json")
@@ -110,7 +120,8 @@ def book_info(book_id):
 def library_books_page():
 
     codes_and_names = sorted(SFPL_BRANCHES.items(), key=lambda tup: tup[1])
-    return render_template("library_books.html", codes_and_names=codes_and_names, map_key=GOOGLEMAPS_KEY)
+    return render_template("library_books.html", codes_and_names=codes_and_names, 
+                                                map_key=GOOGLEMAPS_KEY)
 
 
 @app.route("/map.json")
@@ -127,6 +138,66 @@ def send_map_data():
     return jsonify({'map_center': center,
                     'map_bounds': bounds,
                     })
+
+@app.route("/login", methods=["POST"])
+def log_user_in():
+    """Redirects user to the booklist page if successful; otherwise, to homepage if wrong password,
+    or to registration page if they haven't made an account."""
+
+    print request.form.to_dict()
+    user_id = data_manager.get_user_by_email(request.form.to_dict())
+
+    if not user_id:
+        flash("We do not have an account registered with that email. Please make an account.")
+        return redirect("/register")
+
+    if user_id == "Wrong password":
+        flash("Wrong password. Please try again.")
+        return redirect("/")
+
+    session['user_id'] = user_id
+    session['email'] = request.form.get('email')
+
+    return redirect("/booklist")
+
+
+@app.route("/register", methods=["GET"])
+def resgistration_form():
+    """Shows registration form."""
+
+    session.clear()
+    return render_template("register.html")
+
+
+@app.route("/logout")
+def log_out():
+    session.pop('user_id')
+    flash("Logged out!  However, your booklist may still be stored.")
+    return redirect("/")
+
+
+@app.route("/clear-books")
+def clear_books():
+
+    if 'books' in session:
+        session.pop('books')
+        return "Cleared books!"
+
+    return "No books to clear out."
+
+
+@app.route("/register", methods=["POST"])
+def make_new_user():
+    user_id = data_manager.new_user(request.form.to_dict())
+    if user_id == "Email used":
+        flash("That email is already taken. Please login or make a new account.")
+        return redirect("/")
+    if not user_id:
+        flash("Could not register a user. Please try again.")
+
+    session['user_id'] = user_id
+    flash("Successfully signed up and logged you in!")
+    return redirect("/booklist")
 
 
 def write_log(*args):
