@@ -10,9 +10,9 @@ ESQG="2416346"
 
 class QueryTests(unittest.TestCase):
     
-    def test_get_shelf(self):
+    def test_get_shelf(self, shelf=SHORT_SHELF):
 
-        data = use_goodreads.parse_shelf_and_id(SHORT_SHELF)
+        data = use_goodreads.parse_shelf_and_id(shelf)
         shelf = data['shelf']
         goodreads_id = data['goodreads_id']
 
@@ -23,7 +23,6 @@ class QueryTests(unittest.TestCase):
         self.assertGreater(len(results), 0)
         self.assertIn('author', results[0])
         print "First result:", results[0]
-
 
 if __name__ == '__main__':
     unittest.main()
