@@ -15,6 +15,9 @@ LIST_URL = BASE_URL+"list"
 
 
 def parse_soup(soup):
+    if type(soup) == int:
+        return "Error: %s" % soup
+
     books = soup.find_all('book')
     return_books = []
 
@@ -26,8 +29,6 @@ def parse_soup(soup):
 
     print "Books found:", len(return_books)
     return return_books
-
-
 
 
 def soup_from_shelf(request_data):
@@ -74,6 +75,7 @@ def parse_shelf_and_id(goodreads_link):
 
 def get_shelf(goodreads_id, shelf):
     request_data = {'v':'2', 'id':goodreads_id, 'key':api_key, 'shelf':shelf, 'per_page':'200'}
+
     return parse_soup(soup_from_shelf(request_data))
 
 

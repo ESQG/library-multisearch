@@ -43,7 +43,12 @@ def display_books_from_form():
         return redirect("/")
 
     books = use_goodreads.get_shelf(session['goodreads_id'], session['shelf'])
-    books.sort(key=lambda x: x['author'])
+    if type(books) == list:
+        books.sort(key=lambda x: x['author'])
+    else:
+        flash("Got %s trying to access that bookshelf. Please try another." % str(books))
+        write_log("Bad Goodreads link", "shelf "+shelf, "goodreads ID "+goodreads_id, "Response", str(books))
+        return redirect("/")
 
     book_ids = []   # For database
     for book_data in books:
@@ -172,6 +177,8 @@ def resgistration_form():
 @app.route("/logout")
 def log_out():
     session.pop('user_id')
+    session.pop('email')
+    session.modified = True
     flash("Logged out!  However, your booklist may still be stored.")
     return redirect("/")
 
