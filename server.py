@@ -225,7 +225,7 @@ def write_log(*args):
     dictionary, it's because the code above only logs a few hundred characters of objects that 
     might be long."""
 
-    with open("notes/server.log", 'a') as log_file:
+    with open("server.log", 'a') as log_file:
         log_file.write(datetime.now().isoformat() + "\t")
         log_file.write("\n".join(args))
         log_file.write("\n")
