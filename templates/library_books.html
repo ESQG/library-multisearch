@@ -21,9 +21,13 @@
 </select>
 
 <div id="map"></div>
+
+<div id="remaining"><p> <span id="countdown">0</span> books left to check...</p>
+    <p>(If this gets stuck above 0, I may have had errors!)</p>
+</div>
 {% for (code, name) in codes_and_names %}
 <div class="library-branch" id="{{code}}" hidden>
-    <h3>Books available at {{name}} branch</h3>
+    <h2>Books available at {{name}} branch</h2>
     <table id="available-{{code}}">
         <tr>
         <th>Title</th> <th>Author</th> <th>Format</th> <th>Call Number</th>
@@ -34,13 +38,14 @@
 </div>
 {% endfor %}
 
-<div id="library-books"><h2>Books checked out right now:</h2>
+<div id="library-books"><h3>Books checked out right now:</h3>
+    The library has these books in the system, but they're not currently available at any branches.
     <table id="unavailable">
         <th>Title</th> <th>Author</th> <th>Format</th>
     </table>
 </div>
 
-<div><h2>Books the library doesn't have at all</h2>
+<div><h3>Books the library doesn't have at all</h3>
 <ul id="not-in-library">
 </ul> </div>
 
@@ -69,6 +74,7 @@ function makeBookCalls(results) {
     var firstBranchCode = branches[0]['branch_code'];
     $('#'+firstBranchCode).show();
 
+    $('#countdown').html(newBooks.length);
     storedBooks = results['stored_books'];
     console.log(results);
 
@@ -84,6 +90,7 @@ function makeBookCalls(results) {
 }
 
 function makeOneRow(bookData) {
+
     var tr = "<tr id=" + bookData['book_id'] + ">";
             var title = "<td>" + bookData['title'] + "</td>";
             var author = "<td>" + bookData['author'] + "</td>";
@@ -101,6 +108,10 @@ function makeOneRow(bookData) {
 
 
 function makeRows(data) {
+
+    var booksLeft = parseInt($("#countdown").html());
+    $("#countdown").html(booksLeft-1);
+    if (booksLeft-1 === 0) {$("#remaining").hide();}
     console.log(data); // for now.  Will update a table row to show it
 
     book = {'book_id': data['book_id'], 'title': data['title'], 'author': data['author']}

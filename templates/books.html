@@ -27,7 +27,31 @@
 <p> I'm sorry, you have no books yet!</p>
 {% endif %}
 
+<script>
+var bookIds = [];
+$(".book").each(function(i, book) { bookIds.push($(this).data()['bookId']);});
 
-<script src="https://code.jquery.com/jquery.js" />
+var index = 0;
+
+function get3Books() {
+    console.log(index);
+    if (index < bookIds.length - 2) {
+    $.get("/book/"+bookIds[index]+".json", get3Books);
+    index ++;
+    $.get("/book/"+bookIds[index]+".json", function(results){console.log(results);});
+    index ++;
+    $.get("/book/"+bookIds[index]+".json", function(results){console.log(results);});
+    index ++;
+    console.log(index);
+} else if (index === bookIds.length - 2) {
+    $.get("/book/"+bookIds[index]+".json", function(){});
+    $.get("/book/"+bookIds[index+1]+".json", function(){});
+} else if (index === bookIds.length - 1) {
+    $.get("/book/"+bookIds[index]+".json", function(){});
+}
+}
+get3Books();
+
+</script>
 
 {% endblock %}
