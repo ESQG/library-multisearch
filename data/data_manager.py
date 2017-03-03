@@ -23,7 +23,7 @@ AVAILABILITY_QUERY = """
         JOIN branches AS b ON (b.branch_code = rb.branch_code)
         JOIN books AS bk ON (bk.book_id = r.book_id)
     WHERE bk.book_id = :book_id
-    ;
+    AND c.time_updated > :today
     """
 
 USER_AVAILABLE_QUERY = """
@@ -37,6 +37,7 @@ USER_AVAILABLE_QUERY = """
     WHERE bk.book_id IN (SELECT book_id FROM user_books 
         WHERE user_id = :user_id
         )
+    AND c.time_updated > :today
     ;
 """
 
@@ -88,9 +89,15 @@ def get_books(book_id_list):
 
 def stored_availability_for_user(user_id):
 
+    now = datetime.now()
+    if now.hour < 5:
+        now = timedelta(-1) + now
+
+    today = now.strftime("%Y-%m-%d")
+
     book_results = []
     checked_out_formats = []
-    db_pointer = db.session.execute(USER_AVAILABLE_QUERY, {'user_id': user_id})
+    db_pointer = db.session.execute(USER_AVAILABLE_QUERY, {'user_id': user_id, 'today': today})
     for row in db_pointer:
             call_number = row[0]
             available = bool(row[1])
@@ -126,10 +133,16 @@ def stored_availability_for_user(user_id):
 
 def get_stored_availability(book_id):
 
+    now = datetime.now()
+    if now.hour < 5:
+        now = timedelta(-1) + now
+
+    today = now.strftime("%Y-%m-%d")
+
     book_results = []
     checked_out_formats = []
 
-    db_pointer = db.session.execute(AVAILABILITY_QUERY, {'book_id': book_id})
+    db_pointer = db.session.execute(AVAILABILITY_QUERY, {'book_id': book_id, 'today': today})
     for row in db_pointer:
         call_number, total_available, title, author, branch_code, format_code, time_updated = row  # Later: timestamp!
         available = bool(total_available)
