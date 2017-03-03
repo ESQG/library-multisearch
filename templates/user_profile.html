@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2 data-user-id="{{ user.user_id }}">Profile page for {{user.first_name}} {{user.last_name}}</h2>
+
+{% if books %}
+
+<table id="book-table">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+    </tr>
+{% for book in books %}
+    <tr id="{{ book.book_id }}" class="book" data-book-id="{{ book.book_id }}">
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td><button class="remove" id="button-{{ book.book_id}}" data-book-id="{{ book.book_id }}" value="Remove this book"</button>
+    </tr>
+{% endfor %}
+
+</table>
+
+<a class="center" href="/librarybooks">View my books in the library!</a>
+{% else %}
+
+<p> You have no books yet!</p>
+{% endif %}
+
+<h3>Add Books</h3>
+
+<table class="add-books">
+    <tr><form id="add-1">
+        <td id="add-1-title">Title: <input type="text" name="title"> 
+        <td id="add-1-author">Author: <input type="text" name="author">
+        <input id="add-1-button" type="submit" value="Add book">
+</form></tr>
+</table>
+<p id="add-1-success"></p>
+
+<form id="add-list" action="/booklist" method="POST">
+    To add books from a Goodreads shelf, enter the link here:
+
+    <input type="url" name="goodreads-link">
+
+    <input type="submit" value="Submit bookshelf link">
+</form>
+
+<script>
+var removalButtons = document.getElementsByClassName("remove")
+for (var i=0; i<removalButtons.length; i++) {
+    removalButtons[i].addEventListener('click', makeRemovalCall(removalButtons[i]));
+}
+
+function makeRemovalCall(button) {
+    return function () {
+        var bookNum = button.data()['book-id'];
+        button.style.display = "none";
+        $.post("remove/", {'book-id': bookNum}, function(results) {console.log(results)});
+    }
+}
+$("#add-1").on('submit', function(evt) {
+    evt.preventDefault();
+
+    console.log(evt);
+    var title = $("#add-1-title").val();
+    $("#add-1-title").val("");
+    var author = $("#add-1-author").val();
+    $("#add-1-aouthor").val("");
+    $.post("/add-book", {'title': title, 'author': author}, function(results) {
+        console.log(results);
+        $("#add-1-success").html("Successfully added "+ results['title']+ " by " + results['author']);
+
+        var newRow = document.createElement("tr"),
+        newRow.setAttribute("id", results['book_id']);
+        newRow.setAttribute("data-book-id", results['book-id']);
+
+        var newTitleCell = document.createElement("td");
+        var newTitle = document.createTextNode(results['title']);
+        newTitleCell.appendChild(newTitle);
+        newRow.appendChild(newTitleCell);
+
+        var newAuthorCell = document.createElement("td");
+        var newAuthor = document.createTextNode(results['author']);
+        newAuthorCell.appendChild(newAuthor);
+        newRow.appendChild(newAuthorCell);
+        $("#book-table").append(newRow);
+    });
+});
+
+
+</script>
+
+
+{% endblock %}

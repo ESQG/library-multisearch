@@ -341,6 +341,9 @@ def new_user(user_info):
     db.session.commit()
     return new_user.user_id
 
+def get_user(user_id):
+    return User.query.get(user_id)
+    
 
 def update_user_booklist(book_ids, user_id):
     """Given a user ID and list of book IDs, update the database to reflect that."""

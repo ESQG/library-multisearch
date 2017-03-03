@@ -113,6 +113,27 @@ def show_branches_and_bookids():
     return jsonify(data_to_serve)
 
 
+@app.route("/user/<user_id>/")
+def user_profile(user_id):
+    # check about session!
+    book_ids = data_manager.get_user_book_ids(user_id)
+    user = data_manager.get_user(user_id)
+    books = data_manager.get_books(book_ids)
+    return render_template("user_profile.html", books=books, user=user)
+
+
+@app.route("/user/<user_id>/add-book", methods=["POST"])
+def add_book_to_user():
+    return "Fix Me"
+
+@app.route("/add-book", methods=["POST"])
+def add_book():
+    if 'user_id' in session:
+        return "Fix me. Tried adding to user %s" % session['user_id']
+    else:
+        return "No user found"
+
+
 @app.route("/book/<book_id>.json")
 def book_info(book_id):
     """Serve a JSON object of records associated with the book, along with stored availability."""
