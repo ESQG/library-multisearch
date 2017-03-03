@@ -116,17 +116,16 @@ def book_info(book_id):
 
     book = data_manager.get_book(book_id)
     if not book:
-        return jsonify({'book_id': None, 'records': None})
+        return jsonify({"error": "No book found"})
 
-    records = data_manager.get_stored_availability(book)
-    
+    records = data_manager.get_stored_availability(book_id)
     if not records:     # If availability is not in the database, otherwise it's []
         unchecked_records = data_manager.records_from_book(book)
         records = []
         for record in unchecked_records:
             data_manager.update_availability(record)
 
-        records = data_manager.get_stored_availability(book)
+        records = data_manager.get_stored_availability(book_id)
 
     return jsonify({'book_id': book_id, 
                     'title': book.title, 

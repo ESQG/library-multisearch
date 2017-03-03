@@ -139,7 +139,7 @@ def get_stored_availability(book_id):
                      'available': available,
                      'branch_code': branch_code,
                      'format': format_code,
-                     'book_id': book.book_id,
+                     'book_id': book_id,
                      'time_updated': time_updated
                      }
         if (not available) and (format_code not in checked_out_formats):

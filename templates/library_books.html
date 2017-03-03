@@ -49,7 +49,8 @@
 <script>
 console.log("hello");
 var running = true;
-var books = [];
+var newBooks = [];
+var storedBooks = [];
 var branches = [];      // all these arrays filled out in initial callback.
 var mapBounds = {};
 var mapCenter = {'lat': null, 'lng': null};
@@ -63,18 +64,43 @@ function getBookList() {
 }
 
 function makeBookCalls(results) {
-    books = results['book_ids'];
+    newBooks = results['book_ids'];
     branches = results['branches'];
+    var firstBranchCode = branches[0]['branch_code'];
+    $('#'+firstBranchCode).show();
+
+    storedBooks = results['stored_books'];
     console.log(results);
 
-    for(var i=0; i<books.length; i++) {
-        var book = books[i];
-        $.get("/book/" + String(book)+".json", makeRow);
+    for(var j=0; j<storedBooks.length; j++) {
+        makeOneRow(storedBooks[j]);
+    }
+
+    for(var i=0; i<newBooks.length; i++) {
+        var book = newBooks[i];
+        $.get("/book/" + String(book)+".json", makeRows);
     }
     if (typeof map !== 'undefined') {makeMarkers()}
 }
 
-function makeRow(data) {
+function makeOneRow(bookData) {
+    var tr = "<tr id=" + bookData['book_id'] + ">";
+            var title = "<td>" + bookData['title'] + "</td>";
+            var author = "<td>" + bookData['author'] + "</td>";
+            var available = bookData['available'];
+            var format = "<td>" + bookData['format'] + "</td>";
+            var callNumber = "<td>" + bookData['call_number'] + "</td>";
+            var end = "</tr>";
+
+    if (available) {
+                $("#available-" + bookData['branch_code']).append(tr+title+author+format+callNumber+end);
+            } else {
+                $("#unavailable").append(tr+title+author+format+end);
+            }
+}
+
+
+function makeRows(data) {
     console.log(data); // for now.  Will update a table row to show it
 
     book = {'book_id': data['book_id'], 'title': data['title'], 'author': data['author']}
