@@ -20,7 +20,7 @@ def search_all_records(title, author):
 
     """
 
-    response = requests.get(BASE_URL+"/search", {'custom_query': 'title:'+title+' '+'author:'+author})
+    response = requests.get(BASE_URL+"/search", {'custom_query': u'title:{} author:{}'.format(title, author)})
     print response.url
     if response.status_code != 200:
         return []

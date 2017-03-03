@@ -19,6 +19,9 @@ class Book(db.Model):
     # This is deliberately denormalized, but should not need to be updated often.
 
     def __repr__(self):
+        """WARNING: do not rely on this for every book.  Unicode characters that can't be encoded as ACII
+        may cause errors."""
+
         if len(self.title) > 100 and ":" in self.title:
             short_title = self.title.split(":")[0].strip()
         else:
