@@ -41,6 +41,15 @@ USER_AVAILABLE_QUERY = """
     ;
 """
 
+USER_EMPTY_BOOKS_QUERY = """
+    SELECT bk.book_id, bk.title, bk.author FROM books AS bk
+        JOIN user_books AS ub ON (ub.book_id = bk.book_id)
+        WHERE bk.has_records = 'False'
+        AND ub.user_id = :user_id
+        ;
+        """
+
+
 def log_overlaps(title, author):
 
     search_author = author.split()[0].strip(',')
@@ -96,7 +105,7 @@ def stored_availability_for_user(user_id):
     today = now.strftime("%Y-%m-%d")
 
     book_results = []
-    checked_out_formats = []
+    checked_out_formats = {}
     db_pointer = db.session.execute(USER_AVAILABLE_QUERY, {'user_id': user_id, 'today': today})
     for row in db_pointer:
             call_number = row[0]
@@ -117,18 +126,32 @@ def stored_availability_for_user(user_id):
                          'book_id': book_id,
                          'time_updated': time_updated
                          }
-            if (not available) and (format_code not in checked_out_formats):
-                checked_out_formats.append(format_code)
-                book_results.append(book_data)
+            if (not available):
+                if book_id in checked_out_formats:
+                    if format_code not in checked_out_formats[book_id]:
+                        checked_out_formats[book_id].add(format_code)
+                        book_results.append(book_data)
+                else:
+                    checked_out_formats[book_id] = {format_code}
+                    book_results.append(book_data)
             elif available:
                 book_results.append(book_data)
 
-    available_formats = {data['format'] for data in book_results if data['available']}
+    available_formats = {(data['format'], data['book_id']) for data in book_results if data['available']}
     for data in book_results:
-        if (not data['available']) and (data['format'] in available_formats):
+        if (not data['available']) and ((data['format'], data['book_id']) in available_formats):
             book_results.remove(data)
 
-    return book_results
+    without_records_pointer = db.session.execute(USER_EMPTY_BOOKS_QUERY, {'user_id': user_id})
+    books_without_records = []
+
+    for row in without_records_pointer:
+        book_id, title, author = row
+        book_data = {'book_id': book_id, 'title': title, 'author': author}
+        books_without_records.append(book_data)
+
+
+    return({'records': book_results, 'no_records': books_without_records})
 
 
 def get_stored_availability(book_id):
@@ -183,6 +206,31 @@ def branch_dict_list(library_system="sfpl"):
 
     return branches_info
 
+
+def mark_findable(book):
+
+    book.has_records = True
+    db.session.commit()
+    return book
+
+
+def mark_unfindable(book):
+    """If search is unsuccessful, sets book.has_records to False."""
+
+    records = Record.query.filter_by(book_id=book.book_id).all()
+    if records:
+        try:
+            print u"Book %s has records!  Probably only digital ones." % book
+            write_log("Book with only digital records", str(book), str(records))
+        except UnicodeEncodeError:
+            print "Book id %s has records! Probably only digital ones." % book.book_id
+            write_log("Unicode Error! Book with unicode info, digital records", str(book.book_id), str(records))
+
+    book.has_records = False
+    db.session.commit()
+    return book
+
+
 def records_from_book(book):
     
     record_data = use_sfpl.search_all_records(book.title, book.author)
@@ -214,18 +262,6 @@ def records_from_book(book):
             write_log("Bad search result", str(book), str(data))
 
     return desired_records
-
-
-def get_recent_stored_availability(book):
-    time_stamp = datetime.now()
-    records = get_stored_availability(book.book_id)
-    recent_records = []
-
-    for record in records:
-        if record['time_updated'] is not None:
-            time_elapsed = (time_stamp - record['time_updated']).seconds
-            if time_elapsed < 2000:
-                recent_records.append(record)
 
 
 def update_availability(record):

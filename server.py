@@ -92,20 +92,23 @@ def show_branches_and_bookids():
     if 'user_id' in session:
         all_books = data_manager.get_user_book_ids(session['user_id'])
         stored_books = data_manager.stored_availability_for_user(session['user_id'])
-        stored_book_ids = {record['book_id'] for record in stored_books}
-        write_log("Stored book IDs: ", str(stored_book_ids))
+        stored_book_ids = {record['book_id'] for record in stored_books['records']}
+        empty_book_ids = {record['book_id'] for record in stored_books['no_records']}
 
-        remaining_books = [book_id for book_id in all_books if book_id not in stored_book_ids]
+        remaining_books = [book_id for book_id in all_books if book_id not in stored_book_ids and book_id not in empty_book_ids]
         data_to_serve['book_ids'] = remaining_books
-        data_to_serve['stored_books'] = stored_books
+        data_to_serve['stored_books'] = stored_books['records']
+        data_to_serve['no_records'] = stored_books['no_records']
 
     elif 'books' in session:
         data_to_serve['book_ids'] = session['books']
         data_to_serve['stored_books'] = []
+        data_to_serve['no_records'] = []
 
     else:
         data_to_serve['stored_books'] = []
         data_to_serve['book_ids'] = []
+        data_to_serve['no_records'] = []
 
     return jsonify(data_to_serve)
 
@@ -117,6 +120,11 @@ def book_info(book_id):
     book = data_manager.get_book(book_id)
     if not book:
         return jsonify({"error": "No book found"})
+    if book.has_records == False:
+        return jsonify({'book_id': book_id,
+                        'title': book.title,
+                        'author': book.author,
+                        'records': []})
 
     records = data_manager.get_stored_availability(book_id)
     if not records:     # If availability is not in the database, otherwise it's []
@@ -126,6 +134,8 @@ def book_info(book_id):
             data_manager.update_availability(record)
 
         records = data_manager.get_stored_availability(book_id)
+        if not records:
+            data_manager.mark_unfindable(data_manager.get_book(book_id))
 
     return jsonify({'book_id': book_id, 
                     'title': book.title, 
@@ -234,7 +244,7 @@ if __name__ == '__main__':
 
     app.debug = True
 
-    connect_to_db(app)
+    connect_to_db(app, echo=False)
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)

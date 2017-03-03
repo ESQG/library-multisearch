@@ -82,6 +82,12 @@ function makeBookCalls(results) {
         makeOneRow(storedBooks[j]);
     }
 
+    emptyBooks = results['no_records'];
+    for (var k=0; k<emptyBooks.length; k++) {
+        var book = emptyBooks[k];
+        $("#not-in-library").append("<li id=" + book['book_id'] + ">" + book['title'] + " by " + book['author'] + "</li>");
+    }
+
     for(var i=0; i<newBooks.length; i++) {
         var book = newBooks[i];
         $.get("/book/" + String(book)+".json", makeRows);
