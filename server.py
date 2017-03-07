@@ -20,7 +20,12 @@ def home_page():
 
 @app.route("/booklist", methods=["POST"])
 def display_books_from_form():
+    """Attempts to get a Goodreads shelf and add the books to the database.  
+    For a logged in user, this will add the books to the user's list, and direct them to their 
+    profile page.  For a user who has not logged in, this will add only the books to store the 
+    books by ID in a session cookie, and redirect to a plain booklist page."""
 
+    # Validate form
     if 'goodreads-id' in request.form:
         goodreads_id = request.form.get('goodreads-id')
         shelf = "to-read"
@@ -32,16 +37,13 @@ def display_books_from_form():
         shelf = goodreads_data['shelf']
         goodreads_id = goodreads_data['goodreads_id']
 
-    if shelf and goodreads_id:
-        session.update({'shelf': shelf, 'goodreads_id': goodreads_id})
-
-        write_log("Successful session", str(session)[:200])
-
-    else:
+    # Validate bookshelf request
+    if not shelf or not goodreads_id:
         flash("Could not find a Goodreads bookshelf at that address. Please try again.")
         write_log("Goodreads unsuccessful", "shelf: " + str(shelf), "goodreads_id: " + str(goodreads_id))
         return redirect("/")
 
+    # Request bookshelf
     books = use_goodreads.get_shelf(session['goodreads_id'], session['shelf'])
     if type(books) == list:
         books.sort(key=lambda x: x['author'])
@@ -50,33 +52,35 @@ def display_books_from_form():
         write_log("Bad Goodreads link", "shelf "+shelf, "goodreads ID "+goodreads_id, "Response", str(books))
         return redirect("/")
 
+    # Store books in database; attach to user or directly to session
     book_ids = []   # For database
     for book_data in books:
-        book = data_manager.add_book(book_data['title'], book_data['author'])
-        book_ids.append(book.book_id)
-
-    session['books'] = book_ids
-    session.modified = True     # Make sure FLask updates the session cookie! Had issues with this
+        book_id = data_manager.add_book(book_data['title'], book_data['author'])
+        book_ids.append(book_id)
 
     if session.get('user_id'):
         data_manager.update_user_booklist(book_ids, session['user_id'])
+        return redirect('/user/%s/' % session['user_id'])
 
-    write_log("Books added to session", str(session)[:200])
-    return redirect('/booklist')
+    else:
+        session['books'] = book_ids
+        session.modified = True     # Make sure FLask updates the session cookie! Had issues with this
+        # write_log("Books added to session", str(session)[:200])
+        return redirect('/booklist')
 
 
 @app.route("/booklist", methods=["GET"])
 def display_books_from_session():
     if session.get('user_id'):
         book_ids = data_manager.get_user_book_ids(session['user_id'])
-        session['books'] = book_ids
+        # session['books'] = book_ids
 
     elif 'books' in session:
         book_ids = session['books']
 
     else:
         write_log("No books found in session", str(session)[:200])
-        flash("Sorry, we have no books for you yet. Please provide a bookshelf.")
+        flash("Sorry, we have no books for you yet. Please login or provide a bookshelf.")
         return redirect("/")
 
     books = data_manager.get_books(book_ids)
