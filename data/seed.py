@@ -67,6 +67,8 @@ def add_formats():
     hoopla_format = Format(format_code='hoopla', name='Hoopla Digital Audiobook', digital=True)
     db.session.add(hoopla_format)
 
+    # Downloadable Video: use evideo; DVDs etc.; ignoring for now
+
     db.session.commit()
 
 

@@ -305,6 +305,7 @@ def update_availability(record):
             association.total_copies = 1
 
         shelf = CallNumber.query.filter_by(recbranch_id=association.recbranch_id, call_number=result['call_number']).first()
+
         if shelf:
             shelf.time_updated = time_stamp
             if shelf.total_available > 0 and result['status'] != 'CHECK SHELF':
@@ -312,7 +313,7 @@ def update_availability(record):
             elif result['status'] == 'CHECK SHELF':
                 shelf.total_available = 1   # Adjust later to library grouping
         else:
-            shelf = CallNumber(recbranch_id=association.recbranch_id, call_number=result['call_number'])
+            shelf = CallNumber(recbranch_id=association.recbranch_id, call_number=result['call_number'][:30])
             shelf.time_updated = time_stamp
             db.session.add(shelf)
             if result['status'] == 'CHECK SHELF':
@@ -346,7 +347,7 @@ def new_user(user_info):
 
 def get_user(user_id):
     return User.query.get(user_id)
-    
+
 
 def update_user_booklist(book_ids, user_id):
     """Given a user ID and list of book IDs, update the database to reflect that."""
@@ -429,5 +430,6 @@ def write_log(message, *args):
 
 
 if __name__ == '__main__':
-    connect_to_db(app)
     from server import app
+    connect_to_db(app)
+
