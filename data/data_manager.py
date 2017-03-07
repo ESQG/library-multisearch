@@ -74,18 +74,21 @@ def log_overlaps(title, author):
 
 
 def add_book(title, author):
+    """Looks up the id of a book by title and author.  If there is not one,
+    assigns the book an id and returns the id."""
+
     title = re.sub(r'\(.*\)', '', title).strip()    # Improves library search results
     already_there = Book.query.filter_by(title=title, author=author).first()
 
     if already_there:
-        return already_there
+        return already_there.book_id
 
     log_overlaps(title, author)     # In case of non-exact matches, write log
 
     book = Book(title=title, author=author)
     db.session.add(book)
     db.session.commit()
-    return book
+    return book.book_id
 
 
 def get_book(book_id):
