@@ -10,7 +10,7 @@ def soupify(link):
         raw_html = response.content
         return BeautifulSoup(raw_html, "html.parser")
     else:
-        print "Cannot find %s" % link   # May want to make an error?
+        write_log("Cannot find %s" % link)   # May want to make an error?
         return "Cannot find %s" % link
 
 def find_heading_of_table(table_element):
@@ -68,7 +68,7 @@ def find_call_no_and_status(location_td):
             call_number = sib.text.strip()
         if sib.name == 'td' and sib.get('data-label') == 'Status':
             status = sib.text.strip()
-            
+
     if not call_number or not status:
         write_log("Bad data:", call_number, status, location_td.text)
     return {'branch': location_name, 'call_number': call_number, 'status': status}
@@ -95,7 +95,6 @@ def find_availability_table(soup):
     heading_1s = soup.find_all('h1')
     for h1_element in heading_1s:
         if 'Available' in h1_element.text and 'not' not in h1_element.text.lower():            # fix with regular expressions!
-            print h1_element.text
             return find_table_from_heading(h1_element)
 
 def all_availability(record):
@@ -137,7 +136,7 @@ def all_availability(record):
     response = requests.get(link, allow_redirects=False)
 
     if response.status_code == 302:
-        print "Status code 302: no record for id %s" % record.bibliocommons_id
+        write_log("Status code 302: no record for id %s" % record.bibliocommons_id)
         return False
     if response.status_code != 200:
         print "Error!", response.status_code
@@ -172,10 +171,10 @@ def plain_results(record):
     response = requests.get(link, allow_redirects=False)
 
     if response.status_code == 302:
-        print "Status code 302: no record for id %s" % record.bibliocommons_id
+        write_log("Status code 302: no record for id %s" % record.bibliocommons_id)
         return False
     if response.status_code != 200:
-        print "Error!", response.status_code
+        write_log("Error!", response.status_code)
         return False
 
     soup = BeautifulSoup(response.content, "html.parser")
