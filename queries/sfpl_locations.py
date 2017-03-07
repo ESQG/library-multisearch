@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 BASE_URL = "https://sfpl.bibliocommons.com/item/show_circulation/"
 
@@ -60,12 +61,17 @@ def find_call_no_and_status(location_td):
 
     location_name = parse_branch_name(location_td.text)
 
+    call_number = ''
+    status = ''
     for sib in location_td.next_siblings:
         if sib.name == 'td' and sib.get('data-label') == 'Call No':
             call_number = sib.text.strip()
         if sib.name == 'td' and sib.get('data-label') == 'Status':
             status = sib.text.strip()
-            return {'branch': location_name, 'call_number': call_number, 'status': status}
+            
+    if not call_number or not status:
+        write_log("Bad data:", call_number, status, location_td.text)
+    return {'branch': location_name, 'call_number': call_number, 'status': status}
 
 
 def parse_branch_name(text):
@@ -180,3 +186,15 @@ def plain_results(record):
     for table in tables:
         results.extend(find_locations_in_table(table))
     return results
+
+
+def write_log(*args):
+    """Each argument in args must be a string.  This will write to the file notes/server.log,
+    with a timestamp preceding args.  If you see strangely cut off data, like an incomplete
+    dictionary, it's because the code above only logs a few hundred characters of objects that 
+    might be long."""
+
+    with open("sfp_locations.log", 'a') as log_file:
+        log_file.write(datetime.now().isoformat() + "\t")
+        log_file.write("\n".join(args))
+        log_file.write("\n")
