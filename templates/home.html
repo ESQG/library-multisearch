@@ -2,39 +2,54 @@
 
 
 {% block body %}
+<div class="container">
 
-<h1>Welcome!</h1>
+<div class="green col-xs-offset-1 col-xs-10">
+<h1>Welcome to Library List!</h1>
 
+<div id="login-box" class="col-offset-2 col-6">
+
+{% if not session.user_id %}
+<div class="row">
+<div class="col-xs-offset-1 col-md-offset-3">
 <form action="/login" method="POST">
     <p>Log in!</p>
-
-    <p> <label for="email">Email:<input type="text" name="email"></label></p>
-    <p> <label for="password">Password:<input type="password" name="password"></label></p>
+    <p> <label for="email">Email: <input type="text" name="email"></label></p>
+    <p> <label for="password">Password: <input type="password" name="password"></label></p>
     <p><input type="submit" value="Login"></p>
 </form>
+</div></div>
+<div class="row">
+    <div class="col-xs-offset-1 col-md-offset-3"> Don't have an account?  Add books below, or <a href="/register">sign up.</a></div>
+</div>
+{% else %}
 
-<p><a href="/register">Make a new account</a></p>
+<p class="col-3 col-sm-offset-2"> You are logged in!</p>
+<p class="col-3 col-sm-offset-2"><a href="/user/{{ session.user_id }}">View your books.</a></p>
+{% endif %}
 
-
-<form action="/booklist" method="POST">
-
-    <p>If you know your Goodreads ID number, please enter it here.</p>
-
-    <p>You can find your Goodreads ID by going to your homepage, and clicking on "My Books".
-        Your URL should start with "https://www.goodreads.com/review/list/" and end with a 1 to 7-digit number, which is your Goodreads ID.</p>
-
-    <label> Goodreads ID number: <input type="number" name="goodreads-id"></label>
-
-    <input type="submit" value="Submit Goodreads ID">
-</form>
+</div> <!-- login box -->
 <br />
-<form action="/booklist" method="POST">
-    Otherwise, please login with Goodreads* or, navigate to your "to-read" shelf or any other bookshelf you would like to look for books on, and copy the link here:
 
-    <input type="url" name="goodreads-link">
+<form action="/booklist" method="POST" class="col-xs-8 col-xs-offset-1">
+    <p>To add books from a Goodreads list, please navigate to the bookshelf you would like to use, and copy and paste the link below.</p>
 
-    <input type="submit" value="Submit bookshelf link">
+    <p><input type="url" name="goodreads-link">
+    <input type="submit" value="Submit bookshelf link"></p>
 </form>
 
-<p>* Goodreads login is not implemented yet. Coming soon!</p>
+</div> <!--green -->
+
+
+</div> <!--container-->
+
+<br />
+<br />
+<br />
+<br />
+<br /><br />
+<br />
+<br />
+<br />
+<br />
 {% endblock %}

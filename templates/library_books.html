@@ -6,50 +6,63 @@
 #map {
     height: 400px;
     width: 400px;
+    text-align: center;
+}
+#map-column{
+    overflow: hidden;
+
 }
 </style>
 {% endblock %}
 
 {% block body %}
 
-<p>Select a library to view books at!</p>
+<div class="purple container-fluid">
 
+
+<div class="col-xs-12 col-sm-7 col-md-4" id="map-column"><!--map and select container-->
+<br>
+<br>
+<div id="map"></div>
+<br>
+<p>Select a library to view books!</p>
 <select id="select-branch" name="branch">
     {% for (code, name) in codes_and_names %}
     <label><option value="{{code}}">{{name}}</option></label>
     {% endfor %}
 </select>
-
-<div id="map"></div>
-
-<div id="remaining"><p> <span id="countdown">0</span> books left to check...</p>
-    <p>(If this gets stuck above 0, I may have had errors!)</p>
+<div id="remaining" hidden><p> <span id="countdown">0</span> books left to check...</p>
+    <p>(If this gets stuck above 0, try reloading the page.)</p>
 </div>
+<br>
+<br>
+</div><!-- map and select column-->
+
 {% for (code, name) in codes_and_names %}
-<div class="library-branch" id="{{code}}" hidden>
+<div class="col-xs-12 col-sm-5 col-md-8 library-branch" id="{{code}}" hidden>
     <h2>Books available at {{name}} branch</h2>
     <table id="available-{{code}}">
         <tr>
-        <th>Title</th> <th>Author</th> <th>Format</th> <th>Call Number</th>
+        <th class="col-xs-4">Title</th> <th class="col-xs-3 col-sm-2">Author</th> <th class="hidden-xs col-sm-1">Format</th> <th class="col-xs-2">Call Number</th>
     </tr>
 
     </table>
 
 </div>
 {% endfor %}
-
-<div id="library-books"><h3>Books checked out right now:</h3>
+<div id="library-books" class="purple col-xs-12"><h3>Books checked out right now:</h3>
     The library has these books in the system, but they're not currently available at any branches.
     <table id="unavailable">
         <th>Title</th> <th>Author</th> <th>Format</th>
     </table>
 </div>
+</div><!--container-->
 
-<div><h3>Books the library doesn't have at all</h3>
+<div class="container">
+<div class="col-xs-8 col-xs-offset-2"><h3>Books the library doesn't have at all</h3>
 <ul id="not-in-library">
 </ul> </div>
-
-
+</div>
 
 <script>
 console.log("hello");
@@ -98,11 +111,11 @@ function makeBookCalls(results) {
 function makeOneRow(bookData) {
 
     var tr = "<tr id=" + bookData['book_id'] + ">";
-            var title = "<td>" + bookData['title'] + "</td>";
-            var author = "<td>" + bookData['author'] + "</td>";
+            var title = "<td class=\"col-xs-4\">" + bookData['title'] + "</td>";
+            var author = "<td class=\"col-xs-3 col-sm-2\">" + bookData['author'] + "</td>";
             var available = bookData['available'];
-            var format = "<td>" + bookData['format'] + "</td>";
-            var callNumber = "<td>" + bookData['call_number'] + "</td>";
+            var format = "<td class=\"col-hidden-xs col-sm-1\">" + bookData['format'] + "</td>";
+            var callNumber = "<td class=\"col-xs-2\">" + bookData['call_number'] + "</td>";
             var end = "</tr>";
 
     if (available) {
@@ -128,11 +141,11 @@ function makeRows(data) {
     else {
         for(i=0; i<records.length; i++){
             var tr = "<tr id=" + records['book_id'] + ">";
-            var title = "<td>" + records[i]['title'] + "</td>";
-            var author = "<td>" + records[i]['author'] + "</td>";
+            var title = "<td class=\"col-xs-4\">" + records[i]['title'] + "</td>";
+            var author = "<td class=\"col-xs-3 col-sm-2\">" + records[i]['author'] + "</td>";
             var available = records[i]['available'];
-            var format = "<td>" + records[i]['format'] + "</td>";
-            var callNumber = "<td>" + records[i]['call_number'] + "</td>";
+            var format = "<td class=\"col-hidden-xs col-sm-1\">" + records[i]['format'] + "</td>";
+            var callNumber = "<td class=\"col-xs-2\">" + records[i]['call_number'] + "</td>";
             var end = "</tr>";
 
             if (available) {

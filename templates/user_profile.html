@@ -1,49 +1,62 @@
 {% extends 'base.html' %}
-
+{% block head %}
+{% endblock %}
 {% block body %}
-<h2 data-user-id="{{ user.user_id }}">Profile page for {{user.first_name}} {{user.last_name}}</h2>
+<div class="container purple">
+
+<h2 data-user-id="{{ user.user_id }}">Books for {{user.first_name}} {{user.last_name}}</h2>
 
 {% if books %}
 
-<table id="book-table">
+<h3><a href="/librarybooks">View my books in the library!</a></h3>
+
+{% else %}
+
+<p> You have no books yet!</p>
+{% endif %}
+</div>
+
+<div class="container purple">
+<h4>Add Books</h4>
+<table class="table add-books green">
+    <tr><form id="add-1">
+        <td >Title: <input id="add-1-title" type="text" name="title"></td>
+        <td >Author: <input id="add-1-author" type="text" name="author"></td>
+        <td><input id="add-1-button" type="submit" value="Add book"></td>
+</form></tr>
+<tr id="add-1-success"></tr>
+<tr>
+<form id="add-list" action="/booklist" method="POST">
+    <td>
+Add books from a Goodreads shelf:</td>
+<td>
+    <input type="url" name="goodreads-link">
+</td>
+<td>
+    <input type="submit" value="Submit bookshelf link">
+</td>
+</form>
+</tr>
+</div>
+
+
+<table class="table" id="book-table">
     <tr>
         <th>Title</th>
         <th>Author</th>
     </tr>
 {% for book in books %}
     <tr id="{{ book.book_id }}" class="book" data-book-id="{{ book.book_id }}">
-        <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
-        <td><button class="remove" id="button-{{ book.book_id}}" data-book-id="{{ book.book_id }}" value="Remove this book"</button>
-    </tr>
+        <td class="col-xs-7">{{ book.title }}</td>
+        <td class="col-xs-4">{{ book.author }}</td>
+<!--         <td class="col-xs-1"><button class="remove" id="button-{{ book.book_id}}" data-book-id="{{ book.book_id }}" value="Remove this book"</button></td>
+ -->    </tr>
 {% endfor %}
 
 </table>
+</div>
 
-<a class="center" href="/librarybooks">View my books in the library!</a>
-{% else %}
 
-<p> You have no books yet!</p>
-{% endif %}
-
-<h3>Add Books</h3>
-
-<table class="add-books">
-    <tr><form id="add-1">
-        <td id="add-1-title">Title: <input type="text" name="title"> 
-        <td id="add-1-author">Author: <input type="text" name="author">
-        <input id="add-1-button" type="submit" value="Add book">
-</form></tr>
-</table>
-<p id="add-1-success"></p>
-
-<form id="add-list" action="/booklist" method="POST">
-    To add books from a Goodreads shelf, enter the link here:
-
-    <input type="url" name="goodreads-link">
-
-    <input type="submit" value="Submit bookshelf link">
-</form>
 
 <script>
 var removalButtons = document.getElementsByClassName("remove")

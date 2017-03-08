@@ -7,15 +7,15 @@
 
 {% if books %}
 
-<table class="book-table">
+<table class="table book-table">
     <tr>
         <th>Title</th>
         <th>Author</th>
     </tr>
 {% for book in books %}
     <tr id="{{ book.book_id }}" class="book" data-book-id="{{ book['book_id'] }}">
-        <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
+        <td class="col-xs-5">{{ book.title }}</td>
+        <td class="col-xs-7">{{ book.author }}</td>
     </tr>
 {% endfor %}
 
