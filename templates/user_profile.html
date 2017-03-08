@@ -78,12 +78,12 @@ $("#add-1").on('submit', function(evt) {
     var title = $("#add-1-title").val();
     $("#add-1-title").val("");
     var author = $("#add-1-author").val();
-    $("#add-1-aouthor").val("");
+    $("#add-1-author").val("");
     $.post("/add-book", {'title': title, 'author': author}, function(results) {
         console.log(results);
         $("#add-1-success").html("Successfully added "+ results['title']+ " by " + results['author']);
 
-        var newRow = document.createElement("tr"),
+        var newRow = document.createElement("tr");
         newRow.setAttribute("id", results['book_id']);
         newRow.setAttribute("data-book-id", results['book-id']);
 

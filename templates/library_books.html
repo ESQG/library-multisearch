@@ -129,6 +129,7 @@ function makeOneRow(bookData) {
 function makeRows(data) {
 
     var booksLeft = parseInt($("#countdown").html());
+    $("#remaining").show();
     $("#countdown").html(booksLeft-1);
     if (booksLeft-1 === 0) {$("#remaining").hide();}
     console.log(data); // for now.  Will update a table row to show it
