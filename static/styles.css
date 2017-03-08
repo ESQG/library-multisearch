@@ -1,0 +1,85 @@
+#flash {
+    /*background-color: #4D2C3D;*/
+    background-color: #57652A;
+    color: #E0C8A0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.green {
+    background-color: #57652A;
+    color: #E0C8A0;
+}
+
+select, input[type=submit] {
+    color: #015249;
+}
+
+body, html {
+    /*background-color: #AB9353;*/
+    /*background-color: #57652A; dark green*/
+    background-color: #4D2C3D;
+    /*color: #015249; dark blue*/
+    color: #FFCFAF;
+    font-family: 'Bree Serif', serif;
+    font-size: 12pt;
+
+}
+
+div .purple {
+    background-color: #4D2C3D;
+}
+
+body {
+    background-image: url("/static/LibraryImage.jpg");
+}
+
+
+img {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+table {
+    background-color: #E0C8A0;
+    color: #015249;
+}
+
+button {
+    font-size: 1em;
+}
+
+.center {
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-size: 3em;
+}
+h2 {
+    font-size: 2.5em;
+}
+h3 {
+    font-size: 2em;
+}
+h4 {
+    font-size: 1.5em;
+}
+
+body #custom-navbar {
+    /*background-color: #57652A;*/
+    background-color: #CDA34F; /* gold */
+    color:#A5E7F5;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#custom-navbar > a {
+    /*color:#A5E7F5; light blue */
+    color: #155765;
+}
