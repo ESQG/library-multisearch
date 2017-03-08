@@ -233,10 +233,9 @@ def resgistration_form():
 
 @app.route("/logout")
 def log_out():
-    session.pop('user_id')
-    session.pop('email')
+    session.clear()
     session.modified = True
-    flash("Logged out!  However, your booklist may still be stored.")
+    flash("Logged out!")
     return redirect("/")
 
 
@@ -278,7 +277,7 @@ def write_log(*args):
 if __name__ == '__main__':
     from data.model import connect_to_db
 
-    app.debug = True
+    app.debug = False
 
     connect_to_db(app, echo=False)
 
