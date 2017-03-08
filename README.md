@@ -20,6 +20,14 @@ The front end uses the Googlemaps (Javascript) API to embed a clickable map of a
 
 On the back end, the web API and scraping code is found in the queries/ folder.  The Goodreads API is used to get booklists; for the library pages, the Bibliocommons API is not accessible to the general public, so these pages are scraped.
 
+Tests:
+
+In the tests folder, the file tests.py contains unittests, using a test database called testdb, and mock functions to substitute for the Goodreads API and the SFPL website at Bibliocommons.  The mock functions read from the other folders.  There is a separate file called api_tests.py to test those components.
+
+Logging errors:
+
+Because this app relies so much on web scraping, a number of unpredictable errors come up.  Therefore many of the modules write .log files, usually for errors and for results it failed to predict.  These files are just text files with timestamps and data.  They can be safely ignored, but I have found them very useful for catching bugs and oversights.
+
 Requirements before running server.py:
 
 pip install requirements.txt to configure Python
