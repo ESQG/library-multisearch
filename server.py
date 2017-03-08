@@ -220,7 +220,7 @@ def log_user_in():
     session['user_id'] = user_id
     session['email'] = request.form.get('email')
 
-    return redirect("/booklist")
+    return redirect("/user/%s" % user_id)
 
 
 @app.route("/register", methods=["GET"])
