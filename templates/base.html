@@ -2,22 +2,59 @@
 <html>
     <head>
         <title>All My Library Books</title>
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Montserrat:500" rel="stylesheet">
+
         <script src="https://code.jquery.com/jquery.js"></script>
+
+
         {% block head %}
         {% endblock %}
     </head>
     <body>
+{% if get_flashed_messages() %}
+<div class="container-fluid" id="flash">
     {% for msg in get_flashed_messages() %}
     <p>{{ msg }}</p>
   {% endfor %}
+</div>
+{% endif %}
 
-{% if session.email %}
-<p>Logged in as {{session.email}}</p>
-<p><a href="/logout">Logout</a></p>
+<div class="container-fluid" id="custom-navbar">
+{% if session.email and session.user_id %}
+<a class="col-xs-4 col-sm-3" href="/">Home</a>
+
+<a class="col-xs-4 col-sm-3" href="/user/{{ session.user_id }}">My books</a>
+
+<a class="col-xs-4 col-sm-3" href="/librarybooks">Books in library</a>
+
+<a class="hidden-xs col-sm-3" href="/logout">Logout</a>
+
+{% else %}
+<a class="col-xs-4 col-sm-3" href="/">Home/Login</a>
+
+
+<a class="col-xs-4 col-sm-3" href="/booklist">My books</a>
+
+<a class="hidden-xs col-sm-3" href="/librarybooks">Books in library</a>
+
+<a class="col-xs-4 col-sm-3" href="/register">New Account</a>
 
 {% endif %}
+
+</div>
+<br>
+<br>
+<div class="container-fluid">
     {% block body %}
 
     {% endblock %}
+</div>
+    {% if session.email %}
+<div class="container">
+<p class="green col-xs-8 col-xs-offset-2"> Logged in as {{session.email}}. &nbsp;&nbsp;  <a href="/logout">Logout</a></p>
+
+{% endif %}
     </body>
 </html>
