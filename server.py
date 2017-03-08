@@ -44,7 +44,7 @@ def display_books_from_form():
         return redirect("/")
 
     # Request bookshelf
-    books = use_goodreads.get_shelf(session['goodreads_id'], session['shelf'])
+    books = use_goodreads.get_shelf(goodreads_id, shelf)
     if type(books) == list:
         books.sort(key=lambda x: x['author'])
     else:
@@ -133,9 +133,20 @@ def add_book_to_user():
 @app.route("/add-book", methods=["POST"])
 def add_book():
     if 'user_id' in session:
-        return "Fix me. Tried adding to user %s" % session['user_id']
+        title = request.form.get('title')
+        author = request.form.get('author')
+        if title and author:
+            book_id = data_manager.add_book(title, author)
+            book_info = {'title': title, 'author': author, 'book_id': book_id}
+            return jsonify(book_info)
+        elif title and not author:
+            return jsonify({'error': 'no author'})
+        elif author and not title:
+            return jsonify({'error': 'no title'})
+        else:
+            return jsonify({'error': 'no book info sent'})
     else:
-        return "No user found"
+        return jsonify({"error": "No user found"})
 
 
 @app.route("/book/<book_id>.json")
