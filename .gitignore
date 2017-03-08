@@ -3,6 +3,7 @@ env*
 stuff*
 *.pyc
 *.log
+*.png
 tests/.coverage
 tests/htmlcov/
 
