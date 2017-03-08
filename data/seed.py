@@ -136,4 +136,10 @@ if __name__ == '__main__':
 
     connect_to_db(app)
 
+    seed = raw_input("Seed the database with formats and library info? Y/N: ").strip().lower()
+    if seed == 'y':
+        add_formats()
+        add_sfpl_branches()
+        add_sfpl_branch_addresses()
+        print "Ran add_formats(), add_sfpl_branches() and add_sfpl_branch_addresses()"
 
