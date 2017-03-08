@@ -4,6 +4,7 @@ stuff*
 *.pyc
 *.log
 *.png
+*.jpg
 tests/.coverage
 tests/htmlcov/
 
