@@ -1,12 +1,12 @@
-Library List
+# Library List
 
 This is a web app (i.e. a dynamic website) that allows a user to provide a list of books by title and author, then searches the San Francisco Public Library for all the user's books.  This can be used by providing a Goodreads bookshelf link directly, or by signing up for an account, adding books by title and author or from a Goodreads bookshelf.  All books are stored in the database, and their availability updated if it is a day out of date; however, signing up for an account will make it easeir to manage a booklist. 
 
-Back end:
+### Back end:
 
 A Python server, using the Flask web framework and Jinja2 templates to render HTML pages.  All permanent info, except for a JSON file of library addresses, is stored in a PostgreSQL database.
 
-Front end:
+### Front end:
 
 HTML rendered by the back end, styled with Bootstrap, a CSS file in static/styles.css.
 
@@ -20,15 +20,15 @@ The front end uses the Googlemaps (Javascript) API to embed a clickable map of a
 
 On the back end, the web API and scraping code is found in the queries/ folder.  The Goodreads API is used to get booklists; for the library pages, the Bibliocommons API is not accessible to the general public, so these pages are scraped.
 
-Tests:
+### Tests:
 
 In the tests folder, the file tests.py contains unittests, using a test database called testdb, and mock functions to substitute for the Goodreads API and the SFPL website at Bibliocommons.  The mock functions read from the other folders.  There is a separate file called api_tests.py to test those components.
 
-Logging errors:
+### Logging errors:
 
 Because this app relies so much on web scraping, a number of unpredictable errors come up.  Therefore many of the modules write .log files, usually for errors and for results it failed to predict.  These files are just text files with timestamps and data.  They can be safely ignored, but I have found them very useful for catching bugs and oversights.
 
-Requirements before running server.py:
+## Requirements before running server.py:
 
 pip install requirements.txt to configure Python
 Install PostgreSQL, and create a database called library_app (or change the name in model.py), as well as a test database called testdb.  
